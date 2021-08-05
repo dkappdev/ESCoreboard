@@ -56,15 +56,79 @@
 		E27C03B126BC13F000AFF748 /* Eurovision Scoreboard */ = {
 			isa = PBXGroup;
 			children = (
+				E27C03C026BC13F200AFF748 /* Info.plist */,
 				E27C03B226BC13F000AFF748 /* AppDelegate.swift */,
 				E27C03B426BC13F000AFF748 /* SceneDelegate.swift */,
-				E27C03B626BC13F000AFF748 /* ViewController.swift */,
-				E27C03B826BC13F000AFF748 /* Main.storyboard */,
 				E27C03BB26BC13F200AFF748 /* Assets.xcassets */,
-				E27C03BD26BC13F200AFF748 /* LaunchScreen.storyboard */,
-				E27C03C026BC13F200AFF748 /* Info.plist */,
+				E27C03CD26BC247A00AFF748 /* Views */,
+				E27C03CC26BC247300AFF748 /* Models */,
+				E27C03CB26BC246F00AFF748 /* View Controllers */,
+				E27C03CA26BC246A00AFF748 /* Model Controllers */,
+				E27C03C926BC246500AFF748 /* Other Controllers */,
+				E27C03C826BC246000AFF748 /* Protocols */,
+				E27C03C726BC245A00AFF748 /* Extensions */,
+				E27C03C626BC245400AFF748 /* Storyboards */,
 			);
 			path = "Eurovision Scoreboard";
+			sourceTree = "<group>";
+		};
+		E27C03C626BC245400AFF748 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				E27C03BD26BC13F200AFF748 /* LaunchScreen.storyboard */,
+				E27C03B826BC13F000AFF748 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		E27C03C726BC245A00AFF748 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E27C03C826BC246000AFF748 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		E27C03C926BC246500AFF748 /* Other Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Other Controllers";
+			sourceTree = "<group>";
+		};
+		E27C03CA26BC246A00AFF748 /* Model Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Model Controllers";
+			sourceTree = "<group>";
+		};
+		E27C03CB26BC246F00AFF748 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E27C03B626BC13F000AFF748 /* ViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		E27C03CC26BC247300AFF748 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E27C03CD26BC247A00AFF748 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

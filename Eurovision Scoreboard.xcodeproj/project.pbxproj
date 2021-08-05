@@ -13,6 +13,7 @@
 		E27C03BA26BC13F000AFF748 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E27C03B826BC13F000AFF748 /* Main.storyboard */; };
 		E27C03BC26BC13F200AFF748 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E27C03BB26BC13F200AFF748 /* Assets.xcassets */; };
 		E27C03BF26BC13F200AFF748 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E27C03BD26BC13F200AFF748 /* LaunchScreen.storyboard */; };
+		E27C03D126BC41BC00AFF748 /* YearCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C03D026BC41BC00AFF748 /* YearCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		E27C03BB26BC13F200AFF748 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E27C03BE26BC13F200AFF748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E27C03C026BC13F200AFF748 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E27C03D026BC41BC00AFF748 /* YearCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = YearCollectionViewCell.swift; path = ../../../../Documents/YearCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 		E27C03CD26BC247A00AFF748 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E27C03D026BC41BC00AFF748 /* YearCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -204,6 +207,7 @@
 				E27C03B726BC13F000AFF748 /* ViewController.swift in Sources */,
 				E27C03B326BC13F000AFF748 /* AppDelegate.swift in Sources */,
 				E27C03B526BC13F000AFF748 /* SceneDelegate.swift in Sources */,
+				E27C03D126BC41BC00AFF748 /* YearCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

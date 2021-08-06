@@ -25,7 +25,7 @@ class ContestCollectionViewController: UICollectionViewController {
         
         dataSource = createDataSource()
         collectionView.dataSource = dataSource
-        collectionView.collectionViewLayout = createLayout()
+        collectionView.collectionViewLayout = createLayout(isCompact: traitCollection.horizontalSizeClass == .compact)
         
         updateCollectionView()
     }
@@ -39,12 +39,14 @@ class ContestCollectionViewController: UICollectionViewController {
         dataSource.apply(snapshot)
     }
     
-    func createLayout() -> UICollectionViewCompositionalLayout {
+    func createLayout(isCompact: Bool) -> UICollectionViewCompositionalLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(0.5))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
+        let elementsInGroup = isCompact ? 2 : 3
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(CGFloat(1.0 / Double(elementsInGroup))))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: elementsInGroup)
         group.interItemSpacing = .fixed(12)
         
         let section = NSCollectionLayoutSection(group: group)
@@ -52,6 +54,10 @@ class ContestCollectionViewController: UICollectionViewController {
         section.interGroupSpacing = CGFloat(12)
         
         return UICollectionViewCompositionalLayout(section: section)
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        collectionView.collectionViewLayout = createLayout(isCompact: traitCollection.horizontalSizeClass == .compact)
     }
     
     func createDataSource() -> DataSourceType {

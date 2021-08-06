@@ -9,23 +9,29 @@
 /* Begin PBXBuildFile section */
 		E27C03B326BC13F000AFF748 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C03B226BC13F000AFF748 /* AppDelegate.swift */; };
 		E27C03B526BC13F000AFF748 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C03B426BC13F000AFF748 /* SceneDelegate.swift */; };
-		E27C03B726BC13F000AFF748 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C03B626BC13F000AFF748 /* ViewController.swift */; };
 		E27C03BA26BC13F000AFF748 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E27C03B826BC13F000AFF748 /* Main.storyboard */; };
 		E27C03BC26BC13F200AFF748 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E27C03BB26BC13F200AFF748 /* Assets.xcassets */; };
 		E27C03BF26BC13F200AFF748 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E27C03BD26BC13F200AFF748 /* LaunchScreen.storyboard */; };
-		E27C03D126BC41BC00AFF748 /* YearCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C03D026BC41BC00AFF748 /* YearCollectionViewCell.swift */; };
+		E2A5217426BC41FC00D4F73D /* ContestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5217326BC41FC00D4F73D /* ContestCollectionViewCell.swift */; };
+		E2A5217726BC4B5800D4F73D /* ContestCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5217626BC4B5800D4F73D /* ContestCollectionViewController.swift */; };
+		E2A5217B26BC645200D4F73D /* Contest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5217A26BC645200D4F73D /* Contest.swift */; };
+		E2A5217F26BC64AB00D4F73D /* Act.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5217E26BC64AB00D4F73D /* Act.swift */; };
+		E2A5218126BD11DF00D4F73D /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5218026BD11DF00D4F73D /* Country.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E27C03AF26BC13F000AFF748 /* Eurovision Scoreboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Eurovision Scoreboard.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E27C03B226BC13F000AFF748 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E27C03B426BC13F000AFF748 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E27C03B626BC13F000AFF748 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E27C03B926BC13F000AFF748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E27C03BB26BC13F200AFF748 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E27C03BE26BC13F200AFF748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E27C03C026BC13F200AFF748 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E27C03D026BC41BC00AFF748 /* YearCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = YearCollectionViewCell.swift; path = ../../../../Documents/YearCollectionViewCell.swift; sourceTree = "<group>"; };
+		E2A5217326BC41FC00D4F73D /* ContestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContestCollectionViewCell.swift; sourceTree = "<group>"; };
+		E2A5217626BC4B5800D4F73D /* ContestCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContestCollectionViewController.swift; sourceTree = "<group>"; };
+		E2A5217A26BC645200D4F73D /* Contest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contest.swift; sourceTree = "<group>"; };
+		E2A5217E26BC64AB00D4F73D /* Act.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Act.swift; sourceTree = "<group>"; };
+		E2A5218026BD11DF00D4F73D /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +68,7 @@
 				E27C03B226BC13F000AFF748 /* AppDelegate.swift */,
 				E27C03B426BC13F000AFF748 /* SceneDelegate.swift */,
 				E27C03BB26BC13F200AFF748 /* Assets.xcassets */,
-				E27C03CD26BC247A00AFF748 /* Views */,
+				E2A5217226BC41F200D4F73D /* Views */,
 				E27C03CC26BC247300AFF748 /* Models */,
 				E27C03CB26BC246F00AFF748 /* View Controllers */,
 				E27C03CA26BC246A00AFF748 /* Model Controllers */,
@@ -114,7 +120,7 @@
 		E27C03CB26BC246F00AFF748 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				E27C03B626BC13F000AFF748 /* ViewController.swift */,
+				E2A5217626BC4B5800D4F73D /* ContestCollectionViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -122,14 +128,17 @@
 		E27C03CC26BC247300AFF748 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E2A5218026BD11DF00D4F73D /* Country.swift */,
+				E2A5217A26BC645200D4F73D /* Contest.swift */,
+				E2A5217E26BC64AB00D4F73D /* Act.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		E27C03CD26BC247A00AFF748 /* Views */ = {
+		E2A5217226BC41F200D4F73D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E27C03D026BC41BC00AFF748 /* YearCollectionViewCell.swift */,
+				E2A5217326BC41FC00D4F73D /* ContestCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -204,10 +213,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E27C03B726BC13F000AFF748 /* ViewController.swift in Sources */,
 				E27C03B326BC13F000AFF748 /* AppDelegate.swift in Sources */,
+				E2A5218126BD11DF00D4F73D /* Country.swift in Sources */,
+				E2A5217726BC4B5800D4F73D /* ContestCollectionViewController.swift in Sources */,
+				E2A5217B26BC645200D4F73D /* Contest.swift in Sources */,
+				E2A5217F26BC64AB00D4F73D /* Act.swift in Sources */,
 				E27C03B526BC13F000AFF748 /* SceneDelegate.swift in Sources */,
-				E27C03D126BC41BC00AFF748 /* YearCollectionViewCell.swift in Sources */,
+				E2A5217426BC41FC00D4F73D /* ContestCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,7 +376,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dkdev.Eurovision-Scoreboard";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -383,7 +395,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dkdev.Eurovision-Scoreboard";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

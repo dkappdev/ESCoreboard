@@ -43,7 +43,7 @@ class ContestCollectionViewController: UICollectionViewController {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let elementsInGroup = isCompact ? 2 : 3
+        let elementsInGroup = isCompact ? 2 : 4
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(CGFloat(1.0 / Double(elementsInGroup))))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: elementsInGroup)
@@ -56,10 +56,6 @@ class ContestCollectionViewController: UICollectionViewController {
         return UICollectionViewCompositionalLayout(section: section)
     }
     
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        collectionView.collectionViewLayout = createLayout(isCompact: traitCollection.horizontalSizeClass == .compact)
-    }
-    
     func createDataSource() -> DataSourceType {
         return DataSourceType(collectionView: collectionView) { collectionView, indexPath, contest in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ContestCollectionViewCell
@@ -69,5 +65,9 @@ class ContestCollectionViewController: UICollectionViewController {
             
             return cell
         }
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        collectionView.collectionViewLayout = createLayout(isCompact: traitCollection.horizontalSizeClass == .compact)
     }
 }

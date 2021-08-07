@@ -11,7 +11,7 @@
         <!--Contests-->
         <scene sceneID="FIT-zM-r8W">
             <objects>
-                <collectionViewController id="kda-ZT-RUb" customClass="ContestCollectionViewController" customModule="Eurovision_Scoreboard" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="kda-ZT-RUb" customClass="ContestListCollectionViewController" customModule="Eurovision_Scoreboard" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="opf-wK-728">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -31,16 +31,16 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="hDt-PG-IbM">
-                                            <rect key="frame" x="36.5" y="29" width="113.5" height="107"/>
+                                            <rect key="frame" x="42" y="29" width="102.5" height="107"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="🇳🇱" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dRh-pa-xeE">
-                                                    <rect key="frame" x="18" y="0.0" width="77" height="86"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="🇪🇺" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dRh-pa-xeE">
+                                                    <rect key="frame" x="12.5" y="0.0" width="77" height="86"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="72"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="2021 - Rotterdam" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IaW-81-hb3">
-                                                    <rect key="frame" x="0.0" y="90" width="113.5" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Year - Host City" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IaW-81-hb3">
+                                                    <rect key="frame" x="0.0" y="90" width="102.5" height="17"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -58,6 +58,7 @@
                                 <connections>
                                     <outlet property="hostCountryFlagLabel" destination="dRh-pa-xeE" id="vnC-c0-SrM"/>
                                     <outlet property="yearAndHostCityLabel" destination="IaW-81-hb3" id="7wx-cF-r32"/>
+                                    <segue destination="axn-vo-pP4" kind="show" identifier="ViewContest" destinationCreationSelector="viewContest:sender:" id="s8Q-gs-FYs"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -71,6 +72,76 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2RZ-SN-xZM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1492.753623188406" y="72.991071428571431"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="I3W-TH-cJ0">
+            <objects>
+                <tableViewController id="axn-vo-pP4" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="DWE-e8-5fE">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="Act" id="vnu-xO-gqk" customClass="ActTableViewCell" customModule="Eurovision_Scoreboard" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="24.5" width="414" height="64.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vnu-xO-gqk" id="zLd-51-slF">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="64.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="VmO-dH-0tN">
+                                            <rect key="frame" x="20" y="11" width="374" height="42.5"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="🇪🇺" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ujv-PX-1sS">
+                                                    <rect key="frame" x="0.0" y="0.0" width="36" height="42.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="Ldp-Tt-g2l">
+                                                    <rect key="frame" x="48" y="0.0" width="326" height="42.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ha4-jU-Z7K">
+                                                            <rect key="frame" x="0.0" y="0.0" width="326" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I08-st-jGO">
+                                                            <rect key="frame" x="0.0" y="22" width="326" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="VmO-dH-0tN" secondAttribute="bottom" id="2xV-uC-BGL"/>
+                                        <constraint firstItem="VmO-dH-0tN" firstAttribute="leading" secondItem="zLd-51-slF" secondAttribute="leadingMargin" id="g39-7i-LXl"/>
+                                        <constraint firstItem="VmO-dH-0tN" firstAttribute="top" secondItem="zLd-51-slF" secondAttribute="topMargin" id="pSS-Gj-Irw"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="VmO-dH-0tN" secondAttribute="trailing" id="y4N-dX-gGU"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="artistNameLabel" destination="Ha4-jU-Z7K" id="IA1-bP-xxE"/>
+                                    <outlet property="countryFlagLabel" destination="Ujv-PX-1sS" id="KVF-7V-TkQ"/>
+                                    <outlet property="songNameLabel" destination="I08-st-jGO" id="5tX-qX-AwO"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="axn-vo-pP4" id="cSI-Se-fOr"/>
+                            <outlet property="delegate" destination="axn-vo-pP4" id="XIm-aE-7p9"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="N2R-hm-FDM"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VjG-4q-ny3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2292.753623188406" y="72.991071428571431"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jJ8-xq-KKD">

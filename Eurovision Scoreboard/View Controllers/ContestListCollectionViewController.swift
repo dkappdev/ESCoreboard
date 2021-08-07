@@ -9,19 +9,17 @@ import UIKit
 
 private let reuseIdentifier = "Contest"
 
-class ContestCollectionViewController: UICollectionViewController {
+class ContestListCollectionViewController: UICollectionViewController {
     
     typealias DataSourceType = UICollectionViewDiffableDataSource<Int, Contest>
     
     private static let defaultSectionIdentifier = 0
     
-    var contests: [Contest]!
+    var contestController: ContestController!
     var dataSource: DataSourceType!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        contests = Contest.loadFromFile() ?? Contest.defaultContests()
         
         dataSource = createDataSource()
         collectionView.dataSource = dataSource
@@ -33,8 +31,8 @@ class ContestCollectionViewController: UICollectionViewController {
     func updateCollectionView() {
         var snapshot = NSDiffableDataSourceSnapshot<Int, Contest>()
         
-        snapshot.appendSections([ContestCollectionViewController.defaultSectionIdentifier])
-        snapshot.appendItems(contests, toSection: ContestCollectionViewController.defaultSectionIdentifier)
+        snapshot.appendSections([ContestListCollectionViewController.defaultSectionIdentifier])
+        snapshot.appendItems(contestController.contests, toSection: ContestListCollectionViewController.defaultSectionIdentifier)
         
         dataSource.apply(snapshot)
     }
@@ -69,5 +67,14 @@ class ContestCollectionViewController: UICollectionViewController {
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         collectionView.collectionViewLayout = createLayout(isCompact: traitCollection.horizontalSizeClass == .compact)
+    }
+    
+    @IBSegueAction func viewContest(_ coder: NSCoder, sender: ContestCollectionViewCell?) -> ContestTableViewController? {
+        guard let sender = sender,
+              let contestIndex = collectionView.indexPath(for: sender)?.item else { return nil }
+        let controller = ContestTableViewController(contestIndex: contestIndex, coder: coder)
+        controller?.contestController = contestController
+        
+        return controller
     }
 }

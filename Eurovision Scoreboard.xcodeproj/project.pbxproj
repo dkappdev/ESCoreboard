@@ -13,10 +13,13 @@
 		E27C03BC26BC13F200AFF748 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E27C03BB26BC13F200AFF748 /* Assets.xcassets */; };
 		E27C03BF26BC13F200AFF748 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E27C03BD26BC13F200AFF748 /* LaunchScreen.storyboard */; };
 		E2A5217426BC41FC00D4F73D /* ContestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5217326BC41FC00D4F73D /* ContestCollectionViewCell.swift */; };
-		E2A5217726BC4B5800D4F73D /* ContestCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5217626BC4B5800D4F73D /* ContestCollectionViewController.swift */; };
+		E2A5217726BC4B5800D4F73D /* ContestListCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5217626BC4B5800D4F73D /* ContestListCollectionViewController.swift */; };
 		E2A5217B26BC645200D4F73D /* Contest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5217A26BC645200D4F73D /* Contest.swift */; };
 		E2A5217F26BC64AB00D4F73D /* Act.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5217E26BC64AB00D4F73D /* Act.swift */; };
 		E2A5218126BD11DF00D4F73D /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5218026BD11DF00D4F73D /* Country.swift */; };
+		E2A5218526BD7C6700D4F73D /* ActTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5218426BD7C6700D4F73D /* ActTableViewCell.swift */; };
+		E2A5218726BD86FF00D4F73D /* ContestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5218626BD86FF00D4F73D /* ContestTableViewController.swift */; };
+		E2A5218926BDB86800D4F73D /* ContestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5218826BDB86800D4F73D /* ContestController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,10 +31,13 @@
 		E27C03BE26BC13F200AFF748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E27C03C026BC13F200AFF748 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2A5217326BC41FC00D4F73D /* ContestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContestCollectionViewCell.swift; sourceTree = "<group>"; };
-		E2A5217626BC4B5800D4F73D /* ContestCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContestCollectionViewController.swift; sourceTree = "<group>"; };
+		E2A5217626BC4B5800D4F73D /* ContestListCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContestListCollectionViewController.swift; sourceTree = "<group>"; };
 		E2A5217A26BC645200D4F73D /* Contest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contest.swift; sourceTree = "<group>"; };
 		E2A5217E26BC64AB00D4F73D /* Act.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Act.swift; sourceTree = "<group>"; };
 		E2A5218026BD11DF00D4F73D /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
+		E2A5218426BD7C6700D4F73D /* ActTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActTableViewCell.swift; sourceTree = "<group>"; };
+		E2A5218626BD86FF00D4F73D /* ContestTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContestTableViewController.swift; sourceTree = "<group>"; };
+		E2A5218826BDB86800D4F73D /* ContestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContestController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +119,7 @@
 		E27C03CA26BC246A00AFF748 /* Model Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E2A5218826BDB86800D4F73D /* ContestController.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -120,7 +127,8 @@
 		E27C03CB26BC246F00AFF748 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				E2A5217626BC4B5800D4F73D /* ContestCollectionViewController.swift */,
+				E2A5217626BC4B5800D4F73D /* ContestListCollectionViewController.swift */,
+				E2A5218626BD86FF00D4F73D /* ContestTableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -139,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				E2A5217326BC41FC00D4F73D /* ContestCollectionViewCell.swift */,
+				E2A5218426BD7C6700D4F73D /* ActTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -215,10 +224,13 @@
 			files = (
 				E27C03B326BC13F000AFF748 /* AppDelegate.swift in Sources */,
 				E2A5218126BD11DF00D4F73D /* Country.swift in Sources */,
-				E2A5217726BC4B5800D4F73D /* ContestCollectionViewController.swift in Sources */,
+				E2A5217726BC4B5800D4F73D /* ContestListCollectionViewController.swift in Sources */,
 				E2A5217B26BC645200D4F73D /* Contest.swift in Sources */,
+				E2A5218526BD7C6700D4F73D /* ActTableViewCell.swift in Sources */,
 				E2A5217F26BC64AB00D4F73D /* Act.swift in Sources */,
+				E2A5218726BD86FF00D4F73D /* ContestTableViewController.swift in Sources */,
 				E27C03B526BC13F000AFF748 /* SceneDelegate.swift in Sources */,
+				E2A5218926BDB86800D4F73D /* ContestController.swift in Sources */,
 				E2A5217426BC41FC00D4F73D /* ContestCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

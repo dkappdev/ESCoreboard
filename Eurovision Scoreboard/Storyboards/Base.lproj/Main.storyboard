@@ -99,28 +99,34 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Ldp-Tt-g2l">
-                                                    <rect key="frame" x="64" y="0.0" width="310" height="62"/>
+                                                    <rect key="frame" x="64" y="0.0" width="261" height="62"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXh-IA-TiM">
-                                                            <rect key="frame" x="0.0" y="0.0" width="310" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="261" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ha4-jU-Z7K">
-                                                            <rect key="frame" x="0.0" y="20.5" width="310" height="21"/>
+                                                            <rect key="frame" x="0.0" y="20.5" width="261" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I08-st-jGO">
-                                                            <rect key="frame" x="0.0" y="41.5" width="310" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="41.5" width="261" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <color key="textColor" systemColor="secondaryLabelColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                 </stackView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="41" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pd5-ih-qoG">
+                                                    <rect key="frame" x="337" y="0.0" width="37" height="62"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </stackView>
                                     </subviews>
@@ -135,6 +141,7 @@
                                     <outlet property="artistNameLabel" destination="Ha4-jU-Z7K" id="IA1-bP-xxE"/>
                                     <outlet property="countryFlagLabel" destination="Ujv-PX-1sS" id="KVF-7V-TkQ"/>
                                     <outlet property="countryNameLabel" destination="aXh-IA-TiM" id="anQ-ro-r97"/>
+                                    <outlet property="currentPlaceLabel" destination="Pd5-ih-qoG" id="4Km-Yt-nQH"/>
                                     <outlet property="songNameLabel" destination="I08-st-jGO" id="5tX-qX-AwO"/>
                                 </connections>
                             </tableViewCell>

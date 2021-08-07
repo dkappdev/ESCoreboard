@@ -13,6 +13,7 @@ class ActTableViewCell: UITableViewCell {
     @IBOutlet var countryNameLabel: UILabel!
     @IBOutlet var artistNameLabel: UILabel!
     @IBOutlet var songNameLabel: UILabel!
+    @IBOutlet var currentPlaceLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,11 +26,12 @@ class ActTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func update(with act: Act) {
+    func update(with act: Act, position: Int) {
         countryFlagLabel.text = act.country.flagEmoji
         countryNameLabel.text = act.country.name
         artistNameLabel.text = act.artistName
         songNameLabel.text = act.songName
+        currentPlaceLabel.text = "\(position)"
     }
 
 }

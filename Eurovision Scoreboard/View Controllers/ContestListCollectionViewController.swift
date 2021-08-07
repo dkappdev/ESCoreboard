@@ -72,6 +72,7 @@ class ContestListCollectionViewController: UICollectionViewController {
     @IBSegueAction func viewContest(_ coder: NSCoder, sender: ContestCollectionViewCell?) -> ContestTableViewController? {
         guard let sender = sender,
               let contestIndex = collectionView.indexPath(for: sender)?.item else { return nil }
+        
         let controller = ContestTableViewController(contestIndex: contestIndex, coder: coder)
         controller?.contestController = contestController
         

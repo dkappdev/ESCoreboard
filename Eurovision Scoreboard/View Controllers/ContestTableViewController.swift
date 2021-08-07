@@ -51,18 +51,18 @@ class ContestTableViewController: UITableViewController {
     }
 
     func createDataSource() -> ContestTableViewDiffableDataSource {
-        let source = ContestTableViewDiffableDataSource(tableView: tableView) { tableView, indexPath, act in
+        let dataSource = ContestTableViewDiffableDataSource(tableView: tableView) { tableView, indexPath, act in
             let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! ActTableViewCell
 
-            cell.update(with: act)
+            cell.update(with: act, position: indexPath.row + 1)
             cell.showsReorderControl = true
             
             return cell
         }
         
-        source.delegate = self
+        dataSource.delegate = self
         
-        return source
+        return dataSource
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
@@ -74,5 +74,9 @@ extension ContestTableViewController: ContestTableViewDiffableDataSourceDelegate
     func dataSource(_ dataSource: ContestTableViewDiffableDataSource, didChangeActList acts: [Act]) {
         contestController.contests[contestIndex].acts = acts
         contestController.saveStateToFile()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.tableView.reloadData()
+        }
     }
 }

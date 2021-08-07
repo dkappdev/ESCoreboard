@@ -13,17 +13,25 @@ class ContestController {
     init() {
         contests = Self.loadFromFile() ?? Self.defaultContests()
     }
+    
+    func saveStateToFile() {
+        Self.saveToFile(contests: contests)
+    }
+    
+    func resetState() {
+        contests = Self.defaultContests()
+    }
 }
 
 // MARK: - Saving data to file
 
 extension ContestController {
-    static let archiveURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+    private static let archiveURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         .first!
         .appendingPathComponent("contests")
         .appendingPathExtension("json")
     
-    static func saveToFile(contests: [Contest]) {
+    private static func saveToFile(contests: [Contest]) {
         let jsonEncoder = JSONEncoder()
         if let encodedContests = try? jsonEncoder.encode(contests) {
             try? encodedContests.write(to: Self.archiveURL, options: .noFileProtection)
@@ -31,7 +39,7 @@ extension ContestController {
     }
     
     // Only used when initializing ContestController
-    static func loadFromFile() -> [Contest]? {
+    private static func loadFromFile() -> [Contest]? {
         let jsonDecoder = JSONDecoder()
         if let retrievedContestsData = try? Data(contentsOf: archiveURL),
            let decodedContests = try? jsonDecoder.decode([Contest].self, from: retrievedContestsData) {
@@ -41,7 +49,7 @@ extension ContestController {
         }
     }
     
-    static func defaultContests() -> [Contest] {
+    private static func defaultContests() -> [Contest] {
         return [
             Contest(hostCountry: .theNetherlands, hostCityName: "Rotterdam", year: 2021, acts: [
                 Act(artistName: "Anxhela Peristeri", songName: "Karma", country: .albania),

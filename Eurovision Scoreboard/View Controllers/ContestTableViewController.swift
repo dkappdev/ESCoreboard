@@ -29,7 +29,7 @@ class ContestTableViewController: UITableViewController {
         super.viewDidLoad()
         
         navigationItem.rightBarButtonItem = editButtonItem
-
+        
         let contest = contestController.contests[contestIndex]
         navigationItem.title = "\(contest.hostCountry.flagEmoji) \(contest.year) - \(contest.hostCityName)"
     }
@@ -47,6 +47,12 @@ class ContestTableViewController: UITableViewController {
         
         cell.update(with: contestController.contests[contestIndex].acts[indexPath.row], position: indexPath.row + 1)
         cell.showsReorderControl = true
+        
+        if indexPath.row < 10 {
+            cell.backgroundColor = .systemGray6
+        } else {
+            cell.backgroundColor = .systemBackground
+        }
         
         return cell
     }

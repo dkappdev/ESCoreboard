@@ -59,7 +59,7 @@ class ContestListCollectionViewController: UICollectionViewController {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ContestCollectionViewCell
             cell.hostCountryFlagLabel.text = contest.hostCountry.flagEmoji
             cell.yearAndHostCityLabel.text = "\(contest.year) - \(contest.hostCityName)"
-            cell.contentView.layer.cornerRadius = 12
+            cell.layer.cornerRadius = 12
             
             return cell
         }

@@ -13,7 +13,7 @@ class ContestListCollectionViewController: UICollectionViewController {
     
     typealias DataSourceType = UICollectionViewDiffableDataSource<Int, Contest>
     
-    private static let defaultSectionIdentifier = 0
+    static let defaultSectionIdentifier = 0
     
     var contestController: ContestController!
     var dataSource: DataSourceType!

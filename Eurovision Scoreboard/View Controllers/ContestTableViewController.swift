@@ -11,9 +11,8 @@ private let reuseIdentifier = "Act"
 
 class ContestTableViewController: UITableViewController {
 
-    private static let defaultSectionIdentifier = 0
-    typealias DataSourceType = UITableViewDiffableDataSource<Int, Act>
-    var dataSource: DataSourceType!
+    static let defaultSectionIdentifier = 0
+    var dataSource: ContestTableViewDiffableDataSource!
 
     var contestController: ContestController!
     var contestIndex: Int
@@ -29,6 +28,8 @@ class ContestTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.rightBarButtonItem = editButtonItem
 
         dataSource = createDataSource()
         tableView.dataSource = dataSource
@@ -49,17 +50,28 @@ class ContestTableViewController: UITableViewController {
         dataSource.apply(snapshot, animatingDifferences: animated, completion: nil)
     }
 
-    func createDataSource() -> DataSourceType {
-        return DataSourceType(tableView: tableView) { tableView, indexPath, act in
+    func createDataSource() -> ContestTableViewDiffableDataSource {
+        let source = ContestTableViewDiffableDataSource(tableView: tableView) { tableView, indexPath, act in
             let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! ActTableViewCell
 
             cell.update(with: act)
-
+            cell.showsReorderControl = true
+            
             return cell
         }
+        
+        source.delegate = self
+        
+        return source
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .none
+    }
+}
+
+extension ContestTableViewController: ContestTableViewDiffableDataSourceDelegate {
+    func dataSource(_ dataSource: ContestTableViewDiffableDataSource, didChangeActList acts: [Act]) {
+        contestController.contests[contestIndex].acts = acts
     }
 }

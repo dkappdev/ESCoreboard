@@ -69,6 +69,16 @@ class ContestListCollectionViewController: UICollectionViewController {
         collectionView.collectionViewLayout = createLayout(isCompact: traitCollection.horizontalSizeClass == .compact)
     }
     
+    override func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+            let editAction = UIAction(title: "Edit Contest", image: UIImage(systemName: "pencil"), identifier: nil, discoverabilityTitle: nil, attributes: [], state: .off) { action in
+                
+            }
+            
+            return UIMenu(title: "", image: nil, identifier: nil, options: [], children: [editAction])
+        }
+    }
+    
     @IBSegueAction func viewContest(_ coder: NSCoder, sender: ContestCollectionViewCell?) -> ContestTableViewController? {
         guard let sender = sender,
               let contestIndex = collectionView.indexPath(for: sender)?.item else { return nil }

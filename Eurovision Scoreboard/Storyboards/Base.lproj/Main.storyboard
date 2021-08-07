@@ -83,33 +83,39 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="Act" id="vnu-xO-gqk" customClass="ActTableViewCell" customModule="Eurovision_Scoreboard" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="24.5" width="414" height="64.5"/>
+                                <rect key="frame" x="0.0" y="24.5" width="414" height="84"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vnu-xO-gqk" id="zLd-51-slF">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="64.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="84"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="VmO-dH-0tN">
-                                            <rect key="frame" x="20" y="11" width="374" height="42.5"/>
+                                            <rect key="frame" x="20" y="11" width="374" height="62"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="🇪🇺" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ujv-PX-1sS">
-                                                    <rect key="frame" x="0.0" y="0.0" width="36" height="42.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="52" height="62"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="48"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="Ldp-Tt-g2l">
-                                                    <rect key="frame" x="48" y="0.0" width="326" height="42.5"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Ldp-Tt-g2l">
+                                                    <rect key="frame" x="64" y="0.0" width="310" height="62"/>
                                                     <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXh-IA-TiM">
+                                                            <rect key="frame" x="0.0" y="0.0" width="310" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ha4-jU-Z7K">
-                                                            <rect key="frame" x="0.0" y="0.0" width="326" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <rect key="frame" x="0.0" y="20.5" width="310" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I08-st-jGO">
-                                                            <rect key="frame" x="0.0" y="22" width="326" height="20.5"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                            <rect key="frame" x="0.0" y="41.5" width="310" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -128,6 +134,7 @@
                                 <connections>
                                     <outlet property="artistNameLabel" destination="Ha4-jU-Z7K" id="IA1-bP-xxE"/>
                                     <outlet property="countryFlagLabel" destination="Ujv-PX-1sS" id="KVF-7V-TkQ"/>
+                                    <outlet property="countryNameLabel" destination="aXh-IA-TiM" id="anQ-ro-r97"/>
                                     <outlet property="songNameLabel" destination="I08-st-jGO" id="5tX-qX-AwO"/>
                                 </connections>
                             </tableViewCell>

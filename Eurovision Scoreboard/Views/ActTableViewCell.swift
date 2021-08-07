@@ -10,6 +10,7 @@ import UIKit
 class ActTableViewCell: UITableViewCell {
     
     @IBOutlet var countryFlagLabel: UILabel!
+    @IBOutlet var countryNameLabel: UILabel!
     @IBOutlet var artistNameLabel: UILabel!
     @IBOutlet var songNameLabel: UILabel!
 
@@ -26,6 +27,7 @@ class ActTableViewCell: UITableViewCell {
     
     func update(with act: Act) {
         countryFlagLabel.text = act.country.flagEmoji
+        countryNameLabel.text = act.country.name
         artistNameLabel.text = act.artistName
         songNameLabel.text = act.songName
     }

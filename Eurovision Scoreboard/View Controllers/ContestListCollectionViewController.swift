@@ -78,4 +78,6 @@ class ContestListCollectionViewController: UICollectionViewController {
         
         return controller
     }
+    
+    
 }

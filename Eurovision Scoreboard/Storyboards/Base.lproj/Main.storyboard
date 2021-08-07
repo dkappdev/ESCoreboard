@@ -73,10 +73,10 @@
             </objects>
             <point key="canvasLocation" x="1492.753623188406" y="72.991071428571431"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Contest Table View Controller-->
         <scene sceneID="I3W-TH-cJ0">
             <objects>
-                <tableViewController id="axn-vo-pP4" sceneMemberID="viewController">
+                <tableViewController id="axn-vo-pP4" customClass="ContestTableViewController" customModule="Eurovision_Scoreboard" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="DWE-e8-5fE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -90,7 +90,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="VmO-dH-0tN">
-                                            <rect key="frame" x="20" y="11" width="374" height="62"/>
+                                            <rect key="frame" x="20" y="11" width="366" height="62"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="🇪🇺" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ujv-PX-1sS">
                                                     <rect key="frame" x="0.0" y="0.0" width="52" height="62"/>
@@ -98,23 +98,23 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Ldp-Tt-g2l">
-                                                    <rect key="frame" x="64" y="0.0" width="261" height="62"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="748" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Ldp-Tt-g2l">
+                                                    <rect key="frame" x="64" y="0.0" width="253" height="62"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXh-IA-TiM">
-                                                            <rect key="frame" x="0.0" y="0.0" width="261" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="253" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ha4-jU-Z7K">
-                                                            <rect key="frame" x="0.0" y="20.5" width="261" height="21"/>
+                                                            <rect key="frame" x="0.0" y="20.5" width="253" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I08-st-jGO">
-                                                            <rect key="frame" x="0.0" y="41.5" width="261" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="41.5" width="253" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <color key="textColor" systemColor="secondaryLabelColor"/>
                                                             <nil key="highlightedColor"/>
@@ -122,7 +122,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="41" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pd5-ih-qoG">
-                                                    <rect key="frame" x="337" y="0.0" width="37" height="62"/>
+                                                    <rect key="frame" x="329" y="0.0" width="37" height="62"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
                                                     <color key="textColor" systemColor="secondaryLabelColor"/>
                                                     <nil key="highlightedColor"/>
@@ -134,7 +134,7 @@
                                         <constraint firstAttribute="bottomMargin" secondItem="VmO-dH-0tN" secondAttribute="bottom" id="2xV-uC-BGL"/>
                                         <constraint firstItem="VmO-dH-0tN" firstAttribute="leading" secondItem="zLd-51-slF" secondAttribute="leadingMargin" id="g39-7i-LXl"/>
                                         <constraint firstItem="VmO-dH-0tN" firstAttribute="top" secondItem="zLd-51-slF" secondAttribute="topMargin" id="pSS-Gj-Irw"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="VmO-dH-0tN" secondAttribute="trailing" id="y4N-dX-gGU"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="VmO-dH-0tN" secondAttribute="trailing" constant="8" id="y4N-dX-gGU"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -151,7 +151,16 @@
                             <outlet property="delegate" destination="axn-vo-pP4" id="XIm-aE-7p9"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="dP4-Fv-48p"/>
+                        <barButtonItem systemItem="action" id="jH2-RL-GXL">
+                            <connections>
+                                <action selector="actionButtonTapped:" destination="axn-vo-pP4" id="TgT-P2-7CA"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="N2R-hm-FDM"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VjG-4q-ny3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -160,13 +169,17 @@
         <!--Navigation Controller-->
         <scene sceneID="jJ8-xq-KKD">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NL4-yW-uOL" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="NL4-yW-uOL" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="bbV-yO-7Va">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XET-Dp-k0y">
+                        <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="kda-ZT-RUb" kind="relationship" relationship="rootViewController" id="G6O-hS-lxF"/>
                     </connections>

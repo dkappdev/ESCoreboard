@@ -12,11 +12,10 @@ private let reuseIdentifier = "Act"
 class ContestTableViewController: UITableViewController {
 
     static let defaultSectionIdentifier = 0
-    var dataSource: ContestTableViewDiffableDataSource!
 
     var contestController: ContestController!
     var contestIndex: Int
-
+    
     init?(contestIndex: Int, coder: NSCoder) {
         self.contestIndex = contestIndex
         super.init(coder: coder)
@@ -31,52 +30,56 @@ class ContestTableViewController: UITableViewController {
         
         navigationItem.rightBarButtonItem = editButtonItem
 
-        dataSource = createDataSource()
-        tableView.dataSource = dataSource
-
         let contest = contestController.contests[contestIndex]
-        
         navigationItem.title = "\(contest.hostCountry.flagEmoji) \(contest.year) - \(contest.hostCityName)"
-        
-        updateTableView(animated: false)
     }
-
-    func updateTableView(animated: Bool) {
-        var snapshot = NSDiffableDataSourceSnapshot<Int, Act>()
-        
-        snapshot.appendSections([Self.defaultSectionIdentifier])
-        snapshot.appendItems(contestController.contests[contestIndex].acts, toSection: Self.defaultSectionIdentifier)
-        
-        dataSource.apply(snapshot, animatingDifferences: animated, completion: nil)
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
-
-    func createDataSource() -> ContestTableViewDiffableDataSource {
-        let dataSource = ContestTableViewDiffableDataSource(tableView: tableView) { tableView, indexPath, act in
-            let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! ActTableViewCell
-
-            cell.update(with: act, position: indexPath.row + 1)
-            cell.showsReorderControl = true
-            
-            return cell
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return contestController.contests[contestIndex].acts.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! ActTableViewCell
+        
+        cell.update(with: contestController.contests[contestIndex].acts[indexPath.row], position: indexPath.row + 1)
+        cell.showsReorderControl = true
+        
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let movedAct = contestController.contests[contestIndex].acts.remove(at: sourceIndexPath.row)
+        contestController.contests[contestIndex].acts.insert(movedAct, at: destinationIndexPath.row)
+        contestController.saveStateToFile()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.tableView.reloadData()
         }
-        
-        dataSource.delegate = self
-        
-        return dataSource
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .none
     }
-}
-
-extension ContestTableViewController: ContestTableViewDiffableDataSourceDelegate {
-    func dataSource(_ dataSource: ContestTableViewDiffableDataSource, didChangeActList acts: [Act]) {
-        contestController.contests[contestIndex].acts = acts
-        contestController.saveStateToFile()
+    
+    @IBAction func actionButtonTapped(_ sender: UIBarButtonItem) {
+        let contest = contestController.contests[contestIndex]
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.tableView.reloadData()
+        var textToShare = "My Eurovision \(contest.year) Top-\(contest.acts.count):\n"
+        for index in 0..<contest.acts.count {
+            textToShare += "\(index + 1). \(contest.acts[index].country.name) \(contest.acts[index].country.flagEmoji)\n"
         }
+        
+        let activityController = UIActivityViewController(activityItems: [textToShare], applicationActivities: nil)
+        
+        present(activityController, animated: true, completion: nil)
     }
+    
 }

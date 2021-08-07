@@ -83,63 +83,64 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="Act" id="vnu-xO-gqk" customClass="ActTableViewCell" customModule="Eurovision_Scoreboard" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="24.5" width="414" height="84"/>
+                                <rect key="frame" x="0.0" y="24.5" width="414" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vnu-xO-gqk" id="zLd-51-slF">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="84"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="VmO-dH-0tN">
-                                            <rect key="frame" x="20" y="11" width="366" height="62"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="41" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pd5-ih-qoG">
+                                            <rect key="frame" x="349" y="11" width="37" height="58"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                                            <color key="textColor" systemColor="secondaryLabelColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="748" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Ldp-Tt-g2l">
+                                            <rect key="frame" x="80" y="4" width="81.5" height="72"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="🇪🇺" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ujv-PX-1sS">
-                                                    <rect key="frame" x="0.0" y="0.0" width="52" height="62"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="48"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXh-IA-TiM">
+                                                    <rect key="frame" x="0.0" y="0.0" width="81.5" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="748" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Ldp-Tt-g2l">
-                                                    <rect key="frame" x="64" y="0.0" width="253" height="62"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXh-IA-TiM">
-                                                            <rect key="frame" x="0.0" y="0.0" width="253" height="20.5"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ha4-jU-Z7K">
-                                                            <rect key="frame" x="0.0" y="20.5" width="253" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I08-st-jGO">
-                                                            <rect key="frame" x="0.0" y="41.5" width="253" height="20.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                            <color key="textColor" systemColor="secondaryLabelColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                </stackView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="41" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pd5-ih-qoG">
-                                                    <rect key="frame" x="329" y="0.0" width="37" height="62"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ha4-jU-Z7K">
+                                                    <rect key="frame" x="0.0" y="24" width="81.5" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I08-st-jGO">
+                                                    <rect key="frame" x="0.0" y="48" width="81.5" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" systemColor="secondaryLabelColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </stackView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🇪🇺" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="imE-wC-fGU">
+                                            <rect key="frame" x="20" y="11" width="52" height="58"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="48"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottomMargin" secondItem="VmO-dH-0tN" secondAttribute="bottom" id="2xV-uC-BGL"/>
-                                        <constraint firstItem="VmO-dH-0tN" firstAttribute="leading" secondItem="zLd-51-slF" secondAttribute="leadingMargin" id="g39-7i-LXl"/>
-                                        <constraint firstItem="VmO-dH-0tN" firstAttribute="top" secondItem="zLd-51-slF" secondAttribute="topMargin" id="pSS-Gj-Irw"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="VmO-dH-0tN" secondAttribute="trailing" constant="8" id="y4N-dX-gGU"/>
+                                        <constraint firstAttribute="bottom" secondItem="Ldp-Tt-g2l" secondAttribute="bottom" constant="4" id="13X-F7-X5d"/>
+                                        <constraint firstItem="imE-wC-fGU" firstAttribute="leading" secondItem="zLd-51-slF" secondAttribute="leadingMargin" id="Bjn-hM-fQg"/>
+                                        <constraint firstItem="Ldp-Tt-g2l" firstAttribute="top" secondItem="zLd-51-slF" secondAttribute="top" constant="4" id="DUx-gn-Q69"/>
+                                        <constraint firstItem="Pd5-ih-qoG" firstAttribute="top" secondItem="zLd-51-slF" secondAttribute="topMargin" id="NID-T0-RnU"/>
+                                        <constraint firstItem="Pd5-ih-qoG" firstAttribute="trailing" secondItem="zLd-51-slF" secondAttribute="trailingMargin" constant="-8" id="Pva-Qs-Flk"/>
+                                        <constraint firstItem="Ldp-Tt-g2l" firstAttribute="leading" secondItem="imE-wC-fGU" secondAttribute="trailing" constant="8" id="ULf-cP-Xmo"/>
+                                        <constraint firstItem="imE-wC-fGU" firstAttribute="top" secondItem="zLd-51-slF" secondAttribute="topMargin" id="ghE-aU-ArP"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Pd5-ih-qoG" secondAttribute="bottom" id="jih-hT-uUT"/>
+                                        <constraint firstItem="Pd5-ih-qoG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ldp-Tt-g2l" secondAttribute="trailing" id="wbc-aN-W4j"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="imE-wC-fGU" secondAttribute="bottom" id="yxL-5y-dW6"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="artistNameLabel" destination="Ha4-jU-Z7K" id="IA1-bP-xxE"/>
-                                    <outlet property="countryFlagLabel" destination="Ujv-PX-1sS" id="KVF-7V-TkQ"/>
+                                    <outlet property="countryFlagLabel" destination="imE-wC-fGU" id="NTN-hr-gfp"/>
                                     <outlet property="countryNameLabel" destination="aXh-IA-TiM" id="anQ-ro-r97"/>
                                     <outlet property="currentPlaceLabel" destination="Pd5-ih-qoG" id="4Km-Yt-nQH"/>
                                     <outlet property="songNameLabel" destination="I08-st-jGO" id="5tX-qX-AwO"/>

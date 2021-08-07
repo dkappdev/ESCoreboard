@@ -73,5 +73,6 @@ class ContestTableViewController: UITableViewController {
 extension ContestTableViewController: ContestTableViewDiffableDataSourceDelegate {
     func dataSource(_ dataSource: ContestTableViewDiffableDataSource, didChangeActList acts: [Act]) {
         contestController.contests[contestIndex].acts = acts
+        ContestController.saveToFile(contests: contestController.contests)
     }
 }

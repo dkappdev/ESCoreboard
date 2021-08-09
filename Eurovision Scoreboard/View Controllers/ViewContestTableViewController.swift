@@ -9,12 +9,12 @@ import UIKit
 
 private let reuseIdentifier = "Act"
 
-class ContestTableViewController: UITableViewController {
+class ViewContestTableViewController: UITableViewController {
 
     static let defaultSectionIdentifier = 0
 
     var contestController: ContestController!
-    var contestIndex: Int
+    let contestIndex: Int
     
     init?(contestIndex: Int, coder: NSCoder) {
         self.contestIndex = contestIndex
@@ -34,6 +34,11 @@ class ContestTableViewController: UITableViewController {
         navigationItem.title = "\(contest.hostCountry.flagEmoji) \(contest.year) - \(contest.hostCityName)"
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setToolbarHidden(false, animated: true)
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -47,13 +52,7 @@ class ContestTableViewController: UITableViewController {
         
         cell.update(with: contestController.contests[contestIndex].acts[indexPath.row], position: indexPath.row + 1)
         cell.showsReorderControl = true
-        
-        if indexPath.row < 10 {
-            cell.backgroundColor = .systemGray6
-        } else {
-            cell.backgroundColor = .systemBackground
-        }
-        
+
         return cell
     }
     
@@ -64,7 +63,6 @@ class ContestTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let movedAct = contestController.contests[contestIndex].acts.remove(at: sourceIndexPath.row)
         contestController.contests[contestIndex].acts.insert(movedAct, at: destinationIndexPath.row)
-        contestController.saveStateToFile()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.tableView.reloadData()
@@ -84,6 +82,7 @@ class ContestTableViewController: UITableViewController {
         }
         
         let activityController = UIActivityViewController(activityItems: [textToShare], applicationActivities: nil)
+        activityController.popoverPresentationController?.barButtonItem = sender
         
         present(activityController, animated: true, completion: nil)
     }

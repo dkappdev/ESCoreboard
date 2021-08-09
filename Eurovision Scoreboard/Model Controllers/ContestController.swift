@@ -8,13 +8,17 @@
 import Foundation
 
 class ContestController {
-    var contests: [Contest]
+    var contests: [Contest] {
+        didSet {
+            saveStateToFile()
+        }
+    }
     
     init() {
         contests = Self.loadFromFile() ?? Self.defaultContests()
     }
     
-    func saveStateToFile() {
+    private func saveStateToFile() {
         Self.saveToFile(contests: contests)
     }
     

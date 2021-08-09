@@ -7,22 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E26465E026C1529E008A914F /* AddEditContestTableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26465DF26C1529E008A914F /* AddEditContestTableViewControllerDelegate.swift */; };
 		E27C03B326BC13F000AFF748 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C03B226BC13F000AFF748 /* AppDelegate.swift */; };
 		E27C03B526BC13F000AFF748 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C03B426BC13F000AFF748 /* SceneDelegate.swift */; };
 		E27C03BA26BC13F000AFF748 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E27C03B826BC13F000AFF748 /* Main.storyboard */; };
 		E27C03BC26BC13F200AFF748 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E27C03BB26BC13F200AFF748 /* Assets.xcassets */; };
 		E27C03BF26BC13F200AFF748 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E27C03BD26BC13F200AFF748 /* LaunchScreen.storyboard */; };
+		E28FE57226BFF72200380E14 /* AddEditContestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28FE57126BFF72200380E14 /* AddEditContestTableViewController.swift */; };
 		E2A5217426BC41FC00D4F73D /* ContestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5217326BC41FC00D4F73D /* ContestCollectionViewCell.swift */; };
 		E2A5217726BC4B5800D4F73D /* ContestListCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5217626BC4B5800D4F73D /* ContestListCollectionViewController.swift */; };
 		E2A5217B26BC645200D4F73D /* Contest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5217A26BC645200D4F73D /* Contest.swift */; };
 		E2A5217F26BC64AB00D4F73D /* Act.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5217E26BC64AB00D4F73D /* Act.swift */; };
 		E2A5218126BD11DF00D4F73D /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5218026BD11DF00D4F73D /* Country.swift */; };
 		E2A5218526BD7C6700D4F73D /* ActTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5218426BD7C6700D4F73D /* ActTableViewCell.swift */; };
-		E2A5218726BD86FF00D4F73D /* ContestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5218626BD86FF00D4F73D /* ContestTableViewController.swift */; };
+		E2A5218726BD86FF00D4F73D /* ViewContestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5218626BD86FF00D4F73D /* ViewContestTableViewController.swift */; };
 		E2A5218926BDB86800D4F73D /* ContestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5218826BDB86800D4F73D /* ContestController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E26465DF26C1529E008A914F /* AddEditContestTableViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditContestTableViewControllerDelegate.swift; sourceTree = "<group>"; };
 		E27C03AF26BC13F000AFF748 /* Eurovision Scoreboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Eurovision Scoreboard.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E27C03B226BC13F000AFF748 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E27C03B426BC13F000AFF748 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -30,13 +33,14 @@
 		E27C03BB26BC13F200AFF748 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E27C03BE26BC13F200AFF748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E27C03C026BC13F200AFF748 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E28FE57126BFF72200380E14 /* AddEditContestTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditContestTableViewController.swift; sourceTree = "<group>"; };
 		E2A5217326BC41FC00D4F73D /* ContestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContestCollectionViewCell.swift; sourceTree = "<group>"; };
 		E2A5217626BC4B5800D4F73D /* ContestListCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContestListCollectionViewController.swift; sourceTree = "<group>"; };
 		E2A5217A26BC645200D4F73D /* Contest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contest.swift; sourceTree = "<group>"; };
 		E2A5217E26BC64AB00D4F73D /* Act.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Act.swift; sourceTree = "<group>"; };
 		E2A5218026BD11DF00D4F73D /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		E2A5218426BD7C6700D4F73D /* ActTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActTableViewCell.swift; sourceTree = "<group>"; };
-		E2A5218626BD86FF00D4F73D /* ContestTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContestTableViewController.swift; sourceTree = "<group>"; };
+		E2A5218626BD86FF00D4F73D /* ViewContestTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewContestTableViewController.swift; sourceTree = "<group>"; };
 		E2A5218826BDB86800D4F73D /* ContestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContestController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,6 +109,7 @@
 		E27C03C826BC246000AFF748 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				E26465DF26C1529E008A914F /* AddEditContestTableViewControllerDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -128,7 +133,8 @@
 			isa = PBXGroup;
 			children = (
 				E2A5217626BC4B5800D4F73D /* ContestListCollectionViewController.swift */,
-				E2A5218626BD86FF00D4F73D /* ContestTableViewController.swift */,
+				E2A5218626BD86FF00D4F73D /* ViewContestTableViewController.swift */,
+				E28FE57126BFF72200380E14 /* AddEditContestTableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -228,10 +234,12 @@
 				E2A5217B26BC645200D4F73D /* Contest.swift in Sources */,
 				E2A5218526BD7C6700D4F73D /* ActTableViewCell.swift in Sources */,
 				E2A5217F26BC64AB00D4F73D /* Act.swift in Sources */,
-				E2A5218726BD86FF00D4F73D /* ContestTableViewController.swift in Sources */,
+				E2A5218726BD86FF00D4F73D /* ViewContestTableViewController.swift in Sources */,
 				E27C03B526BC13F000AFF748 /* SceneDelegate.swift in Sources */,
+				E28FE57226BFF72200380E14 /* AddEditContestTableViewController.swift in Sources */,
 				E2A5218926BDB86800D4F73D /* ContestController.swift in Sources */,
 				E2A5217426BC41FC00D4F73D /* ContestCollectionViewCell.swift in Sources */,
+				E26465E026C1529E008A914F /* AddEditContestTableViewControllerDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,7 +396,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dkdev.Eurovision-Scoreboard";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -407,7 +415,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dkdev.Eurovision-Scoreboard";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

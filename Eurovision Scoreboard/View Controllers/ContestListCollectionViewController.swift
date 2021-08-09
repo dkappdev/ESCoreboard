@@ -28,6 +28,11 @@ class ContestListCollectionViewController: UICollectionViewController {
         updateCollectionView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        navigationController?.setToolbarHidden(false, animated: true)
+    }
+    
     func updateCollectionView() {
         var snapshot = NSDiffableDataSourceSnapshot<Int, Contest>()
         
@@ -72,22 +77,83 @@ class ContestListCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
             let editAction = UIAction(title: "Edit Contest", image: UIImage(systemName: "pencil"), identifier: nil, discoverabilityTitle: nil, attributes: [], state: .off) { action in
-                
+                self.performSegue(withIdentifier: "editContest", sender: collectionView.cellForItem(at: indexPath))
             }
             
             return UIMenu(title: "", image: nil, identifier: nil, options: [], children: [editAction])
         }
     }
     
-    @IBSegueAction func viewContest(_ coder: NSCoder, sender: ContestCollectionViewCell?) -> ContestTableViewController? {
+    @IBSegueAction func viewContest(_ coder: NSCoder, sender: ContestCollectionViewCell?) -> ViewContestTableViewController? {
         guard let sender = sender,
               let contestIndex = collectionView.indexPath(for: sender)?.item else { return nil }
         
-        let controller = ContestTableViewController(contestIndex: contestIndex, coder: coder)
+        let controller = ViewContestTableViewController(contestIndex: contestIndex, coder: coder)
         controller?.contestController = contestController
         
         return controller
     }
     
+    @IBSegueAction func addEditContest(_ coder: NSCoder, sender: Any?, segueIdentifier: String?) -> AddEditContestTableViewController? {
+        if segueIdentifier == "editContest",
+           let cell = sender as? ContestCollectionViewCell,
+           let indexPath = collectionView.indexPath(for: cell) {
+            let controller = AddEditContestTableViewController(coder: coder, mode: .editingContest, contestIndex: indexPath.item)
+            controller?.contestController = contestController
+            controller?.delegate = self
+            return controller
+        } else if segueIdentifier == "addContest" {
+            let controller = AddEditContestTableViewController(coder: coder, mode: .addingContest, contestIndex: nil)
+            controller?.contestController = contestController
+            controller?.delegate = self
+            return controller
+        } else {
+            return nil
+        }
+    }
     
+    @IBAction func unwindToContestList(segue: UIStoryboardSegue) {
+        
+    }
+    
+    @IBAction func resetBarButtonTapped(_ sender: UIBarButtonItem) {
+        let alertController = UIAlertController(title: "Are you sure you want to reset your contest list? This cannot be undone!", message: nil, preferredStyle: .actionSheet)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { action in
+            let secondAlertController = UIAlertController(title: "All your data will be lost! Are you absolutely sure?", message: nil, preferredStyle: .actionSheet)
+            
+            let secondCancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            let secondDeleteAction = UIAlertAction(title: "Delete", style: .destructive) { action in
+                self.contestController.resetState()
+                self.updateCollectionView()
+            }
+            
+            secondAlertController.addAction(secondCancelAction)
+            secondAlertController.addAction(secondDeleteAction)
+            secondAlertController.popoverPresentationController?.barButtonItem = sender
+            
+            self.present(secondAlertController, animated: true, completion: nil)
+        }
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(deleteAction)
+        alertController.popoverPresentationController?.barButtonItem = sender
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addContest" || segue.identifier == "editContest" {
+            segue.destination.isModalInPresentation = true
+        }
+    }
+    
+}
+
+extension ContestListCollectionViewController: AddEditContestTableViewControllerDelegate {
+    func shouldDismissViewController() {
+        dismiss(animated: true, completion: nil)
+        updateCollectionView()
+    }
 }

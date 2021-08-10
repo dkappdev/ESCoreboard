@@ -33,6 +33,7 @@ class AddEditContestTableViewController: UITableViewController {
     let deleteContestCellIndexPath = IndexPath(row: 0, section: 5)
     
     var acts: [Act] = []
+    var initialContestYear: Int?
     
     var contestController: ContestController!
     let mode: Mode
@@ -60,6 +61,7 @@ class AddEditContestTableViewController: UITableViewController {
             countryFlagTextField.text = contest.hostCountry.flagEmoji
             hostCityTextField.text = contest.hostCityName
             acts = contest.acts
+            initialContestYear = contest.year
         } else if mode == .addingContest {
             deleteContestCell.isHidden = true
         }
@@ -116,8 +118,9 @@ class AddEditContestTableViewController: UITableViewController {
     func updateSaveButtonState() {
         let yearText = yearTextField.text ?? ""
         var isValidYear = false
+        let contestYears = contestController.contests.map { $0.year }
         if let year = Int(yearText) {
-            isValidYear = year >= 1956 && year <= currentYear + 1
+            isValidYear = year >= 1956 && year <= currentYear + 1 && (!contestYears.contains(year) || year == initialContestYear)
         }
         
         let hostCountryText = hostCountryTextField.text ?? ""

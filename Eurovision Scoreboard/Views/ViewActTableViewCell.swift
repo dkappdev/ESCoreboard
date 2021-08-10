@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ActTableViewCell: UITableViewCell {
+class ViewActTableViewCell: UITableViewCell {
     
     @IBOutlet var countryFlagLabel: UILabel!
     @IBOutlet var countryNameLabel: UILabel!

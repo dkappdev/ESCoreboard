@@ -289,13 +289,59 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="xT6-Zy-ONq">
-                                <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="EditActCell" id="OtX-SN-aUk" customClass="ViewActTableViewCell" customModule="Eurovision_Scoreboard" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="24.5" width="414" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xT6-Zy-ONq" id="0vR-qY-e4b">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OtX-SN-aUk" id="A3s-ky-gXg">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="748" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="h6T-8C-lxK">
+                                            <rect key="frame" x="80" y="4" width="334" height="72"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eyW-f8-83O">
+                                                    <rect key="frame" x="0.0" y="0.0" width="334" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ush-8t-cTn">
+                                                    <rect key="frame" x="0.0" y="24" width="334" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AZ2-HT-nYl">
+                                                    <rect key="frame" x="0.0" y="48" width="334" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="251" text="🇪🇺" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2db-nr-bRX">
+                                            <rect key="frame" x="20" y="11" width="52" height="58"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="48"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="2db-nr-bRX" secondAttribute="bottom" id="2ft-u6-AJl"/>
+                                        <constraint firstItem="h6T-8C-lxK" firstAttribute="leading" secondItem="2db-nr-bRX" secondAttribute="trailing" constant="8" id="LPZ-qC-sin"/>
+                                        <constraint firstItem="2db-nr-bRX" firstAttribute="top" secondItem="A3s-ky-gXg" secondAttribute="topMargin" id="U0V-DM-55g"/>
+                                        <constraint firstAttribute="bottom" secondItem="h6T-8C-lxK" secondAttribute="bottom" constant="4" id="gfY-En-0NL"/>
+                                        <constraint firstAttribute="trailing" secondItem="h6T-8C-lxK" secondAttribute="trailing" id="hie-3H-js0"/>
+                                        <constraint firstItem="h6T-8C-lxK" firstAttribute="top" secondItem="A3s-ky-gXg" secondAttribute="top" constant="4" id="rzp-xn-n0k"/>
+                                        <constraint firstItem="2db-nr-bRX" firstAttribute="leading" secondItem="A3s-ky-gXg" secondAttribute="leadingMargin" id="wxN-af-h2p"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="artistNameLabel" destination="ush-8t-cTn" id="XhU-YT-aM3"/>
+                                    <outlet property="countryFlagLabel" destination="2db-nr-bRX" id="uf2-w4-zze"/>
+                                    <outlet property="countryNameLabel" destination="eyW-f8-83O" id="7bl-Oi-sr5"/>
+                                    <outlet property="songNameLabel" destination="AZ2-HT-nYl" id="OJ8-KI-StO"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -447,7 +493,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="Act" id="vnu-xO-gqk" customClass="ActTableViewCell" customModule="Eurovision_Scoreboard" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ViewActCell" id="vnu-xO-gqk" customClass="ViewActTableViewCell" customModule="Eurovision_Scoreboard" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="24.5" width="414" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vnu-xO-gqk" id="zLd-51-slF">

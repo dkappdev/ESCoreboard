@@ -19,6 +19,7 @@ class AddEditContestTableViewController: UITableViewController {
     @IBOutlet var countryFlagTextField: UITextField!
     @IBOutlet var hostCityTextField: UITextField!
     @IBOutlet var deleteContestCell: UITableViewCell!
+    @IBOutlet var saveBarButton: UIBarButtonItem!
     
     let actsCellIndexPath = IndexPath(row: 0, section: 4)
     let deleteContestCellIndexPath = IndexPath(row: 0, section: 5)
@@ -54,6 +55,16 @@ class AddEditContestTableViewController: UITableViewController {
         } else if mode == .addingContest {
             deleteContestCell.isHidden = true
         }
+        
+        updateSaveButtonState()
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -83,6 +94,30 @@ class AddEditContestTableViewController: UITableViewController {
         let controller = EditActsTableViewController(coder: coder, acts: acts)
         controller?.delegate = self
         return controller
+    }
+    
+    @IBAction func textEditingChanged() {
+        updateSaveButtonState()
+    }
+    
+    func updateSaveButtonState() {
+        let yearText = yearTextField.text ?? ""
+        let isYearANumber = Int(yearText) != nil
+        let hostCountryText = hostCountryTextField.text ?? ""
+        let hostCityText = hostCityTextField.text ?? ""
+        
+        saveBarButton.isEnabled = isYearANumber && !hostCountryText.isEmpty && !hostCityText.isEmpty && containsSingleEmoji(countryFlagTextField)
+    }
+    
+    func containsSingleEmoji(_ textField: UITextField) -> Bool {
+        guard let text = textField.text,
+              text.count == 1 else { return false }
+        
+        return text.unicodeScalars.first?.properties.isEmojiPresentation ?? false
+    }
+    
+    @IBAction func doneBarButtonTapped(_ sender: UIBarButtonItem) {
+        
     }
 }
 

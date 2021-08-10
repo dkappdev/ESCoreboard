@@ -113,6 +113,9 @@
                                                     <rect key="frame" x="20" y="0.0" width="334" height="43.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                    <connections>
+                                                        <action selector="textEditingChanged" destination="frT-gE-TnB" eventType="editingChanged" id="zbP-RI-7Xt"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -138,6 +141,9 @@
                                                     <rect key="frame" x="20" y="0.0" width="334" height="43.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                    <connections>
+                                                        <action selector="textEditingChanged" destination="frT-gE-TnB" eventType="editingDidEnd" id="LGV-pt-Xwu"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -163,6 +169,9 @@
                                                     <rect key="frame" x="20" y="0.0" width="334" height="43.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="textEditingChanged" destination="frT-gE-TnB" eventType="editingDidEnd" id="5qY-0O-fnZ"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -188,6 +197,9 @@
                                                     <rect key="frame" x="20" y="0.0" width="334" height="43.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                    <connections>
+                                                        <action selector="textEditingChanged" destination="frT-gE-TnB" eventType="editingDidEnd" id="AWw-Bc-Ac6"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -264,13 +276,18 @@
                                 <segue destination="PIa-PM-aOW" kind="unwind" unwindAction="unwindToContestListWithSegue:" id="XgB-Qs-uNy"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="osB-vm-ce8"/>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="osB-vm-ce8">
+                            <connections>
+                                <action selector="doneBarButtonTapped:" destination="frT-gE-TnB" id="VhX-ta-6AN"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="countryFlagTextField" destination="qvX-9a-I9x" id="2AZ-Cq-Cbi"/>
                         <outlet property="deleteContestCell" destination="jcw-wI-GgI" id="dbG-6h-QXh"/>
                         <outlet property="hostCityTextField" destination="In8-GX-aU6" id="NoE-Tk-t4x"/>
                         <outlet property="hostCountryTextField" destination="kRe-kV-CO7" id="cMq-p2-OVq"/>
+                        <outlet property="saveBarButton" destination="osB-vm-ce8" id="iAq-il-NcQ"/>
                         <outlet property="yearTextField" destination="OEv-O7-C1D" id="yZ6-4y-vi9"/>
                         <segue destination="zuq-E0-lae" kind="show" identifier="editActList" destinationCreationSelector="editActs:" id="mEp-hD-mHh"/>
                     </connections>

@@ -62,8 +62,10 @@ class AddEditContestTableViewController: UITableViewController {
             hostCityTextField.text = contest.hostCityName
             acts = contest.acts
             initialContestYear = contest.year
+            navigationItem.title = "Edit Contest"
         } else if mode == .addingContest {
             deleteContestCell.isHidden = true
+            navigationItem.title = "Add Contest"
         }
         
         yearTextField.delegate = self

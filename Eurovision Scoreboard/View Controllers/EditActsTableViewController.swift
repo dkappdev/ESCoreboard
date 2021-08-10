@@ -54,4 +54,33 @@ class EditActsTableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
+    
+    @IBAction func unwindToActList(segue: UIStoryboardSegue) {
+        
+    }
+    
+    @IBSegueAction func addEditAct(_ coder: NSCoder, sender: Any?, segueIdentifier: String?) -> AddEditActTableViewController? {
+        if segueIdentifier == "editAct",
+           let cell = sender as? EditActTableViewCell,
+           let indexPath = tableView.indexPath(for: cell) {
+            let controller = AddEditActTableViewController(coder: coder, acts: acts, actIndex: indexPath.row)
+            controller?.delegate = self
+            return controller
+        } else if segueIdentifier == "addAct" {
+            let controller = AddEditActTableViewController(coder: coder, acts: acts, actIndex: nil)
+            controller?.delegate = self
+            return controller
+        } else {
+            return nil
+        }
+    }
+}
+
+extension EditActsTableViewController: AddEditActTableViewControllerDelegate {
+    func didChangeActs(_ acts: [Act]) {
+        self.acts = acts
+        delegate?.didChangeActs(self.acts)
+        tableView.reloadData()
+        dismiss(animated: true, completion: nil)
+    }
 }

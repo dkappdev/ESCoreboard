@@ -75,9 +75,9 @@ class AddEditContestTableViewController: UITableViewController {
         
         updateSaveButtonState()
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        tapGesture.cancelsTouchesInView = false
-        view.addGestureRecognizer(tapGesture)
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGestureRecognizer.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGestureRecognizer)
     }
     
     @objc func dismissKeyboard() {
@@ -138,7 +138,7 @@ class AddEditContestTableViewController: UITableViewController {
         return text.unicodeScalars.first?.properties.isEmojiPresentation ?? false
     }
     
-    @IBAction func doneBarButtonTapped(_ sender: UIBarButtonItem) {
+    @IBAction func saveBarButtonTapped(_ sender: UIBarButtonItem) {
         // if the user was able to press this button, we already know the input is valid
         let country = Country(name: hostCountryTextField.text!, flagEmoji: countryFlagTextField.text!)
         let newContest = Contest(hostCountry: country, hostCityName: hostCityTextField.text!, year: Int(yearTextField.text!)!, acts: acts)

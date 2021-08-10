@@ -17,6 +17,8 @@
 		E27C03BF26BC13F200AFF748 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E27C03BD26BC13F200AFF748 /* LaunchScreen.storyboard */; };
 		E28FE57226BFF72200380E14 /* AddEditContestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28FE57126BFF72200380E14 /* AddEditContestTableViewController.swift */; };
 		E2982CD926C29E6A00DB43EC /* EditActsTableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2982CD826C29E6A00DB43EC /* EditActsTableViewControllerDelegate.swift */; };
+		E2982CDB26C2B95E00DB43EC /* AddEditActTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2982CDA26C2B95E00DB43EC /* AddEditActTableViewController.swift */; };
+		E2982CDD26C2CBD800DB43EC /* AddEditActTableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2982CDC26C2CBD800DB43EC /* AddEditActTableViewControllerDelegate.swift */; };
 		E2A5217426BC41FC00D4F73D /* ContestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5217326BC41FC00D4F73D /* ContestCollectionViewCell.swift */; };
 		E2A5217726BC4B5800D4F73D /* ContestListCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5217626BC4B5800D4F73D /* ContestListCollectionViewController.swift */; };
 		E2A5217B26BC645200D4F73D /* Contest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5217A26BC645200D4F73D /* Contest.swift */; };
@@ -40,6 +42,8 @@
 		E27C03C026BC13F200AFF748 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E28FE57126BFF72200380E14 /* AddEditContestTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditContestTableViewController.swift; sourceTree = "<group>"; };
 		E2982CD826C29E6A00DB43EC /* EditActsTableViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditActsTableViewControllerDelegate.swift; sourceTree = "<group>"; };
+		E2982CDA26C2B95E00DB43EC /* AddEditActTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditActTableViewController.swift; sourceTree = "<group>"; };
+		E2982CDC26C2CBD800DB43EC /* AddEditActTableViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditActTableViewControllerDelegate.swift; sourceTree = "<group>"; };
 		E2A5217326BC41FC00D4F73D /* ContestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContestCollectionViewCell.swift; sourceTree = "<group>"; };
 		E2A5217626BC4B5800D4F73D /* ContestListCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContestListCollectionViewController.swift; sourceTree = "<group>"; };
 		E2A5217A26BC645200D4F73D /* Contest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contest.swift; sourceTree = "<group>"; };
@@ -117,6 +121,7 @@
 			children = (
 				E26465DF26C1529E008A914F /* AddEditContestTableViewControllerDelegate.swift */,
 				E2982CD826C29E6A00DB43EC /* EditActsTableViewControllerDelegate.swift */,
+				E2982CDC26C2CBD800DB43EC /* AddEditActTableViewControllerDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -143,6 +148,7 @@
 				E2A5218626BD86FF00D4F73D /* ViewContestTableViewController.swift */,
 				E28FE57126BFF72200380E14 /* AddEditContestTableViewController.swift */,
 				E264660B26C28B5D008A914F /* EditActsTableViewController.swift */,
+				E2982CDA26C2B95E00DB43EC /* AddEditActTableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -250,6 +256,8 @@
 				E28FE57226BFF72200380E14 /* AddEditContestTableViewController.swift in Sources */,
 				E264660A26C28ACE008A914F /* EditActTableViewCell.swift in Sources */,
 				E2A5218926BDB86800D4F73D /* ContestController.swift in Sources */,
+				E2982CDB26C2B95E00DB43EC /* AddEditActTableViewController.swift in Sources */,
+				E2982CDD26C2CBD800DB43EC /* AddEditActTableViewControllerDelegate.swift in Sources */,
 				E2A5217426BC41FC00D4F73D /* ContestCollectionViewCell.swift in Sources */,
 				E2982CD926C29E6A00DB43EC /* EditActsTableViewControllerDelegate.swift in Sources */,
 				E26465E026C1529E008A914F /* AddEditContestTableViewControllerDelegate.swift in Sources */,

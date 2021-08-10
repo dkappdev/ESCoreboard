@@ -36,8 +36,8 @@ class ContestListCollectionViewController: UICollectionViewController {
     func updateCollectionView() {
         var snapshot = NSDiffableDataSourceSnapshot<Int, Contest>()
         
-        snapshot.appendSections([ContestListCollectionViewController.defaultSectionIdentifier])
-        snapshot.appendItems(contestController.contests, toSection: ContestListCollectionViewController.defaultSectionIdentifier)
+        snapshot.appendSections([Self.defaultSectionIdentifier])
+        snapshot.appendItems(contestController.contests, toSection: Self.defaultSectionIdentifier)
         
         dataSource.apply(snapshot)
     }

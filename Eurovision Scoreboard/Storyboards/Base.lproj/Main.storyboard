@@ -259,7 +259,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="rnj-Cz-Rgl">
-                        <barButtonItem key="leftBarButtonItem" title="Item" systemItem="cancel" id="aK5-Sm-aar">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="aK5-Sm-aar">
                             <connections>
                                 <segue destination="PIa-PM-aOW" kind="unwind" unwindAction="unwindToContestListWithSegue:" id="XgB-Qs-uNy"/>
                             </connections>
@@ -272,7 +272,7 @@
                         <outlet property="hostCityTextField" destination="In8-GX-aU6" id="NoE-Tk-t4x"/>
                         <outlet property="hostCountryTextField" destination="kRe-kV-CO7" id="cMq-p2-OVq"/>
                         <outlet property="yearTextField" destination="OEv-O7-C1D" id="yZ6-4y-vi9"/>
-                        <segue destination="zuq-E0-lae" kind="show" identifier="editActList" id="mEp-hD-mHh"/>
+                        <segue destination="zuq-E0-lae" kind="show" identifier="editActList" destinationCreationSelector="editActs:" id="mEp-hD-mHh"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7YT-da-FJE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -280,10 +280,10 @@
             </objects>
             <point key="canvasLocation" x="3323" y="-194"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Edit Acts Table View Controller-->
         <scene sceneID="CAR-Rt-6By">
             <objects>
-                <tableViewController id="zuq-E0-lae" sceneMemberID="viewController">
+                <tableViewController id="zuq-E0-lae" customClass="EditActsTableViewController" customModule="Eurovision_Scoreboard" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ycY-bQ-DKR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

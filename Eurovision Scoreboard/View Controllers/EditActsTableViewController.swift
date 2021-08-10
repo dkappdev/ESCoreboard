@@ -11,14 +11,21 @@ private var reuseIdentifier = "EditActCell"
 
 class EditActsTableViewController: UITableViewController {
 
+    var acts: [Act]
+    weak var delegate: EditActsTableViewControllerDelegate?
+    
+    init?(coder: NSCoder, acts: [Act]) {
+        self.acts = acts
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source

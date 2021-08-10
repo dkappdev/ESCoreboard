@@ -78,4 +78,15 @@ class AddEditContestTableViewController: UITableViewController {
         }
     }
 
+    @IBSegueAction func editActs(_ coder: NSCoder) -> EditActsTableViewController? {
+        let controller = EditActsTableViewController(coder: coder, acts: acts)
+        controller?.delegate = self
+        return controller
+    }
+}
+
+extension AddEditContestTableViewController: EditActsTableViewControllerDelegate {
+    func didChangeActs(_ acts: [Act]) {
+        self.acts = acts
+    }
 }

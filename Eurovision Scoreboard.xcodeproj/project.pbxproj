@@ -16,6 +16,7 @@
 		E27C03BC26BC13F200AFF748 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E27C03BB26BC13F200AFF748 /* Assets.xcassets */; };
 		E27C03BF26BC13F200AFF748 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E27C03BD26BC13F200AFF748 /* LaunchScreen.storyboard */; };
 		E28FE57226BFF72200380E14 /* AddEditContestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28FE57126BFF72200380E14 /* AddEditContestTableViewController.swift */; };
+		E2982CD926C29E6A00DB43EC /* EditActsTableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2982CD826C29E6A00DB43EC /* EditActsTableViewControllerDelegate.swift */; };
 		E2A5217426BC41FC00D4F73D /* ContestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5217326BC41FC00D4F73D /* ContestCollectionViewCell.swift */; };
 		E2A5217726BC4B5800D4F73D /* ContestListCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5217626BC4B5800D4F73D /* ContestListCollectionViewController.swift */; };
 		E2A5217B26BC645200D4F73D /* Contest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5217A26BC645200D4F73D /* Contest.swift */; };
@@ -38,6 +39,7 @@
 		E27C03BE26BC13F200AFF748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E27C03C026BC13F200AFF748 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E28FE57126BFF72200380E14 /* AddEditContestTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditContestTableViewController.swift; sourceTree = "<group>"; };
+		E2982CD826C29E6A00DB43EC /* EditActsTableViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditActsTableViewControllerDelegate.swift; sourceTree = "<group>"; };
 		E2A5217326BC41FC00D4F73D /* ContestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContestCollectionViewCell.swift; sourceTree = "<group>"; };
 		E2A5217626BC4B5800D4F73D /* ContestListCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContestListCollectionViewController.swift; sourceTree = "<group>"; };
 		E2A5217A26BC645200D4F73D /* Contest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contest.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				E26465DF26C1529E008A914F /* AddEditContestTableViewControllerDelegate.swift */,
+				E2982CD826C29E6A00DB43EC /* EditActsTableViewControllerDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -248,6 +251,7 @@
 				E264660A26C28ACE008A914F /* EditActTableViewCell.swift in Sources */,
 				E2A5218926BDB86800D4F73D /* ContestController.swift in Sources */,
 				E2A5217426BC41FC00D4F73D /* ContestCollectionViewCell.swift in Sources */,
+				E2982CD926C29E6A00DB43EC /* EditActsTableViewControllerDelegate.swift in Sources */,
 				E26465E026C1529E008A914F /* AddEditContestTableViewControllerDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

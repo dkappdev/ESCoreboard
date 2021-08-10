@@ -289,30 +289,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="EditActCell" id="OtX-SN-aUk" customClass="ViewActTableViewCell" customModule="Eurovision_Scoreboard" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="EditActCell" id="OtX-SN-aUk" customClass="EditActTableViewCell" customModule="Eurovision_Scoreboard" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="24.5" width="414" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OtX-SN-aUk" id="A3s-ky-gXg">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="373.5" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="748" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="h6T-8C-lxK">
-                                            <rect key="frame" x="80" y="4" width="334" height="72"/>
+                                            <rect key="frame" x="80" y="4" width="293.5" height="72"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eyW-f8-83O">
-                                                    <rect key="frame" x="0.0" y="0.0" width="334" height="24"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="293.5" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ush-8t-cTn">
-                                                    <rect key="frame" x="0.0" y="24" width="334" height="24"/>
+                                                    <rect key="frame" x="0.0" y="24" width="293.5" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AZ2-HT-nYl">
-                                                    <rect key="frame" x="0.0" y="48" width="334" height="24"/>
+                                                    <rect key="frame" x="0.0" y="48" width="293.5" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" systemColor="secondaryLabelColor"/>
                                                     <nil key="highlightedColor"/>
@@ -341,6 +341,7 @@
                                     <outlet property="countryFlagLabel" destination="2db-nr-bRX" id="uf2-w4-zze"/>
                                     <outlet property="countryNameLabel" destination="eyW-f8-83O" id="7bl-Oi-sr5"/>
                                     <outlet property="songNameLabel" destination="AZ2-HT-nYl" id="OJ8-KI-StO"/>
+                                    <segue destination="dQa-dn-yZC" kind="presentation" identifier="editAct" trigger="accessoryAction" id="wFN-SZ-91U"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -352,7 +353,7 @@
                     <navigationItem key="navigationItem" id="MPY-5X-wqf">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="H4T-sP-Xa1">
                             <connections>
-                                <segue destination="dQa-dn-yZC" kind="presentation" id="53F-XJ-ftD"/>
+                                <segue destination="dQa-dn-yZC" kind="presentation" identifier="addAct" id="53F-XJ-ftD"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -464,6 +465,32 @@
                                                 <constraint firstAttribute="trailing" secondItem="GWg-LO-0Xy" secondAttribute="trailing" constant="20" id="LrK-v5-bFs"/>
                                                 <constraint firstItem="GWg-LO-0Xy" firstAttribute="leading" secondItem="93V-JB-IWl" secondAttribute="leading" constant="20" id="jPa-do-umj"/>
                                                 <constraint firstAttribute="bottom" secondItem="GWg-LO-0Xy" secondAttribute="bottom" id="oPZ-Ex-Xyw"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="nTa-zM-eqk">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="43.5" id="ixn-1D-KbG">
+                                        <rect key="frame" x="20" y="409.5" width="374" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ixn-1D-KbG" id="BiQ-X1-7CW">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delete Act" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tcH-I4-sFe">
+                                                    <rect key="frame" x="20" y="11" width="334" height="21.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" systemColor="systemRedColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="tcH-I4-sFe" secondAttribute="bottom" id="0If-rB-g1Z"/>
+                                                <constraint firstItem="tcH-I4-sFe" firstAttribute="leading" secondItem="BiQ-X1-7CW" secondAttribute="leadingMargin" id="YMc-ra-PBC"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="tcH-I4-sFe" secondAttribute="trailing" id="aMM-QJ-oOi"/>
+                                                <constraint firstItem="tcH-I4-sFe" firstAttribute="top" secondItem="BiQ-X1-7CW" secondAttribute="topMargin" id="qGw-Rf-VsE"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -638,6 +665,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="53F-XJ-ftD"/>
         <segue reference="th4-rb-eWL"/>
     </inferredMetricsTieBreakers>
     <resources>

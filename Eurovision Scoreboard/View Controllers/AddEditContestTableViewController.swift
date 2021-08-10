@@ -50,6 +50,7 @@ class AddEditContestTableViewController: UITableViewController {
             hostCountryTextField.text = contest.hostCountry.name
             countryFlagTextField.text = contest.hostCountry.flagEmoji
             hostCityTextField.text = contest.hostCityName
+            acts = contest.acts
         } else if mode == .addingContest {
             deleteContestCell.isHidden = true
         }

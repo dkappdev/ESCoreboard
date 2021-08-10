@@ -20,7 +20,7 @@ class ContestListCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         dataSource = createDataSource()
         collectionView.dataSource = dataSource
         collectionView.collectionViewLayout = createLayout(isCompact: traitCollection.horizontalSizeClass == .compact)
@@ -35,6 +35,8 @@ class ContestListCollectionViewController: UICollectionViewController {
     
     func updateCollectionView() {
         var snapshot = NSDiffableDataSourceSnapshot<Int, Contest>()
+        
+        contestController.contests.sort { $0.year > $1.year }
         
         snapshot.appendSections([Self.defaultSectionIdentifier])
         snapshot.appendItems(contestController.contests, toSection: Self.defaultSectionIdentifier)

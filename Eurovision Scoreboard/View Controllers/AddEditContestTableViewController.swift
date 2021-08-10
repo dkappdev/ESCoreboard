@@ -19,11 +19,21 @@ class AddEditContestTableViewController: UITableViewController {
     @IBOutlet var countryFlagTextField: UITextField!
     @IBOutlet var hostCityTextField: UITextField!
     @IBOutlet var deleteContestCell: UITableViewCell!
+    @IBOutlet var saveBarButton: UIBarButtonItem!
+    
+    let currentYear: Int = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy"
+        let yearString = dateFormatter.string(from: Date())
+        let yearAsInt = Int(yearString)! // guaranteed to succeed, so we use force unwrapping
+        return yearAsInt
+    }()
     
     let actsCellIndexPath = IndexPath(row: 0, section: 4)
     let deleteContestCellIndexPath = IndexPath(row: 0, section: 5)
     
     var acts: [Act] = []
+    var initialContestYear: Int?
     
     var contestController: ContestController!
     let mode: Mode
@@ -50,9 +60,28 @@ class AddEditContestTableViewController: UITableViewController {
             hostCountryTextField.text = contest.hostCountry.name
             countryFlagTextField.text = contest.hostCountry.flagEmoji
             hostCityTextField.text = contest.hostCityName
+            acts = contest.acts
+            initialContestYear = contest.year
+            navigationItem.title = "Edit Contest"
         } else if mode == .addingContest {
             deleteContestCell.isHidden = true
+            navigationItem.title = "Add Contest"
         }
+        
+        yearTextField.delegate = self
+        hostCountryTextField.delegate = self
+        countryFlagTextField.delegate = self
+        hostCityTextField.delegate = self
+        
+        updateSaveButtonState()
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGestureRecognizer.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -78,4 +107,62 @@ class AddEditContestTableViewController: UITableViewController {
         }
     }
 
+    @IBSegueAction func editActs(_ coder: NSCoder) -> EditActsTableViewController? {
+        let controller = EditActsTableViewController(coder: coder, acts: acts)
+        controller?.delegate = self
+        return controller
+    }
+    
+    @IBAction func textEditingChanged() {
+        updateSaveButtonState()
+    }
+    
+    func updateSaveButtonState() {
+        let yearText = yearTextField.text ?? ""
+        var isValidYear = false
+        let contestYears = contestController.contests.map { $0.year }
+        if let year = Int(yearText) {
+            isValidYear = year >= 1956 && year <= currentYear + 1 && (!contestYears.contains(year) || year == initialContestYear)
+        }
+        
+        let hostCountryText = hostCountryTextField.text ?? ""
+        let hostCityText = hostCityTextField.text ?? ""
+        
+        saveBarButton.isEnabled = isValidYear && !hostCountryText.isEmpty && !hostCityText.isEmpty && containsSingleEmoji(countryFlagTextField)
+    }
+    
+    func containsSingleEmoji(_ textField: UITextField) -> Bool {
+        guard let text = textField.text,
+              text.count == 1 else { return false }
+        
+        return text.unicodeScalars.first?.properties.isEmojiPresentation ?? false
+    }
+    
+    @IBAction func saveBarButtonTapped(_ sender: UIBarButtonItem) {
+        // if the user was able to press this button, we already know the input is valid
+        let country = Country(name: hostCountryTextField.text!, flagEmoji: countryFlagTextField.text!)
+        let newContest = Contest(hostCountry: country, hostCityName: hostCityTextField.text!, year: Int(yearTextField.text!)!, acts: acts)
+        
+        if mode == .editingContest,
+           let contestIndex = contestIndex {
+            contestController.contests[contestIndex] = newContest
+        } else {
+            contestController.contests.append(newContest)
+        }
+        
+        delegate?.shouldDismissViewController()
+    }
+}
+
+extension AddEditContestTableViewController: EditActsTableViewControllerDelegate {
+    func didChangeActs(_ acts: [Act]) {
+        self.acts = acts
+    }
+}
+
+extension AddEditContestTableViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
+    }
 }

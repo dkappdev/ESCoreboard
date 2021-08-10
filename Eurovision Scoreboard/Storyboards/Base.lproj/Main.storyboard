@@ -113,6 +113,9 @@
                                                     <rect key="frame" x="20" y="0.0" width="334" height="43.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                    <connections>
+                                                        <action selector="textEditingChanged" destination="frT-gE-TnB" eventType="editingChanged" id="zbP-RI-7Xt"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -138,6 +141,9 @@
                                                     <rect key="frame" x="20" y="0.0" width="334" height="43.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                    <connections>
+                                                        <action selector="textEditingChanged" destination="frT-gE-TnB" eventType="editingDidEnd" id="LGV-pt-Xwu"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -163,6 +169,9 @@
                                                     <rect key="frame" x="20" y="0.0" width="334" height="43.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="textEditingChanged" destination="frT-gE-TnB" eventType="editingDidEnd" id="5qY-0O-fnZ"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -188,6 +197,9 @@
                                                     <rect key="frame" x="20" y="0.0" width="334" height="43.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                    <connections>
+                                                        <action selector="textEditingChanged" destination="frT-gE-TnB" eventType="editingDidEnd" id="AWw-Bc-Ac6"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -259,20 +271,25 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="rnj-Cz-Rgl">
-                        <barButtonItem key="leftBarButtonItem" title="Item" systemItem="cancel" id="aK5-Sm-aar">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="aK5-Sm-aar">
                             <connections>
                                 <segue destination="PIa-PM-aOW" kind="unwind" unwindAction="unwindToContestListWithSegue:" id="XgB-Qs-uNy"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="osB-vm-ce8"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="osB-vm-ce8">
+                            <connections>
+                                <action selector="saveBarButtonTapped:" destination="frT-gE-TnB" id="VhX-ta-6AN"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="countryFlagTextField" destination="qvX-9a-I9x" id="2AZ-Cq-Cbi"/>
                         <outlet property="deleteContestCell" destination="jcw-wI-GgI" id="dbG-6h-QXh"/>
                         <outlet property="hostCityTextField" destination="In8-GX-aU6" id="NoE-Tk-t4x"/>
                         <outlet property="hostCountryTextField" destination="kRe-kV-CO7" id="cMq-p2-OVq"/>
+                        <outlet property="saveBarButton" destination="osB-vm-ce8" id="iAq-il-NcQ"/>
                         <outlet property="yearTextField" destination="OEv-O7-C1D" id="yZ6-4y-vi9"/>
-                        <segue destination="zuq-E0-lae" kind="show" identifier="editActList" id="mEp-hD-mHh"/>
+                        <segue destination="zuq-E0-lae" kind="show" identifier="editActList" destinationCreationSelector="editActs:" id="mEp-hD-mHh"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7YT-da-FJE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -280,22 +297,69 @@
             </objects>
             <point key="canvasLocation" x="3323" y="-194"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Edit Acts Table View Controller-->
         <scene sceneID="CAR-Rt-6By">
             <objects>
-                <tableViewController id="zuq-E0-lae" sceneMemberID="viewController">
+                <tableViewController id="zuq-E0-lae" customClass="EditActsTableViewController" customModule="Eurovision_Scoreboard" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ycY-bQ-DKR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="xT6-Zy-ONq">
-                                <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="EditActCell" id="OtX-SN-aUk" customClass="EditActTableViewCell" customModule="Eurovision_Scoreboard" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="24.5" width="414" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xT6-Zy-ONq" id="0vR-qY-e4b">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OtX-SN-aUk" id="A3s-ky-gXg">
+                                    <rect key="frame" x="0.0" y="0.0" width="373.5" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="748" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="h6T-8C-lxK">
+                                            <rect key="frame" x="80" y="4" width="293.5" height="72"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eyW-f8-83O">
+                                                    <rect key="frame" x="0.0" y="0.0" width="293.5" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ush-8t-cTn">
+                                                    <rect key="frame" x="0.0" y="24" width="293.5" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AZ2-HT-nYl">
+                                                    <rect key="frame" x="0.0" y="48" width="293.5" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="251" text="🇪🇺" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2db-nr-bRX">
+                                            <rect key="frame" x="20" y="11" width="52" height="58"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="48"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="2db-nr-bRX" secondAttribute="bottom" id="2ft-u6-AJl"/>
+                                        <constraint firstItem="h6T-8C-lxK" firstAttribute="leading" secondItem="2db-nr-bRX" secondAttribute="trailing" constant="8" id="LPZ-qC-sin"/>
+                                        <constraint firstItem="2db-nr-bRX" firstAttribute="top" secondItem="A3s-ky-gXg" secondAttribute="topMargin" id="U0V-DM-55g"/>
+                                        <constraint firstAttribute="bottom" secondItem="h6T-8C-lxK" secondAttribute="bottom" constant="4" id="gfY-En-0NL"/>
+                                        <constraint firstAttribute="trailing" secondItem="h6T-8C-lxK" secondAttribute="trailing" id="hie-3H-js0"/>
+                                        <constraint firstItem="h6T-8C-lxK" firstAttribute="top" secondItem="A3s-ky-gXg" secondAttribute="top" constant="4" id="rzp-xn-n0k"/>
+                                        <constraint firstItem="2db-nr-bRX" firstAttribute="leading" secondItem="A3s-ky-gXg" secondAttribute="leadingMargin" id="wxN-af-h2p"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="artistNameLabel" destination="ush-8t-cTn" id="XhU-YT-aM3"/>
+                                    <outlet property="countryFlagLabel" destination="2db-nr-bRX" id="uf2-w4-zze"/>
+                                    <outlet property="countryNameLabel" destination="eyW-f8-83O" id="7bl-Oi-sr5"/>
+                                    <outlet property="songNameLabel" destination="AZ2-HT-nYl" id="OJ8-KI-StO"/>
+                                    <segue destination="dQa-dn-yZC" kind="presentation" identifier="editAct" trigger="accessoryAction" id="wFN-SZ-91U"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -306,7 +370,7 @@
                     <navigationItem key="navigationItem" id="MPY-5X-wqf">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="H4T-sP-Xa1">
                             <connections>
-                                <segue destination="dQa-dn-yZC" kind="presentation" id="53F-XJ-ftD"/>
+                                <segue destination="dQa-dn-yZC" kind="presentation" identifier="addAct" id="53F-XJ-ftD"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -315,17 +379,17 @@
             </objects>
             <point key="canvasLocation" x="4116" y="-194"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Add Edit Act Table View Controller-->
         <scene sceneID="sbN-hX-F1f">
             <objects>
-                <tableViewController id="oFW-Mn-48b" sceneMemberID="viewController">
+                <tableViewController id="oFW-Mn-48b" customClass="AddEditActTableViewController" customModule="Eurovision_Scoreboard" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="NcA-sd-bg3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>
                             <tableViewSection headerTitle="Country Name" id="RJl-VF-8l3">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="43.5" id="dxE-5v-T8B">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="43.5" id="dxE-5v-T8B">
                                         <rect key="frame" x="20" y="49.5" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dxE-5v-T8B" id="TNU-Ye-P8D">
@@ -335,7 +399,10 @@
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G9i-Bc-Ct5">
                                                     <rect key="frame" x="20" y="0.0" width="334" height="43.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                    <connections>
+                                                        <action selector="textEditingChanged" destination="oFW-Mn-48b" eventType="editingChanged" id="z8I-xZ-OeP"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -350,7 +417,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Country Flag" id="9wB-Rh-kve">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="43.5" id="hci-gx-kOK">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="43.5" id="hci-gx-kOK">
                                         <rect key="frame" x="20" y="143" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hci-gx-kOK" id="Ppt-Ya-Jx8">
@@ -375,7 +442,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Song Name" id="ja7-4K-Rmj">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="43.5" id="41U-EF-g0i">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="43.5" id="41U-EF-g0i">
                                         <rect key="frame" x="20" y="236.5" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="41U-EF-g0i" id="T3o-Wk-A3d">
@@ -385,7 +452,7 @@
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dTI-ax-LSW">
                                                     <rect key="frame" x="20" y="0.0" width="334" height="43.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -400,7 +467,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Artists Name" id="OhK-t7-y6G">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="43.5" id="mdn-QW-mGR">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="43.5" id="mdn-QW-mGR">
                                         <rect key="frame" x="20" y="330" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mdn-QW-mGR" id="93V-JB-IWl">
@@ -410,7 +477,7 @@
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GWg-LO-0Xy">
                                                     <rect key="frame" x="20" y="0.0" width="334" height="43.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -423,6 +490,32 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection id="nTa-zM-eqk">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="43.5" id="ixn-1D-KbG">
+                                        <rect key="frame" x="20" y="409.5" width="374" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ixn-1D-KbG" id="BiQ-X1-7CW">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delete Act" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tcH-I4-sFe">
+                                                    <rect key="frame" x="20" y="11" width="334" height="21.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" systemColor="systemRedColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="tcH-I4-sFe" secondAttribute="bottom" id="0If-rB-g1Z"/>
+                                                <constraint firstItem="tcH-I4-sFe" firstAttribute="leading" secondItem="BiQ-X1-7CW" secondAttribute="leadingMargin" id="YMc-ra-PBC"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="tcH-I4-sFe" secondAttribute="trailing" id="aMM-QJ-oOi"/>
+                                                <constraint firstItem="tcH-I4-sFe" firstAttribute="top" secondItem="BiQ-X1-7CW" secondAttribute="topMargin" id="qGw-Rf-VsE"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="oFW-Mn-48b" id="HUg-vq-Vjd"/>
@@ -430,11 +523,28 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Eif-85-k1i">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Xry-s7-GUl"/>
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="Gea-Yz-WO0"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Xry-s7-GUl">
+                            <connections>
+                                <segue destination="kZ3-8l-Amk" kind="unwind" unwindAction="unwindToActListWithSegue:" id="jL6-z5-t0d"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Gea-Yz-WO0">
+                            <connections>
+                                <action selector="saveBarButtonTapped:" destination="oFW-Mn-48b" id="ARJ-iK-LMS"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="artistNameTextField" destination="GWg-LO-0Xy" id="HJv-Qs-6VE"/>
+                        <outlet property="countryFlagTextField" destination="dQI-gw-ugw" id="HN4-Zh-XDK"/>
+                        <outlet property="countryNameTextField" destination="G9i-Bc-Ct5" id="hs4-96-sOz"/>
+                        <outlet property="deleteActCell" destination="ixn-1D-KbG" id="ubl-If-Fyv"/>
+                        <outlet property="saveBarButton" destination="Gea-Yz-WO0" id="MFV-nj-RHf"/>
+                        <outlet property="songNameTextField" destination="dTI-ax-LSW" id="luS-r9-nXv"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UqC-PC-ccs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="kZ3-8l-Amk" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="5974" y="-194"/>
         </scene>
@@ -447,7 +557,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="Act" id="vnu-xO-gqk" customClass="ActTableViewCell" customModule="Eurovision_Scoreboard" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ViewActCell" id="vnu-xO-gqk" customClass="ViewActTableViewCell" customModule="Eurovision_Scoreboard" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="24.5" width="414" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vnu-xO-gqk" id="zLd-51-slF">
@@ -583,7 +693,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="oFW-Mn-48b" kind="relationship" relationship="rootViewController" id="M3J-zS-YtQ"/>
+                        <segue destination="oFW-Mn-48b" kind="relationship" relationship="rootViewController" destinationCreationSelector="addEditAct:sender:segueIdentifier:" id="M3J-zS-YtQ"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SPE-5V-xqX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -592,6 +702,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="wFN-SZ-91U"/>
         <segue reference="th4-rb-eWL"/>
     </inferredMetricsTieBreakers>
     <resources>

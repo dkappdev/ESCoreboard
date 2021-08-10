@@ -7,7 +7,7 @@
 
 import UIKit
 
-private let reuseIdentifier = "Act"
+private let reuseIdentifier = "ViewActCell"
 
 class ViewContestTableViewController: UITableViewController {
 
@@ -48,7 +48,7 @@ class ViewContestTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! ActTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! ViewActTableViewCell
         
         cell.update(with: contestController.contests[contestIndex].acts[indexPath.row], position: indexPath.row + 1)
         cell.showsReorderControl = true

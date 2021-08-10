@@ -137,7 +137,18 @@ class AddEditContestTableViewController: UITableViewController {
     }
     
     @IBAction func doneBarButtonTapped(_ sender: UIBarButtonItem) {
+        // if the user was able to press this button, we already know the input is valid
+        let country = Country(name: hostCountryTextField.text!, flagEmoji: countryFlagTextField.text!)
+        let newContest = Contest(hostCountry: country, hostCityName: hostCityTextField.text!, year: Int(yearTextField.text!)!, acts: acts)
         
+        if mode == .editingContest,
+           let contestIndex = contestIndex {
+            contestController.contests[contestIndex] = newContest
+        } else {
+            contestController.contests.append(newContest)
+        }
+        
+        delegate?.shouldDismissViewController()
     }
 }
 

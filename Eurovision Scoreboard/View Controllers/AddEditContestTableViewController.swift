@@ -21,6 +21,14 @@ class AddEditContestTableViewController: UITableViewController {
     @IBOutlet var deleteContestCell: UITableViewCell!
     @IBOutlet var saveBarButton: UIBarButtonItem!
     
+    let currentYear: Int = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy"
+        let yearString = dateFormatter.string(from: Date())
+        let yearAsInt = Int(yearString)! // guaranteed to succeed, so we use force unwrapping
+        return yearAsInt
+    }()
+    
     let actsCellIndexPath = IndexPath(row: 0, section: 4)
     let deleteContestCellIndexPath = IndexPath(row: 0, section: 5)
     
@@ -107,11 +115,15 @@ class AddEditContestTableViewController: UITableViewController {
     
     func updateSaveButtonState() {
         let yearText = yearTextField.text ?? ""
-        let isYearANumber = Int(yearText) != nil
+        var isValidYear = false
+        if let year = Int(yearText) {
+            isValidYear = year >= 1956 && year <= currentYear + 1
+        }
+        
         let hostCountryText = hostCountryTextField.text ?? ""
         let hostCityText = hostCityTextField.text ?? ""
         
-        saveBarButton.isEnabled = isYearANumber && !hostCountryText.isEmpty && !hostCityText.isEmpty && containsSingleEmoji(countryFlagTextField)
+        saveBarButton.isEnabled = isValidYear && !hostCountryText.isEmpty && !hostCityText.isEmpty && containsSingleEmoji(countryFlagTextField)
     }
     
     func containsSingleEmoji(_ textField: UITextField) -> Bool {

@@ -56,6 +56,11 @@ class AddEditContestTableViewController: UITableViewController {
             deleteContestCell.isHidden = true
         }
         
+        yearTextField.delegate = self
+        hostCountryTextField.delegate = self
+        countryFlagTextField.delegate = self
+        hostCityTextField.delegate = self
+        
         updateSaveButtonState()
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -124,5 +129,12 @@ class AddEditContestTableViewController: UITableViewController {
 extension AddEditContestTableViewController: EditActsTableViewControllerDelegate {
     func didChangeActs(_ acts: [Act]) {
         self.acts = acts
+    }
+}
+
+extension AddEditContestTableViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
     }
 }

@@ -7,12 +7,18 @@
 
 import UIKit
 
+/// Table view cell for displaying act information in the when user is viewing contests
 class ViewActTableViewCell: UITableViewCell {
     
+    /// Label displaying country flag emoji
     @IBOutlet var countryFlagLabel: UILabel!
+    /// Label displaying country name
     @IBOutlet var countryNameLabel: UILabel!
+    /// Label displaying artist name
     @IBOutlet var artistNameLabel: UILabel!
+    /// Label displaying song name
     @IBOutlet var songNameLabel: UILabel!
+    /// Label displaying the current place in the scoreboard for a contest
     @IBOutlet var currentPlaceLabel: UILabel!
 
     override func awakeFromNib() {
@@ -23,6 +29,10 @@ class ViewActTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    /// Updates cell label with act information and the current position in the scoreboard
+    /// - Parameters:
+    ///   - act: the act which the cell will display
+    ///   - position: current position in the scoreboard
     func update(with act: Act, position: Int) {
         countryFlagLabel.text = act.country.flagEmoji
         countryNameLabel.text = act.country.name

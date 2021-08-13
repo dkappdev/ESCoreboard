@@ -7,7 +7,7 @@
 
 import UIKit
 
-/// Table view cell for displaying act information when user is editing contests
+/// Table view cell responsible for displaying act information when user is editing contests
 class EditActTableViewCell: UITableViewCell {
     
     /// Label displaying country flag emoji

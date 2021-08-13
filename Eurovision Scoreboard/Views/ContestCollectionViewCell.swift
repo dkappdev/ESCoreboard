@@ -13,4 +13,9 @@ class ContestCollectionViewCell: UICollectionViewCell {
     @IBOutlet var hostCountryFlagLabel: UILabel!
     /// Label displaying the year when a contest took place and the host city
     @IBOutlet var yearAndHostCityLabel: UILabel!
+    
+    func update(with contest: Contest) {
+        hostCountryFlagLabel.text = contest.hostCountry.flagEmoji
+        yearAndHostCityLabel.text = "\(contest.year) - \(contest.hostCityName)"
+    }
 }

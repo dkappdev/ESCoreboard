@@ -96,7 +96,7 @@ class AddEditContestTableViewController: UITableViewController {
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { action in
                 self.contestController.contests.remove(at: contestIndex)
-                self.delegate?.shouldDismissViewController()
+                self.delegate?.dismissViewController()
             }
             
             alertController.addAction(cancelAction)
@@ -150,7 +150,7 @@ class AddEditContestTableViewController: UITableViewController {
             contestController.contests.append(newContest)
         }
         
-        delegate?.shouldDismissViewController()
+        delegate?.dismissViewController()
     }
 }
 

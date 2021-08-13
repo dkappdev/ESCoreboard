@@ -8,5 +8,6 @@
 import Foundation
 
 protocol AddEditContestTableViewControllerDelegate: AnyObject {
-    func shouldDismissViewController()
+    /// Delegate is responsible for dismissing the view controller. Call this function on delegate to dismiss.
+    func dismissViewController()
 }

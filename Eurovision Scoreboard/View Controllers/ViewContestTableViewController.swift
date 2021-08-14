@@ -17,7 +17,7 @@ class ViewContestTableViewController: UITableViewController {
     
     /// Model controller object responsible for handling app state. It is initialized via dependency injection
     var contestController: ContestController!
-    /// Index of the contest this view controller is displaying. This property represents index of the actual contest in `contestController`'s `contests` array.
+    /// Index of the contest this view controller is displaying. This property represents index of the contest in `contestController`'s `contests` array.
     let contestIndex: Int
     
     // MARK: - Initializers

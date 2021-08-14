@@ -7,7 +7,8 @@
 
 import Foundation
 
+/// Delegate is responsible for dismissing the view controller. Table view controller should use the delegate to dismiss itself.
 protocol AddEditContestTableViewControllerDelegate: AnyObject {
-    /// Delegate is responsible for dismissing the view controller. Call this function on delegate to dismiss.
+    /// Call this function on delegate to dismiss the view controller.
     func dismissViewController()
 }

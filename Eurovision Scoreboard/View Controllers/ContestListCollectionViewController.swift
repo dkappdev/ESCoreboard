@@ -231,14 +231,14 @@ class ContestListCollectionViewController: UICollectionViewController {
            let cell = sender as? ContestCollectionViewCell,
            let contestIndex = collectionView.indexPath(for: cell)?.item {
             // Create new view controller
-            let controller = AddEditContestTableViewController(coder: coder, mode: .editingContest, contestIndex: contestIndex)
+            let controller = AddEditContestTableViewController(coder: coder, contestIndex: contestIndex)
             // Set up its contest controller and delegate
             controller?.contestController = contestController
             controller?.delegate = self
             return controller
         } else if segueIdentifier == Self.addContestSegueIdentifier {
             // If we are adding a new contest, create a new view controller with `contestIndex` set to nil
-            let controller = AddEditContestTableViewController(coder: coder, mode: .addingContest, contestIndex: nil)
+            let controller = AddEditContestTableViewController(coder: coder, contestIndex: nil)
             // Set up its contest controller and delegate
             controller?.contestController = contestController
             controller?.delegate = self

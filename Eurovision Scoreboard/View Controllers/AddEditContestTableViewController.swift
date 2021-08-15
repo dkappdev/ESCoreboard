@@ -12,13 +12,13 @@ class AddEditContestTableViewController: UITableViewController {
     
     // MARK: - IB Outlets
     
-    /// Year when contest took place
+    /// Contest year text field
     @IBOutlet var yearTextField: UITextField!
-    /// Host country
-    @IBOutlet var hostCountryTextField: UITextField!
-    /// Country flag as an emoji
+    /// Host country name text field
+    @IBOutlet var hostCountryNameTextField: UITextField!
+    /// Country flag emoji text field
     @IBOutlet var countryFlagTextField: UITextField!
-    /// Host city
+    /// Host city text field
     @IBOutlet var hostCityTextField: UITextField!
     
     /// Cell which user can click to delete the current contest. It should be hidden when user is adding a new contest. Because of this, we store the outlet to the cell in addition to its `IndexPath`
@@ -71,7 +71,7 @@ class AddEditContestTableViewController: UITableViewController {
     
     /// Custom initializer with contest index parameter. Only this initializer must be used.
     /// - Parameters:
-    ///   - contestIndex: index of the contest this view controller is displaying.
+    ///   - contestIndex: index of the contest this view controller is editing (`nil` if we are creating a new contest)
     ///   - coder: coder provided by Storyboard
     init?(coder: NSCoder, contestIndex: Int?) {
         self.contestIndex = contestIndex
@@ -89,8 +89,9 @@ class AddEditContestTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // If `contestIndex` is not `nil`, that means we are editing an existing contest
         if let contestIndex = contestIndex {
+            // If `contestIndex` is not `nil`, that means we are editing an existing contest
+            
             // Getting the contest from contest controller
             let contest = contestController.contests[contestIndex]
             
@@ -98,9 +99,9 @@ class AddEditContestTableViewController: UITableViewController {
             acts = contest.acts
             originalContestYear = contest.year
             
-            // Filling text fields with contest information
+            // Populating text fields with contest information
             yearTextField.text = "\(contest.year)"
-            hostCountryTextField.text = contest.hostCountry.name
+            hostCountryNameTextField.text = contest.hostCountry.name
             countryFlagTextField.text = contest.hostCountry.flagEmoji
             hostCityTextField.text = contest.hostCityName
             
@@ -118,7 +119,7 @@ class AddEditContestTableViewController: UITableViewController {
         // Setting `self` as the delegate of all text fields
         // We are doing this to later hide the keyboard the keyboard when user presses 'return' key
         yearTextField.delegate = self
-        hostCountryTextField.delegate = self
+        hostCountryNameTextField.delegate = self
         countryFlagTextField.delegate = self
         hostCityTextField.delegate = self
         
@@ -169,7 +170,7 @@ class AddEditContestTableViewController: UITableViewController {
         }
         
         // Getting text from other text fields
-        let hostCountryText = hostCountryTextField.text ?? ""
+        let hostCountryText = hostCountryNameTextField.text ?? ""
         let hostCityText = hostCityTextField.text ?? ""
         
         // The save button is enabled only when user has entered a valid year, all text fields are not empty, and the `countryFlagTextField` contains a single emoji
@@ -194,7 +195,7 @@ class AddEditContestTableViewController: UITableViewController {
     /// - Parameter sender: bar button item that was tapped
     @IBAction func saveBarButtonTapped(_ sender: UIBarButtonItem) {
         // If user was able to press the 'Save' button, we already know input is valid, so we force unwrap
-        let country = Country(name: hostCountryTextField.text!, flagEmoji: countryFlagTextField.text!)
+        let country = Country(name: hostCountryNameTextField.text!, flagEmoji: countryFlagTextField.text!)
         let newContest = Contest(hostCountry: country, hostCityName: hostCityTextField.text!, year: Int(yearTextField.text!)!, acts: acts)
         
         if let contestIndex = contestIndex {

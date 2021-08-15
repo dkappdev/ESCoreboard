@@ -255,6 +255,8 @@ class AddEditContestTableViewController: UITableViewController {
     }
 }
 
+// MARK: - Text field delegate
+
 // Adopting `UITextFieldDelegate` to respond to 'return' key press
 extension AddEditContestTableViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -263,6 +265,8 @@ extension AddEditContestTableViewController: UITextFieldDelegate {
         return false
     }
 }
+
+// MARK: - Edit Acts VC delegate
 
 extension AddEditContestTableViewController: EditActsTableViewControllerDelegate {
     /// Called when act list was changed. Saves the new act that was list provided by `EditActsTableViewController`

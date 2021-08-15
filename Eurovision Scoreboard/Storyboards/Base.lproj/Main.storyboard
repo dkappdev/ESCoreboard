@@ -297,7 +297,7 @@
             </objects>
             <point key="canvasLocation" x="3323" y="-194"/>
         </scene>
-        <!--Edit Acts Table View Controller-->
+        <!--Acts-->
         <scene sceneID="CAR-Rt-6By">
             <objects>
                 <tableViewController id="zuq-E0-lae" customClass="EditActsTableViewController" customModule="Eurovision_Scoreboard" customModuleProvider="target" sceneMemberID="viewController">
@@ -367,7 +367,7 @@
                             <outlet property="delegate" destination="zuq-E0-lae" id="2eP-CV-Ugg"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="MPY-5X-wqf">
+                    <navigationItem key="navigationItem" title="Acts" id="MPY-5X-wqf">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="H4T-sP-Xa1">
                             <connections>
                                 <segue destination="dQa-dn-yZC" kind="presentation" identifier="addAct" id="53F-XJ-ftD"/>

@@ -67,7 +67,7 @@ class AddEditActTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath == deleteActCellIndexPath {
             acts.remove(at: indexPath.row)
-            delegate?.didChangeActs(acts)
+            delegate?.dismissViewControllerAndSaveActs(acts)
         }
     }
     
@@ -101,7 +101,7 @@ class AddEditActTableViewController: UITableViewController {
             acts.append(newAct)
         }
         
-        delegate?.didChangeActs(acts)
+        delegate?.dismissViewControllerAndSaveActs(acts)
     }
 }
 

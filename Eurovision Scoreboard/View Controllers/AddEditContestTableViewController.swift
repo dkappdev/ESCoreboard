@@ -194,7 +194,7 @@ class AddEditContestTableViewController: UITableViewController {
     /// - Parameter sender: bar button item that was tapped
     @IBAction func saveBarButtonTapped(_ sender: UIBarButtonItem) {
         // If user was able to press the 'Save' button, we already know input is valid, so we force unwrap
-        let country = Country(name: hostCountryTextField.text!, flagEmoji: countryFlagTextField.text!)K
+        let country = Country(name: hostCountryTextField.text!, flagEmoji: countryFlagTextField.text!)
         let newContest = Contest(hostCountry: country, hostCityName: hostCityTextField.text!, year: Int(yearTextField.text!)!, acts: acts)
         
         if let contestIndex = contestIndex {

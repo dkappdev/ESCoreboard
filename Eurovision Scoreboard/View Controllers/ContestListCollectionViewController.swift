@@ -17,12 +17,13 @@ class ContestListCollectionViewController: UICollectionViewController {
     
     // MARK: - Properties
     
-    /// Reuse identifier for contest cell
-    private static let contestCellReuseIdentifier = "Contest"
     /// addContest segue identifier
     private static let addContestSegueIdentifier = "addContest"
     /// editContest segue identifier
     private static let editContestSegueIdentifier = "editContest"
+    
+    /// Reuse identifier for contest cell
+    private static let contestCellReuseIdentifier = "Contest"
     /// Idenetifier for collection view's only section
     static let defaultSectionIdentifier = 0
     
@@ -219,7 +220,7 @@ class ContestListCollectionViewController: UICollectionViewController {
         return controller
     }
     
-    /// Creates a `AddEditContestTableViewController` and sets up its contest controller and delegate
+    /// Creates an `AddEditContestTableViewController` and sets up its contest controller and delegate
     /// - Parameters:
     ///   - coder: coder provided by Storyboard
     ///   - sender: contest collection view cell or bar button item that initialized the segue

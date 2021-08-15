@@ -221,7 +221,7 @@ class ContestListCollectionViewController: UICollectionViewController {
     
     /// Creates a `AddEditContestTableViewController` and sets up its contest controller and delegate
     /// - Parameters:
-    ///   - coder: coder passed from Storyboard
+    ///   - coder: coder provided by Storyboard
     ///   - sender: contest collection view cell or bar button item that initialized the segue
     ///   - segueIdentifier: segue identifier
     /// - Returns: new `AddEditContestTableViewController` with configured contest controller and delegate
@@ -254,7 +254,7 @@ class ContestListCollectionViewController: UICollectionViewController {
 // MARK: - AddEditContest VC delegate
 
 extension ContestListCollectionViewController: AddEditContestTableViewControllerDelegate {
-    /// Called when user decided to save changes. Dismisses modally presented view controller and updates collection view
+    /// Dismisses modally presented view controller and updates collection view
     func dismissViewController() {
         dismiss(animated: true, completion: nil)
         updateCollectionView()

@@ -7,15 +7,21 @@
 
 import Foundation
 
+/// Model structure representing a compenting country
 struct Country {
+    /// Country name
     var name: String
+    /// Country flag as an emoji
     var flagEmoji: String
 }
 
+// Adopting Codable to be able to save data to disk
 extension Country: Codable { }
 
+// Adopting Hashable for UICollectionViewDiffableDataSource
 extension Country: Hashable { }
 
+// Static properties for countries that have participated in 2019-2021
 extension Country {
     static let albania = Country(name: "Albania", flagEmoji: "🇦🇱")
     static let armenia = Country(name: "Armenia", flagEmoji: "🇦🇲")

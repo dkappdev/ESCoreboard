@@ -142,7 +142,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                                     <connections>
-                                                        <action selector="textEditingChanged" destination="frT-gE-TnB" eventType="editingDidEnd" id="LGV-pt-Xwu"/>
+                                                        <action selector="textEditingChanged" destination="frT-gE-TnB" eventType="editingChanged" id="UXO-5S-xGQ"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -170,7 +170,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
-                                                        <action selector="textEditingChanged" destination="frT-gE-TnB" eventType="editingDidEnd" id="5qY-0O-fnZ"/>
+                                                        <action selector="textEditingChanged" destination="frT-gE-TnB" eventType="editingChanged" id="J5L-BG-9uf"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -198,7 +198,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                                     <connections>
-                                                        <action selector="textEditingChanged" destination="frT-gE-TnB" eventType="editingDidEnd" id="AWw-Bc-Ac6"/>
+                                                        <action selector="textEditingChanged" destination="frT-gE-TnB" eventType="editingChanged" id="1kl-6b-DdZ"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -286,7 +286,7 @@
                         <outlet property="countryFlagTextField" destination="qvX-9a-I9x" id="2AZ-Cq-Cbi"/>
                         <outlet property="deleteContestCell" destination="jcw-wI-GgI" id="dbG-6h-QXh"/>
                         <outlet property="hostCityTextField" destination="In8-GX-aU6" id="NoE-Tk-t4x"/>
-                        <outlet property="hostCountryTextField" destination="kRe-kV-CO7" id="cMq-p2-OVq"/>
+                        <outlet property="hostCountryNameTextField" destination="kRe-kV-CO7" id="cMq-p2-OVq"/>
                         <outlet property="saveBarButton" destination="osB-vm-ce8" id="iAq-il-NcQ"/>
                         <outlet property="yearTextField" destination="OEv-O7-C1D" id="yZ6-4y-vi9"/>
                         <segue destination="zuq-E0-lae" kind="show" identifier="editActList" destinationCreationSelector="editActs:" id="mEp-hD-mHh"/>
@@ -297,7 +297,7 @@
             </objects>
             <point key="canvasLocation" x="3323" y="-194"/>
         </scene>
-        <!--Edit Acts Table View Controller-->
+        <!--Acts-->
         <scene sceneID="CAR-Rt-6By">
             <objects>
                 <tableViewController id="zuq-E0-lae" customClass="EditActsTableViewController" customModule="Eurovision_Scoreboard" customModuleProvider="target" sceneMemberID="viewController">
@@ -367,7 +367,7 @@
                             <outlet property="delegate" destination="zuq-E0-lae" id="2eP-CV-Ugg"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="MPY-5X-wqf">
+                    <navigationItem key="navigationItem" title="Acts" id="MPY-5X-wqf">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="H4T-sP-Xa1">
                             <connections>
                                 <segue destination="dQa-dn-yZC" kind="presentation" identifier="addAct" id="53F-XJ-ftD"/>
@@ -428,6 +428,9 @@
                                                     <rect key="frame" x="20" y="0.0" width="334" height="43.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="textEditingChanged" destination="oFW-Mn-48b" eventType="editingChanged" id="hbg-al-waH"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -453,6 +456,9 @@
                                                     <rect key="frame" x="20" y="0.0" width="334" height="43.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                    <connections>
+                                                        <action selector="textEditingChanged" destination="oFW-Mn-48b" eventType="editingChanged" id="jqo-ke-yDg"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -478,6 +484,9 @@
                                                     <rect key="frame" x="20" y="0.0" width="334" height="43.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                    <connections>
+                                                        <action selector="textEditingChanged" destination="oFW-Mn-48b" eventType="editingChanged" id="Edj-xy-XCb"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>

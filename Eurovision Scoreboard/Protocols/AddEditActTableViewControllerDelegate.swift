@@ -7,6 +7,9 @@
 
 import Foundation
 
+/// A set of methods to respond to changes made to act list
 protocol AddEditActTableViewControllerDelegate: AnyObject {
-    func didChangeActs(_ acts: [Act])
+    /// Tells the delegate that act list was changed and ask the delegate to dismiss the view controller
+    /// - Parameter acts: new act list
+    func dismissViewControllerAndSaveActs(_ acts: [Act])
 }

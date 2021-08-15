@@ -39,7 +39,6 @@ class ContestListCollectionViewController: UICollectionViewController {
         
         // Setting up data source and layout
         dataSource = createDataSource()
-        collectionView.dataSource = dataSource
         collectionView.collectionViewLayout = createLayout(isCompact: traitCollection.horizontalSizeClass == .compact)
         
         updateCollectionView()
@@ -165,7 +164,7 @@ class ContestListCollectionViewController: UICollectionViewController {
             // The second reset action actually does the resetting
             let secondResetAction = UIAlertAction(title: "Reset", style: .destructive) { action in
                 // Resetting the state
-                self.contestController.resetState()
+                self.contestController.resetContests()
                 // Updating the collection view as the contest list was changed
                 self.updateCollectionView()
             }

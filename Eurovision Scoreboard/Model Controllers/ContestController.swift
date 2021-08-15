@@ -7,22 +7,29 @@
 
 import Foundation
 
+/// Model controller that handles the app's contest list
 class ContestController {
+    // MARK: - Properties
+    
+    /// Array of contests the user has saved. Any changes are automatically written to disk
     var contests: [Contest] {
         didSet {
-            saveStateToFile()
+            // Saving the new contest list to file
+            Self.saveToFile(contests: contests)
         }
     }
     
+    // MARK: - Initializers
+    
+    /// Default initializer that attempts to load contests from file. If unable to do so, it load the default contest list.
     init() {
         contests = Self.loadFromFile() ?? Self.defaultContests()
     }
     
-    private func saveStateToFile() {
-        Self.saveToFile(contests: contests)
-    }
+    // MARK: - Resetting the state
     
-    func resetState() {
+    /// Replaces the contest list with default contests
+    func resetContests() {
         contests = Self.defaultContests()
     }
 }
@@ -30,29 +37,46 @@ class ContestController {
 // MARK: - Saving data to file
 
 extension ContestController {
+    /// URL of the file where contests are stored
     private static let archiveURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         .first!
         .appendingPathComponent("contests")
         .appendingPathExtension("json")
     
+    /// Saves contest list to `archiveURL`
+    /// - Parameter contests: contest list to save
     private static func saveToFile(contests: [Contest]) {
+        // Getting a JSON encoder
         let jsonEncoder = JSONEncoder()
         if let encodedContests = try? jsonEncoder.encode(contests) {
+            // If we successfully encoded the contest list
+            
+            // Attempt to write data to file
             try? encodedContests.write(to: Self.archiveURL, options: .noFileProtection)
         }
     }
     
-    // Only used when initializing ContestController
+    /// Attempts to read contest list from `archiveURL`
+    /// - Returns: `nil` if unable to read contest list, otherwise contest saved at `archiveURL`
     private static func loadFromFile() -> [Contest]? {
+        // Getting a JSON decoder
         let jsonDecoder = JSONDecoder()
+        
         if let retrievedContestsData = try? Data(contentsOf: archiveURL),
            let decodedContests = try? jsonDecoder.decode([Contest].self, from: retrievedContestsData) {
+            // If we successfuly read data from file,
+            // and were able to decode the JSON data,
+            
+            // return the decoded contest list
             return decodedContests
         } else {
+            // Otherwise return `nil`
             return nil
         }
     }
     
+    /// List of default contests
+    /// - Returns: default contest list
     private static func defaultContests() -> [Contest] {
         return [
             Contest(hostCountry: .theNetherlands, hostCityName: "Rotterdam", year: 2021, acts: [

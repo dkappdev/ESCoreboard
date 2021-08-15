@@ -142,7 +142,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                                     <connections>
-                                                        <action selector="textEditingChanged" destination="frT-gE-TnB" eventType="editingDidEnd" id="LGV-pt-Xwu"/>
+                                                        <action selector="textEditingChanged" destination="frT-gE-TnB" eventType="editingChanged" id="UXO-5S-xGQ"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -170,7 +170,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
-                                                        <action selector="textEditingChanged" destination="frT-gE-TnB" eventType="editingDidEnd" id="5qY-0O-fnZ"/>
+                                                        <action selector="textEditingChanged" destination="frT-gE-TnB" eventType="editingChanged" id="J5L-BG-9uf"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -198,7 +198,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                                     <connections>
-                                                        <action selector="textEditingChanged" destination="frT-gE-TnB" eventType="editingDidEnd" id="AWw-Bc-Ac6"/>
+                                                        <action selector="textEditingChanged" destination="frT-gE-TnB" eventType="editingChanged" id="1kl-6b-DdZ"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -428,6 +428,9 @@
                                                     <rect key="frame" x="20" y="0.0" width="334" height="43.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="textEditingChanged" destination="oFW-Mn-48b" eventType="editingChanged" id="hbg-al-waH"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -453,6 +456,9 @@
                                                     <rect key="frame" x="20" y="0.0" width="334" height="43.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                    <connections>
+                                                        <action selector="textEditingChanged" destination="oFW-Mn-48b" eventType="editingChanged" id="jqo-ke-yDg"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -478,6 +484,9 @@
                                                     <rect key="frame" x="20" y="0.0" width="334" height="43.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                    <connections>
+                                                        <action selector="textEditingChanged" destination="oFW-Mn-48b" eventType="editingChanged" id="Edj-xy-XCb"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>

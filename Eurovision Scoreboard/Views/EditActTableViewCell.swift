@@ -18,11 +18,11 @@ class EditActTableViewCell: UITableViewCell {
     @IBOutlet var artistNameLabel: UILabel!
     /// Label displaying song name
     @IBOutlet var songNameLabel: UILabel!
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
@@ -35,5 +35,5 @@ class EditActTableViewCell: UITableViewCell {
         artistNameLabel.text = act.artistName
         songNameLabel.text = act.songName
     }
-
+    
 }

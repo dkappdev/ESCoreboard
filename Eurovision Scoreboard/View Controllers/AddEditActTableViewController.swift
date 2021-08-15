@@ -97,7 +97,7 @@ class AddEditActTableViewController: UITableViewController {
         // Updating save button state
         // If we are adding a new act, this will disable the 'Save' button
         updateSaveButtonState()
-
+        
         // Adding a tap gesture recognizer to hide keyboard whenever user taps outside text fields
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGestureRecognizer.cancelsTouchesInView = false

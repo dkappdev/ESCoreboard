@@ -11,7 +11,7 @@ import UIKit
 class EditActsTableViewController: UITableViewController {
     
     // MARK: - Properties
-
+    
     /// Reuse identifier for act cell
     private static let editActCellReuseIdentifier = "EditActCell"
     
@@ -50,12 +50,12 @@ class EditActsTableViewController: UITableViewController {
     }
     
     // MARK: - Table View Data Source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // There's only one section since we're only displaying an array of acts
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return acts.count
     }

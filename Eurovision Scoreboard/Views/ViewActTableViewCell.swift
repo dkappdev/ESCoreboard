@@ -20,11 +20,11 @@ class ViewActTableViewCell: UITableViewCell {
     @IBOutlet var songNameLabel: UILabel!
     /// Label displaying the current place in the scoreboard for a contest
     @IBOutlet var currentPlaceLabel: UILabel!
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
@@ -40,5 +40,5 @@ class ViewActTableViewCell: UITableViewCell {
         songNameLabel.text = act.songName
         currentPlaceLabel.text = "\(position)"
     }
-
+    
 }

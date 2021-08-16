@@ -137,7 +137,7 @@ class ContestListCollectionViewController: UICollectionViewController {
             let editAction = UIAction(title: "Edit Contest", image: UIImage(systemName: "pencil"), identifier: nil, discoverabilityTitle: nil, attributes: [], state: .off) { action in
                 // If user tapped on the edit button, perform `editContest` segue
                 // Set `sender` to be the cell for which the context menu configuration was created
-                self.performSegue(withIdentifier: "editContest", sender: collectionView.cellForItem(at: indexPath))
+                self.performSegue(withIdentifier: Self.editContestSegueIdentifier, sender: collectionView.cellForItem(at: indexPath))
             }
             
             // Returning menu with the configured actions

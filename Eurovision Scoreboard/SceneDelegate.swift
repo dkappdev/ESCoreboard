@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let rootNavigationController = window?.rootViewController as? UINavigationController,
               let contestListNavigationController = rootNavigationController.viewControllers.first as? ContestListCollectionViewController else { return }
         
-        // Settiing up collection view controller's contest controller via dependency injection
+        // Setting up collection view controller's contest controller via dependency injection
         contestListNavigationController.contestController = ContestController()
     }
 

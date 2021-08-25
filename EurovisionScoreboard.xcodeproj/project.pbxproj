@@ -15,6 +15,7 @@
 		E27C03BA26BC13F000AFF748 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E27C03B826BC13F000AFF748 /* Main.storyboard */; };
 		E27C03BC26BC13F200AFF748 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E27C03BB26BC13F200AFF748 /* Assets.xcassets */; };
 		E27C03BF26BC13F200AFF748 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E27C03BD26BC13F200AFF748 /* LaunchScreen.storyboard */; };
+		E28D8EEF26D6A18C00D07D98 /* EurovisionScoreboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28D8EEE26D6A18C00D07D98 /* EurovisionScoreboardTests.swift */; };
 		E28FE57226BFF72200380E14 /* AddEditContestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28FE57126BFF72200380E14 /* AddEditContestTableViewController.swift */; };
 		E2982CD926C29E6A00DB43EC /* EditActsTableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2982CD826C29E6A00DB43EC /* EditActsTableViewControllerDelegate.swift */; };
 		E2982CDB26C2B95E00DB43EC /* AddEditActTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2982CDA26C2B95E00DB43EC /* AddEditActTableViewController.swift */; };
@@ -29,6 +30,16 @@
 		E2A5218926BDB86800D4F73D /* ContestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5218826BDB86800D4F73D /* ContestController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		E28D8EF126D6A18C00D07D98 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E27C03A726BC13F000AFF748 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E27C03AE26BC13F000AFF748;
+			remoteInfo = EurovisionScoreboard;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		E26465DF26C1529E008A914F /* AddEditContestTableViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditContestTableViewControllerDelegate.swift; sourceTree = "<group>"; };
 		E264660926C28ACE008A914F /* EditActTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditActTableViewCell.swift; sourceTree = "<group>"; };
@@ -40,6 +51,9 @@
 		E27C03BB26BC13F200AFF748 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E27C03BE26BC13F200AFF748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E27C03C026BC13F200AFF748 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E28D8EEC26D6A18C00D07D98 /* EurovisionScoreboardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EurovisionScoreboardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E28D8EEE26D6A18C00D07D98 /* EurovisionScoreboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EurovisionScoreboardTests.swift; sourceTree = "<group>"; };
+		E28D8EF026D6A18C00D07D98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E28FE57126BFF72200380E14 /* AddEditContestTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditContestTableViewController.swift; sourceTree = "<group>"; };
 		E2982CD826C29E6A00DB43EC /* EditActsTableViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditActsTableViewControllerDelegate.swift; sourceTree = "<group>"; };
 		E2982CDA26C2B95E00DB43EC /* AddEditActTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditActTableViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +76,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E28D8EE926D6A18C00D07D98 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -69,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				E27C03B126BC13F000AFF748 /* EurovisionScoreboard */,
+				E28D8EED26D6A18C00D07D98 /* EurovisionScoreboardTests */,
 				E27C03B026BC13F000AFF748 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -77,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				E27C03AF26BC13F000AFF748 /* EurovisionScoreboard.app */,
+				E28D8EEC26D6A18C00D07D98 /* EurovisionScoreboardTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -92,9 +115,9 @@
 				E27C03CC26BC247300AFF748 /* Models */,
 				E27C03CB26BC246F00AFF748 /* View Controllers */,
 				E27C03CA26BC246A00AFF748 /* Model Controllers */,
-				E27C03C926BC246500AFF748 /* Other Controllers */,
+				E28D8EE626D6A0EC00D07D98 /* Other Controllers */,
 				E27C03C826BC246000AFF748 /* Protocols */,
-				E27C03C726BC245A00AFF748 /* Extensions */,
+				E28D8EE726D6A0F400D07D98 /* Extensions */,
 				E27C03C626BC245400AFF748 /* Storyboards */,
 			);
 			path = EurovisionScoreboard;
@@ -109,13 +132,6 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
-		E27C03C726BC245A00AFF748 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		E27C03C826BC246000AFF748 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -124,13 +140,6 @@
 				E2982CDC26C2CBD800DB43EC /* AddEditActTableViewControllerDelegate.swift */,
 			);
 			path = Protocols;
-			sourceTree = "<group>";
-		};
-		E27C03C926BC246500AFF748 /* Other Controllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Other Controllers";
 			sourceTree = "<group>";
 		};
 		E27C03CA26BC246A00AFF748 /* Model Controllers */ = {
@@ -163,6 +172,29 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		E28D8EE626D6A0EC00D07D98 /* Other Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Other Controllers";
+			sourceTree = "<group>";
+		};
+		E28D8EE726D6A0F400D07D98 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E28D8EED26D6A18C00D07D98 /* EurovisionScoreboardTests */ = {
+			isa = PBXGroup;
+			children = (
+				E28D8EEE26D6A18C00D07D98 /* EurovisionScoreboardTests.swift */,
+				E28D8EF026D6A18C00D07D98 /* Info.plist */,
+			);
+			path = EurovisionScoreboardTests;
+			sourceTree = "<group>";
+		};
 		E2A5217226BC41F200D4F73D /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -193,6 +225,24 @@
 			productReference = E27C03AF26BC13F000AFF748 /* EurovisionScoreboard.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E28D8EEB26D6A18C00D07D98 /* EurovisionScoreboardTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E28D8EF326D6A18C00D07D98 /* Build configuration list for PBXNativeTarget "EurovisionScoreboardTests" */;
+			buildPhases = (
+				E28D8EE826D6A18C00D07D98 /* Sources */,
+				E28D8EE926D6A18C00D07D98 /* Frameworks */,
+				E28D8EEA26D6A18C00D07D98 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E28D8EF226D6A18C00D07D98 /* PBXTargetDependency */,
+			);
+			name = EurovisionScoreboardTests;
+			productName = EurovisionScoreboardTests;
+			productReference = E28D8EEC26D6A18C00D07D98 /* EurovisionScoreboardTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -205,6 +255,10 @@
 					E27C03AE26BC13F000AFF748 = {
 						CreatedOnToolsVersion = 12.5.1;
 						LastSwiftMigration = 1250;
+					};
+					E28D8EEB26D6A18C00D07D98 = {
+						CreatedOnToolsVersion = 12.5.1;
+						TestTargetID = E27C03AE26BC13F000AFF748;
 					};
 				};
 			};
@@ -222,6 +276,7 @@
 			projectRoot = "";
 			targets = (
 				E27C03AE26BC13F000AFF748 /* EurovisionScoreboard */,
+				E28D8EEB26D6A18C00D07D98 /* EurovisionScoreboardTests */,
 			);
 		};
 /* End PBXProject section */
@@ -234,6 +289,13 @@
 				E27C03BF26BC13F200AFF748 /* LaunchScreen.storyboard in Resources */,
 				E27C03BC26BC13F200AFF748 /* Assets.xcassets in Resources */,
 				E27C03BA26BC13F000AFF748 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E28D8EEA26D6A18C00D07D98 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,7 +326,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E28D8EE826D6A18C00D07D98 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E28D8EEF26D6A18C00D07D98 /* EurovisionScoreboardTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E28D8EF226D6A18C00D07D98 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E27C03AE26BC13F000AFF748 /* EurovisionScoreboard */;
+			targetProxy = E28D8EF126D6A18C00D07D98 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		E27C03B826BC13F000AFF748 /* Main.storyboard */ = {
@@ -443,6 +521,46 @@
 			};
 			name = Release;
 		};
+		E28D8EF426D6A18C00D07D98 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HCW5LR94BF;
+				INFOPLIST_FILE = EurovisionScoreboardTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dkdev.EurovisionScoreboardTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EurovisionScoreboard.app/EurovisionScoreboard";
+			};
+			name = Debug;
+		};
+		E28D8EF526D6A18C00D07D98 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HCW5LR94BF;
+				INFOPLIST_FILE = EurovisionScoreboardTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dkdev.EurovisionScoreboardTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EurovisionScoreboard.app/EurovisionScoreboard";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -460,6 +578,15 @@
 			buildConfigurations = (
 				E27C03C426BC13F200AFF748 /* Debug */,
 				E27C03C526BC13F200AFF748 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E28D8EF326D6A18C00D07D98 /* Build configuration list for PBXNativeTarget "EurovisionScoreboardTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E28D8EF426D6A18C00D07D98 /* Debug */,
+				E28D8EF526D6A18C00D07D98 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

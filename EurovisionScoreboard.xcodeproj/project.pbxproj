@@ -33,7 +33,7 @@
 		E26465DF26C1529E008A914F /* AddEditContestTableViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditContestTableViewControllerDelegate.swift; sourceTree = "<group>"; };
 		E264660926C28ACE008A914F /* EditActTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditActTableViewCell.swift; sourceTree = "<group>"; };
 		E264660B26C28B5D008A914F /* EditActsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditActsTableViewController.swift; sourceTree = "<group>"; };
-		E27C03AF26BC13F000AFF748 /* Eurovision Scoreboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Eurovision Scoreboard.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E27C03AF26BC13F000AFF748 /* EurovisionScoreboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EurovisionScoreboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E27C03B226BC13F000AFF748 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E27C03B426BC13F000AFF748 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E27C03B926BC13F000AFF748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -68,7 +68,7 @@
 		E27C03A626BC13F000AFF748 = {
 			isa = PBXGroup;
 			children = (
-				E27C03B126BC13F000AFF748 /* Eurovision Scoreboard */,
+				E27C03B126BC13F000AFF748 /* EurovisionScoreboard */,
 				E27C03B026BC13F000AFF748 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -76,12 +76,12 @@
 		E27C03B026BC13F000AFF748 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E27C03AF26BC13F000AFF748 /* Eurovision Scoreboard.app */,
+				E27C03AF26BC13F000AFF748 /* EurovisionScoreboard.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E27C03B126BC13F000AFF748 /* Eurovision Scoreboard */ = {
+		E27C03B126BC13F000AFF748 /* EurovisionScoreboard */ = {
 			isa = PBXGroup;
 			children = (
 				E27C03C026BC13F200AFF748 /* Info.plist */,
@@ -97,7 +97,7 @@
 				E27C03C726BC245A00AFF748 /* Extensions */,
 				E27C03C626BC245400AFF748 /* Storyboards */,
 			);
-			path = "Eurovision Scoreboard";
+			path = EurovisionScoreboard;
 			sourceTree = "<group>";
 		};
 		E27C03C626BC245400AFF748 /* Storyboards */ = {
@@ -176,9 +176,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E27C03AE26BC13F000AFF748 /* Eurovision Scoreboard */ = {
+		E27C03AE26BC13F000AFF748 /* EurovisionScoreboard */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E27C03C326BC13F200AFF748 /* Build configuration list for PBXNativeTarget "Eurovision Scoreboard" */;
+			buildConfigurationList = E27C03C326BC13F200AFF748 /* Build configuration list for PBXNativeTarget "EurovisionScoreboard" */;
 			buildPhases = (
 				E27C03AB26BC13F000AFF748 /* Sources */,
 				E27C03AC26BC13F000AFF748 /* Frameworks */,
@@ -188,9 +188,9 @@
 			);
 			dependencies = (
 			);
-			name = "Eurovision Scoreboard";
+			name = EurovisionScoreboard;
 			productName = "Eurovision Scoreboard";
-			productReference = E27C03AF26BC13F000AFF748 /* Eurovision Scoreboard.app */;
+			productReference = E27C03AF26BC13F000AFF748 /* EurovisionScoreboard.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -208,7 +208,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E27C03AA26BC13F000AFF748 /* Build configuration list for PBXProject "Eurovision Scoreboard" */;
+			buildConfigurationList = E27C03AA26BC13F000AFF748 /* Build configuration list for PBXProject "EurovisionScoreboard" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -221,7 +221,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E27C03AE26BC13F000AFF748 /* Eurovision Scoreboard */,
+				E27C03AE26BC13F000AFF748 /* EurovisionScoreboard */,
 			);
 		};
 /* End PBXProject section */
@@ -410,12 +410,12 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HCW5LR94BF;
-				INFOPLIST_FILE = "Eurovision Scoreboard/Info.plist";
+				INFOPLIST_FILE = EurovisionScoreboard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.dkappdev.Eurovision-Scoreboard";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dkappdev.EurovisionScoreboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -431,12 +431,12 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HCW5LR94BF;
-				INFOPLIST_FILE = "Eurovision Scoreboard/Info.plist";
+				INFOPLIST_FILE = EurovisionScoreboard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.dkappdev.Eurovision-Scoreboard";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dkappdev.EurovisionScoreboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -446,7 +446,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E27C03AA26BC13F000AFF748 /* Build configuration list for PBXProject "Eurovision Scoreboard" */ = {
+		E27C03AA26BC13F000AFF748 /* Build configuration list for PBXProject "EurovisionScoreboard" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E27C03C126BC13F200AFF748 /* Debug */,
@@ -455,7 +455,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E27C03C326BC13F200AFF748 /* Build configuration list for PBXNativeTarget "Eurovision Scoreboard" */ = {
+		E27C03C326BC13F200AFF748 /* Build configuration list for PBXNativeTarget "EurovisionScoreboard" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E27C03C426BC13F200AFF748 /* Debug */,

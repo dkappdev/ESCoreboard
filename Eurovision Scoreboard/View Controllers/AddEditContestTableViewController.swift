@@ -62,8 +62,6 @@ class AddEditContestTableViewController: UITableViewController {
     /// Let's say we have three contests, which were held in years 2019 through 2021. In that case the array of year will be `[2021, 2020, 2019]`. Now let's say we want to edit the second contest (held in 2020). In that case input validation will fail because the array of years already contains value `2020`. To avoid that, during initalization we save the contest's original year. If during input validation we find that the year entered by user is the same as `initialContestYear`, we proceed and don't check whether the value is unique. We already know it is, because it was not changed.
     var originalContestYear: Int?
     
-    /// Model controller object responsible for handling app state. It is initialized via dependency injection
-    var contestController: ContestController!
     /// Delegate responsible for dismissing the view controller.
     weak var delegate: AddEditContestTableViewControllerDelegate?
     
@@ -93,7 +91,7 @@ class AddEditContestTableViewController: UITableViewController {
             // If `contestIndex` is not `nil`, that means we are editing an existing contest
             
             // Getting the contest from contest controller
-            let contest = contestController.contests[contestIndex]
+            let contest = ContestController.shared.contests[contestIndex]
             
             // Initializing act list and the original contest year
             acts = contest.acts
@@ -155,7 +153,7 @@ class AddEditContestTableViewController: UITableViewController {
         // Getting text from year text field
         let yearText = yearTextField.text ?? ""
         // Getting years from all contests
-        let contestYears = contestController.contests.map { $0.year }
+        let contestYears = ContestController.shared.contests.map { $0.year }
         
         if let year = Int(yearText) {
             // If the text can be converted to an integer, continue checking.
@@ -200,10 +198,10 @@ class AddEditContestTableViewController: UITableViewController {
         
         if let contestIndex = contestIndex {
             // If we are editing an existing contest, save changes made to it
-            contestController.contests[contestIndex] = newContest
+            ContestController.shared.contests[contestIndex] = newContest
         } else {
             // Otherwise append the new contest to the contests array
-            contestController.contests.append(newContest)
+            ContestController.shared.contests.append(newContest)
         }
         
         // Asking delegate to dismiss the view controller
@@ -229,7 +227,7 @@ class AddEditContestTableViewController: UITableViewController {
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { action in
                 // If user confirms their intention do delete contest, update the contests array in contest controller
-                self.contestController.contests.remove(at: contestIndex)
+                ContestController.shared.contests.remove(at: contestIndex)
                 // And ask delegate to dismiss this view controller
                 self.delegate?.dismissViewController()
             }

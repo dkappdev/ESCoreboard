@@ -27,8 +27,6 @@ class ContestListCollectionViewController: UICollectionViewController {
     /// Idenetifier for collection view's only section
     static let defaultSectionIdentifier = 0
     
-    /// Model controller object responsible for handling app state. It is initialized in `SceneDelegate` after the view controller's initialized has already been called', which is why it's an implicitly unwrapped optional.
-    var contestController: ContestController!
     /// The collection view diffable data source
     var dataSource: DataSourceType!
     
@@ -118,11 +116,11 @@ class ContestListCollectionViewController: UICollectionViewController {
         var snapshot = DataSourceSnapshotType()
         
         // Sorting the contest list by year to restore the order after adding new contests
-        contestController.contests.sort { $0.year > $1.year }
+        ContestController.shared.contests.sort { $0.year > $1.year }
         
         // Adding items to default section
         snapshot.appendSections([Self.defaultSectionIdentifier])
-        snapshot.appendItems(contestController.contests, toSection: Self.defaultSectionIdentifier)
+        snapshot.appendItems(ContestController.shared.contests, toSection: Self.defaultSectionIdentifier)
         
         // Applying the snapshot
         dataSource.apply(snapshot)
@@ -164,7 +162,7 @@ class ContestListCollectionViewController: UICollectionViewController {
             // The second reset action actually does the resetting
             let secondResetAction = UIAlertAction(title: "Reset", style: .destructive) { action in
                 // Resetting the state
-                self.contestController.resetContests()
+                ContestController.shared.resetContests()
                 // Updating the collection view as the contest list was changed
                 self.updateCollectionView()
             }
@@ -211,12 +209,8 @@ class ContestListCollectionViewController: UICollectionViewController {
         guard let sender = sender,
               let contestIndex = collectionView.indexPath(for: sender)?.item else { return nil }
         
-        // Creating contest view controller with contest index
-        let controller = ViewContestTableViewController(contestIndex: contestIndex, coder: coder)
-        // Configuring contest controller via dependency injection
-        controller?.contestController = contestController
-        
-        return controller
+        // Returning view contest controller with contest index
+        return ViewContestTableViewController(contestIndex: contestIndex, coder: coder)
     }
     
     /// Creates an `AddEditContestTableViewController` and sets up its contest controller and delegate
@@ -232,15 +226,13 @@ class ContestListCollectionViewController: UICollectionViewController {
            let contestIndex = collectionView.indexPath(for: cell)?.item {
             // Create new view controller
             let controller = AddEditContestTableViewController(coder: coder, contestIndex: contestIndex)
-            // Set up its contest controller and delegate
-            controller?.contestController = contestController
+            // Set up its delegate
             controller?.delegate = self
             return controller
         } else if segueIdentifier == Self.addContestSegueIdentifier {
             // If we are adding a new contest, create a new view controller with `contestIndex` set to nil
             let controller = AddEditContestTableViewController(coder: coder, contestIndex: nil)
-            // Set up its contest controller and delegate
-            controller?.contestController = contestController
+            // Set up its delegate
             controller?.delegate = self
             return controller
         } else {

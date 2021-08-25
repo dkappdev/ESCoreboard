@@ -14,13 +14,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let _ = (scene as? UIWindowScene) else { return }
-        
-        // Making sure the root view controller is a `UINavigationController` and its first view controller is a `ContestListViewController`
-        guard let rootNavigationController = window?.rootViewController as? UINavigationController,
-              let contestListNavigationController = rootNavigationController.viewControllers.first as? ContestListCollectionViewController else { return }
-        
-        // Setting up collection view controller's contest controller via dependency injection
-        contestListNavigationController.contestController = ContestController()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

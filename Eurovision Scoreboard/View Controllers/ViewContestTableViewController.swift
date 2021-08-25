@@ -15,8 +15,6 @@ class ViewContestTableViewController: UITableViewController {
     
     // MARK: - Properties
     
-    /// Model controller object responsible for handling app state. It is initialized via dependency injection
-    var contestController: ContestController!
     /// Index of the contest this view controller is displaying. This property represents index of the contest in `contestController`'s `contests` array.
     let contestIndex: Int
     
@@ -43,7 +41,7 @@ class ViewContestTableViewController: UITableViewController {
         super.viewDidLoad()
         
         // Setting up navigation item
-        let contest = contestController.contests[contestIndex]
+        let contest = ContestController.shared.contests[contestIndex]
         navigationItem.title = "\(contest.hostCountry.flagEmoji) \(contest.year) - \(contest.hostCityName)"
         navigationItem.rightBarButtonItem = editButtonItem
     }
@@ -62,13 +60,13 @@ class ViewContestTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return contestController.contests[contestIndex].acts.count
+        return ContestController.shared.contests[contestIndex].acts.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Self.viewActCellReuseIdentifier, for: indexPath) as! ViewActTableViewCell
         
-        cell.update(with: contestController.contests[contestIndex].acts[indexPath.row], position: indexPath.row + 1)
+        cell.update(with: ContestController.shared.contests[contestIndex].acts[indexPath.row], position: indexPath.row + 1)
         // Users create their scoreboard by reordering acts
         cell.showsReorderControl = true
         
@@ -84,8 +82,8 @@ class ViewContestTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         // Changing act positions
-        let movedAct = contestController.contests[contestIndex].acts.remove(at: sourceIndexPath.row)
-        contestController.contests[contestIndex].acts.insert(movedAct, at: destinationIndexPath.row)
+        let movedAct = ContestController.shared.contests[contestIndex].acts.remove(at: sourceIndexPath.row)
+        ContestController.shared.contests[contestIndex].acts.insert(movedAct, at: destinationIndexPath.row)
         
         // And updating table view
         // `UITableView.reloadData()` interrupts animations. Because of that reloading is scheduled to start after a delay
@@ -107,7 +105,7 @@ class ViewContestTableViewController: UITableViewController {
     /// - Parameter sender: the button that was tapped
     @IBAction func actionButtonTapped(_ sender: UIBarButtonItem) {
         // Getting the current contest
-        let contest = contestController.contests[contestIndex]
+        let contest = ContestController.shared.contests[contestIndex]
         
         // Creating the header
         var textToShare = "My Eurovision \(contest.year) Top-\(contest.acts.count):\n"

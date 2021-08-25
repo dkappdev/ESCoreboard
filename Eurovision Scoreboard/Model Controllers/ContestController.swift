@@ -11,6 +11,9 @@ import Foundation
 class ContestController {
     // MARK: - Properties
     
+    /// Shared instance of contest controller
+    static let shared = ContestController()
+    
     /// Array of contests the user has saved. Any changes are automatically written to disk
     var contests: [Contest] {
         didSet {
@@ -22,7 +25,7 @@ class ContestController {
     // MARK: - Initializers
     
     /// Default initializer that attempts to load contests from file. If unable to do so, it load the default contest list.
-    init() {
+    private init() {
         contests = Self.loadFromFile() ?? Self.defaultContests()
     }
     

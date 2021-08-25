@@ -14,12 +14,13 @@ class AddEditContestTableViewController: UITableViewController {
     
     /// Contest year text field
     @IBOutlet var yearTextField: UITextField!
-    /// Host country name text field
-    @IBOutlet var hostCountryNameTextField: UITextField!
-    /// Country flag emoji text field
-    @IBOutlet var countryFlagTextField: UITextField!
     /// Host city text field
     @IBOutlet var hostCityTextField: UITextField!
+    
+    /// Label that displays currently picked country
+    @IBOutlet var hostCountryLabel: UILabel!
+    /// Host country picker view
+    @IBOutlet var hostCountryPickerView: UIPickerView!
     
     /// Cell which user can click to delete the current contest. It should be hidden when user is adding a new contest. Because of this, we store the outlet to the cell in addition to its `IndexPath`
     @IBOutlet var deleteContestCell: UITableViewCell!
@@ -46,10 +47,12 @@ class AddEditContestTableViewController: UITableViewController {
     }()
     
     /// Index path of the 'Acts' cell which user can press to edit act list
-    let actsCellIndexPath = IndexPath(row: 0, section: 4)
+    let actsCellIndexPath = IndexPath(row: 0, section: 3)
     /// Index path of the 'Delete Contest' cell which user can press to delete the current contest
-    let deleteContestCellIndexPath = IndexPath(row: 0, section: 5)
+    let deleteContestCellIndexPath = IndexPath(row: 0, section: 4)
     
+    /// Country that user has picked using the picker view, by default it's set to `Country.fullCountryList.first!`
+    var pickedCountry: Country!
     /// Index of the contest this view controller is displaying. This property represents index of the contest in `contestController`'s `contests` array.
     let contestIndex: Int?
     /// Act list for the current contest. Its default value is `[]`, which is changed later during initialization if the view controller is editing an existing contest instead of adding a new one.
@@ -87,6 +90,15 @@ class AddEditContestTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Setting `self` as the delegate and data source for picker view
+        hostCountryPickerView.dataSource = self
+        hostCountryPickerView.delegate = self
+        
+        // Setting `self` as the delegate of all text fields
+        // We are doing this to later hide the keyboard the keyboard when user presses 'return' key
+        yearTextField.delegate = self
+        hostCityTextField.delegate = self
+        
         if let contestIndex = contestIndex {
             // If `contestIndex` is not `nil`, that means we are editing an existing contest
             
@@ -96,11 +108,12 @@ class AddEditContestTableViewController: UITableViewController {
             // Initializing act list and the original contest year
             acts = contest.acts
             originalContestYear = contest.year
+            pickedCountry = contest.hostCountry
             
-            // Populating text fields with contest information
+            // Populating text fields and country picker with contest information
             yearTextField.text = "\(contest.year)"
-            hostCountryNameTextField.text = contest.hostCountry.name
-            countryFlagTextField.text = contest.hostCountry.flagEmoji
+            hostCountryLabel.text = prettyCountryNameString(for: pickedCountry)
+            hostCountryPickerView.selectRow(Country.fullCountryList.firstIndex(of: contest.hostCountry)!, inComponent: 0, animated: false)
             hostCityTextField.text = contest.hostCityName
             
             // Setting up navigation item
@@ -108,18 +121,18 @@ class AddEditContestTableViewController: UITableViewController {
         } else {
             // If `contestIndex` is `nil`, we are adding a new contest
             
+            // Picking first country by default
+            // Country list is never empty, so we can use force unwrapping
+            pickedCountry = Country.fullCountryList.first!
+            
+            // Updating the country label
+            hostCountryLabel.text = prettyCountryNameString(for: pickedCountry)
+            
             // Hiding the 'Delete' cell
             deleteContestCell.isHidden = true
             // Setting up navigation item
             navigationItem.title = "Add Contest"
         }
-        
-        // Setting `self` as the delegate of all text fields
-        // We are doing this to later hide the keyboard the keyboard when user presses 'return' key
-        yearTextField.delegate = self
-        hostCountryNameTextField.delegate = self
-        countryFlagTextField.delegate = self
-        hostCityTextField.delegate = self
         
         // Updating save button state
         // If we are adding a new contest, this will disable the 'Save' button
@@ -139,12 +152,6 @@ class AddEditContestTableViewController: UITableViewController {
     }
     
     // MARK: - Input validation
-    
-    /// Called whenever user changed contents of a text field
-    @IBAction func textEditingChanged() {
-        // Every time user made a change to a text field, we update the state of 'Save' button
-        updateSaveButtonState()
-    }
     
     /// Performs input validation and enables the 'Save' button only when input is valid
     func updateSaveButtonState() {
@@ -168,23 +175,18 @@ class AddEditContestTableViewController: UITableViewController {
         }
         
         // Getting text from other text fields
-        let hostCountryText = hostCountryNameTextField.text ?? ""
         let hostCityText = hostCityTextField.text ?? ""
         
-        // The save button is enabled only when user has entered a valid year, all text fields are not empty, and the `countryFlagTextField` contains a single emoji
-        saveBarButton.isEnabled = isValidYear && !hostCountryText.isEmpty && !hostCityText.isEmpty && containsSingleEmoji(countryFlagTextField)
+        // The save button is enabled only when user has entered a valid year and entered a host city
+        saveBarButton.isEnabled = isValidYear && !hostCityText.isEmpty
     }
     
-    /// Checks if a text field contains a single emoji
-    /// - Parameter textField: text field to check
-    /// - Returns: `true` if text field contains a single emoji, `false` otherwise
-    func containsSingleEmoji(_ textField: UITextField) -> Bool {
-        // Making sure text field contains exactly one symbol
-        guard let text = textField.text,
-              text.count == 1 else { return false }
-        
-        // And checking whether this symbol is an emoji
-        return text.unicodeScalars.first?.properties.isEmojiPresentation ?? false
+    // MARK: - Responding to changes
+    
+    /// Called whenever user changed contents of a text field
+    @IBAction func textEditingChanged() {
+        // Every time user made a change to a text field, we update the state of 'Save' button
+        updateSaveButtonState()
     }
     
     // MARK: - Configuring buttons
@@ -193,7 +195,7 @@ class AddEditContestTableViewController: UITableViewController {
     /// - Parameter sender: bar button item that was tapped
     @IBAction func saveBarButtonTapped(_ sender: UIBarButtonItem) {
         // If user was able to press the 'Save' button, we already know input is valid, so we force unwrap
-        let country = Country(name: hostCountryNameTextField.text!, flagEmoji: countryFlagTextField.text!)
+        let country = pickedCountry!
         let newContest = Contest(hostCountry: country, hostCityName: hostCityTextField.text!, year: Int(yearTextField.text!)!, acts: acts)
         
         if let contestIndex = contestIndex {
@@ -252,6 +254,15 @@ class AddEditContestTableViewController: UITableViewController {
         controller?.delegate = self
         return controller
     }
+    
+    // MARK: - Utility functions
+    
+    /// Returns pretty country name string, i.e. 'Italy 🇮🇹', 'Sweden 🇸🇪'
+    /// - Parameter country: country for which to create string
+    /// - Returns:
+    func prettyCountryNameString(for country: Country) -> String {
+        return "\(country.name) \(country.flagEmoji)"
+    }
 }
 
 // MARK: - Text field delegate
@@ -272,5 +283,34 @@ extension AddEditContestTableViewController: EditActsTableViewControllerDelegate
     /// - Parameter acts: new act list
     func didChangeActs(_ acts: [Act]) {
         self.acts = acts
+    }
+}
+
+// MARK: - UIPickerView data source
+
+extension AddEditContestTableViewController: UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        // There's only one component since we are only choosing a country
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return Country.fullCountryList.count
+    }
+}
+
+extension AddEditContestTableViewController: UIPickerViewDelegate {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        // Returning pretty string for country as the title for picker view row
+        let country = Country.fullCountryList[row]
+        return prettyCountryNameString(for: country)
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        // Setting the `pickedCountry` property for use later
+        pickedCountry = Country.fullCountryList[row]
+        // Updating the country label
+        hostCountryLabel.text = prettyCountryNameString(for: pickedCountry!)
+        
     }
 }

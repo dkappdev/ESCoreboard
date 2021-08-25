@@ -11,7 +11,7 @@
         <!--Contests-->
         <scene sceneID="FIT-zM-r8W">
             <objects>
-                <collectionViewController id="kda-ZT-RUb" customClass="ContestListCollectionViewController" customModule="Eurovision_Scoreboard" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="kda-ZT-RUb" customClass="ContestListCollectionViewController" customModule="EurovisionScoreboard" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="opf-wK-728">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -23,7 +23,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Contest" id="T2l-Jh-pOY" customClass="ContestCollectionViewCell" customModule="Eurovision_Scoreboard" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Contest" id="T2l-Jh-pOY" customClass="ContestCollectionViewCell" customModule="EurovisionScoreboard" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="186" height="165"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="vrp-Jf-Hw6">
@@ -95,7 +95,7 @@
         <!--Add Edit Contest Table View Controller-->
         <scene sceneID="D8h-Og-Tjv">
             <objects>
-                <tableViewController id="frT-gE-TnB" customClass="AddEditContestTableViewController" customModule="Eurovision_Scoreboard" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="frT-gE-TnB" customClass="AddEditContestTableViewController" customModule="EurovisionScoreboard" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="GwF-Uu-Neg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -137,20 +137,18 @@
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kRe-kV-CO7">
-                                                    <rect key="frame" x="20" y="0.0" width="334" height="43.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
-                                                    <connections>
-                                                        <action selector="textEditingChanged" destination="frT-gE-TnB" eventType="editingChanged" id="UXO-5S-xGQ"/>
-                                                    </connections>
-                                                </textField>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Europe 🇪🇺" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v11-I8-6RE">
+                                                    <rect key="frame" x="20" y="11" width="334" height="21.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="kRe-kV-CO7" firstAttribute="leading" secondItem="Fg3-CM-0QW" secondAttribute="leading" constant="20" id="2h1-BN-3kG"/>
-                                                <constraint firstItem="kRe-kV-CO7" firstAttribute="top" secondItem="Fg3-CM-0QW" secondAttribute="top" id="UST-9e-i2Z"/>
-                                                <constraint firstAttribute="bottom" secondItem="kRe-kV-CO7" secondAttribute="bottom" id="dHM-z4-6Vg"/>
-                                                <constraint firstAttribute="trailing" secondItem="kRe-kV-CO7" secondAttribute="trailing" constant="20" id="ns3-Si-CLl"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="v11-I8-6RE" secondAttribute="trailing" id="K8L-dv-KZf"/>
+                                                <constraint firstItem="v11-I8-6RE" firstAttribute="leading" secondItem="Fg3-CM-0QW" secondAttribute="leadingMargin" id="N72-Xa-BOX"/>
+                                                <constraint firstItem="v11-I8-6RE" firstAttribute="top" secondItem="Fg3-CM-0QW" secondAttribute="topMargin" id="NxH-Wo-Kv6"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="v11-I8-6RE" secondAttribute="bottom" id="deM-Aa-2jO"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -288,7 +286,8 @@
                     <connections>
                         <outlet property="deleteContestCell" destination="jcw-wI-GgI" id="dbG-6h-QXh"/>
                         <outlet property="hostCityTextField" destination="In8-GX-aU6" id="NoE-Tk-t4x"/>
-                        <outlet property="hostCountryNameTextField" destination="kRe-kV-CO7" id="cMq-p2-OVq"/>
+                        <outlet property="hostCountryLabel" destination="v11-I8-6RE" id="zNN-rk-3Nc"/>
+                        <outlet property="hostCountryPickerView" destination="M7m-30-g6s" id="Zfo-oq-UHL"/>
                         <outlet property="saveBarButton" destination="osB-vm-ce8" id="iAq-il-NcQ"/>
                         <outlet property="yearTextField" destination="OEv-O7-C1D" id="yZ6-4y-vi9"/>
                         <segue destination="zuq-E0-lae" kind="show" identifier="editActList" destinationCreationSelector="editActs:" id="mEp-hD-mHh"/>
@@ -302,13 +301,13 @@
         <!--Acts-->
         <scene sceneID="CAR-Rt-6By">
             <objects>
-                <tableViewController id="zuq-E0-lae" customClass="EditActsTableViewController" customModule="Eurovision_Scoreboard" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="zuq-E0-lae" customClass="EditActsTableViewController" customModule="EurovisionScoreboard" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ycY-bQ-DKR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="EditActCell" id="OtX-SN-aUk" customClass="EditActTableViewCell" customModule="Eurovision_Scoreboard" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="EditActCell" id="OtX-SN-aUk" customClass="EditActTableViewCell" customModule="EurovisionScoreboard" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="24.5" width="414" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OtX-SN-aUk" id="A3s-ky-gXg">
@@ -384,7 +383,7 @@
         <!--Add Edit Act Table View Controller-->
         <scene sceneID="sbN-hX-F1f">
             <objects>
-                <tableViewController id="oFW-Mn-48b" customClass="AddEditActTableViewController" customModule="Eurovision_Scoreboard" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="oFW-Mn-48b" customClass="AddEditActTableViewController" customModule="EurovisionScoreboard" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="NcA-sd-bg3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -562,13 +561,13 @@
         <!--View Contest Table View Controller-->
         <scene sceneID="I3W-TH-cJ0">
             <objects>
-                <tableViewController id="axn-vo-pP4" customClass="ViewContestTableViewController" customModule="Eurovision_Scoreboard" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="axn-vo-pP4" customClass="ViewContestTableViewController" customModule="EurovisionScoreboard" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="DWE-e8-5fE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ViewActCell" id="vnu-xO-gqk" customClass="ViewActTableViewCell" customModule="Eurovision_Scoreboard" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ViewActCell" id="vnu-xO-gqk" customClass="ViewActTableViewCell" customModule="EurovisionScoreboard" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="24.5" width="414" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vnu-xO-gqk" id="zLd-51-slF">

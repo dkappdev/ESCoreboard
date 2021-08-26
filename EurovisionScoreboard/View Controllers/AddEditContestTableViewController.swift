@@ -100,7 +100,7 @@ class AddEditContestTableViewController: UITableViewController {
         hostCityTextField.delegate = self
         
         if let contestIndex = contestIndex {
-            // If `contestIndex` is not `nil`, that means we are editing an existing contest
+            // If `contestIndex` is not `nil`, we are editing an existing contest
             
             // Getting the contest from contest controller
             let contest = ContestController.shared.contests[contestIndex]
@@ -110,9 +110,9 @@ class AddEditContestTableViewController: UITableViewController {
             originalContestYear = contest.year
             pickedCountry = contest.hostCountry
             
-            // Populating text fields and country picker with contest information
+            // Populating text fields, labels, and country picker with contest information
             yearTextField.text = "\(contest.year)"
-            hostCountryLabel.text = prettyCountryNameString(for: pickedCountry)
+            hostCountryLabel.text = pickedCountry.prettyNameString
             hostCountryPickerView.selectRow(Country.fullCountryList.firstIndex(of: contest.hostCountry)!, inComponent: 0, animated: false)
             hostCityTextField.text = contest.hostCityName
             
@@ -126,7 +126,7 @@ class AddEditContestTableViewController: UITableViewController {
             pickedCountry = Country.fullCountryList.first!
             
             // Updating the country label
-            hostCountryLabel.text = prettyCountryNameString(for: pickedCountry)
+            hostCountryLabel.text = pickedCountry.prettyNameString
             
             // Hiding the 'Delete' cell
             deleteContestCell.isHidden = true
@@ -153,16 +153,15 @@ class AddEditContestTableViewController: UITableViewController {
     
     // MARK: - Input validation
     
-    /// Performs input validation and enables the 'Save' button only when input is valid
-    func updateSaveButtonState() {
+    func textFieldContainsValidYear(_ textField: UITextField) -> Bool {
         // Stores whether user has submitted a valid year
         var isValidYear: Bool
-        // Getting text from year text field
-        let yearText = yearTextField.text ?? ""
+        // Getting text from text field
+        let yearString = textField.text ?? ""
         // Getting years from all contests
         let contestYears = ContestController.shared.contests.map { $0.year }
         
-        if let year = Int(yearText) {
+        if let year = Int(yearString) {
             // If the text can be converted to an integer, continue checking.
             // Make sure the year is greater than or equal to 1956 (the year first contest was held),
             // And is no greater than the next year,
@@ -174,11 +173,16 @@ class AddEditContestTableViewController: UITableViewController {
             isValidYear = false
         }
         
+        return isValidYear
+    }
+    
+    /// Performs input validation and enables the 'Save' button only when input is valid
+    func updateSaveButtonState() {
         // Getting text from other text fields
         let hostCityText = hostCityTextField.text ?? ""
         
         // The save button is enabled only when user has entered a valid year and entered a host city
-        saveBarButton.isEnabled = isValidYear && !hostCityText.isEmpty
+        saveBarButton.isEnabled = textFieldContainsValidYear(yearTextField) && !hostCityText.isEmpty
     }
     
     // MARK: - Responding to changes
@@ -248,21 +252,15 @@ class AddEditContestTableViewController: UITableViewController {
     /// - Parameter coder: coder provided by storyboard
     /// - Returns: new `EditActsTableViewController` with configured delegate
     @IBSegueAction func editActs(_ coder: NSCoder) -> EditActsTableViewController? {
-        // Creating `EditActsTableViewController` with act list
-        let controller = EditActsTableViewController(coder: coder, acts: acts)
+        // If year is valid, we convert text field text to `Int`, otherwise we set `contestYear` to nil
+        let contestYear = textFieldContainsValidYear(yearTextField) ? Int(yearTextField.text!)! : nil
+        // Creating `EditActsTableViewController` with act list and contest year
+        let controller = EditActsTableViewController(coder: coder, acts: acts, contestYear: contestYear)
         // And setting up its delegate
         controller?.delegate = self
         return controller
     }
     
-    // MARK: - Utility functions
-    
-    /// Returns pretty country name string, i.e. 'Italy 🇮🇹', 'Sweden 🇸🇪'
-    /// - Parameter country: country for which to create string
-    /// - Returns:
-    func prettyCountryNameString(for country: Country) -> String {
-        return "\(country.name) \(country.flagEmoji)"
-    }
 }
 
 // MARK: - Text field delegate
@@ -302,15 +300,14 @@ extension AddEditContestTableViewController: UIPickerViewDataSource {
 extension AddEditContestTableViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         // Returning pretty string for country as the title for picker view row
-        let country = Country.fullCountryList[row]
-        return prettyCountryNameString(for: country)
+        return Country.fullCountryList[row].prettyNameString
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         // Setting the `pickedCountry` property for use later
         pickedCountry = Country.fullCountryList[row]
         // Updating the country label
-        hostCountryLabel.text = prettyCountryNameString(for: pickedCountry!)
+        hostCountryLabel.text = pickedCountry.prettyNameString
         
     }
 }

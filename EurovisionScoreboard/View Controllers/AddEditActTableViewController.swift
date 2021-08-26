@@ -12,14 +12,14 @@ class AddEditActTableViewController: UITableViewController {
     
     // MARK: - IB Outlets
     
-    /// Participating country text field
-    @IBOutlet var countryNameTextField: UITextField!
-    /// Country flag emoji text field
-    @IBOutlet var countryFlagTextField: UITextField!
-    /// Song name text field
     @IBOutlet var songNameTextField: UITextField!
     /// Artist name text field
     @IBOutlet var artistNameTextField: UITextField!
+    
+    /// Label that displays currently picked country
+    @IBOutlet var countryLabel: UILabel!
+    /// Country picked view
+    @IBOutlet var countryPickerView: UIPickerView!
     
     /// Cell which user can click to delete the current act. It should be hidden when user is adding a new act. Because of this, we store the outlet the the cell in addition to its `IndexPath`
     @IBOutlet var deleteActCell: UITableViewCell!
@@ -30,12 +30,19 @@ class AddEditActTableViewController: UITableViewController {
     // MARK: - Properties
     
     /// Index path of the 'Delete Act' cell which user can press to delete the current act
-    let deleteActCellIndexPath = IndexPath(row: 0, section: 4)
+    let deleteActCellIndexPath = IndexPath(row: 0, section: 3)
+    
+    /// Country that user has picked using the picker view, by default it's set to `Country.fullCountryList.first!` or `Country.moderCountryList.first!`, depending on contest year
+    var pickedCountry: Country!
+    
+    var countryList: [Country]!
     
     /// Act list for the current contest
     var acts: [Act]
     /// Index of the act this view controller is editing. It is used to modify the acts array.
     var actIndex: Int?
+    /// Year when contest is taking place
+    let contestYear: Int?
     
     /// Delegate responsible for saving changes and dismissing the view controller
     weak var delegate: AddEditActTableViewControllerDelegate?
@@ -47,9 +54,11 @@ class AddEditActTableViewController: UITableViewController {
     ///   - coder: coder provided by Storyboard
     ///   - acts: act list for the current contest
     ///   - actIndex: act to edit (`nil` if we are adding a new one)
-    init?(coder: NSCoder, acts: [Act], actIndex: Int?) {
+    ///   - contestYear: year when contest is taking place
+    init?(coder: NSCoder, acts: [Act], actIndex: Int?, contestYear: Int?) {
         self.acts = acts
         self.actIndex = actIndex
+        self.contestYear = contestYear
         super.init(coder: coder)
     }
     
@@ -59,40 +68,77 @@ class AddEditActTableViewController: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Configuration
+    /// Choose between modern and full country list
+    func setupCountryList() {
+        // If contest year exists and is >= 2006, use the modern country list without Yugoslavia and 'Serbia and Montenegro', otherwise use the full country list
+        if let contestYear = contestYear {
+            countryList = contestYear >= 2006 ? Country.modernCountryList : Country.fullCountryList
+        } else {
+            countryList = Country.fullCountryList
+        }
+        
+        if let actIndex = actIndex {
+            // Getting the act
+            let act = acts[actIndex]
+            
+            // If the country list does not contain the country user has previously picked, that means user has selected a country from full list (e.g. Yugoslavia) and then changed the contest year to >= 2006. In that case we should show full contest list instead of the modern one to avoid crashing
+            if countryList.firstIndex(of: act.country) == nil {
+                countryList = Country.fullCountryList
+            }
+        }
+    }
+    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupCountryList()
+        
+        // Setting `self` as the delegate and data source for picker view
+        countryPickerView.dataSource = self
+        countryPickerView.delegate = self
+  
+        // Setting `self` as the delegate of all text fields
+        // We are doing this to later hide the keyboard the keyboard when user presses 'return' key
+        songNameTextField.delegate = self
+        artistNameTextField.delegate = self
+        
         if let actIndex = actIndex {
-            // If `actIndex` is not `nil`, that means we are editing an existing act
+            // If `actIndex` is not `nil`, we are editing an existing act
             
             // Getting the act
             let act = acts[actIndex]
             
-            // Populating text fields
-            countryNameTextField.text = act.country.name
-            countryFlagTextField.text = act.country.flagEmoji
+            // Initializing the `pickedCountry` property
+            pickedCountry = act.country
+            
+            // Populating text fields, labels, and country picker with act information
             songNameTextField.text = act.songName
             artistNameTextField.text = act.artistName
+            countryLabel.text = act.country.prettyNameString
+             
+            countryPickerView.selectRow(countryList.firstIndex(of: act.country)!, inComponent: 0, animated: false)
             
             // Setting up navigation item
             navigationItem.title = "Edit Act"
         } else {
             // If `actindex` is `nil`, we are adding a new act
             
+            // Picking first country by default
+            // Country list is never empty, so we can use force unwrapping
+            pickedCountry = countryList.first!
+
+            // Updating the country label
+            countryLabel.text = pickedCountry.prettyNameString
             // Hiding the 'Delete' cell
             deleteActCell.isHidden = true
             // Setting up navigation item
             navigationItem.title = "Add Act"
         }
         
-        // Setting `self` as the delegate of all text fields
-        // We are doing this to later hide the keyboard the keyboard when user presses 'return' key
-        countryNameTextField.delegate = self
-        countryFlagTextField.delegate = self
-        songNameTextField.delegate = self
-        artistNameTextField.delegate = self
+        
         
         // Updating save button state
         // If we are adding a new act, this will disable the 'Save' button
@@ -113,32 +159,21 @@ class AddEditActTableViewController: UITableViewController {
     
     // MARK: - Input validation
     
+    func updateSaveButtonState() {
+        // Getting text from text fields
+        let songName = songNameTextField.text ?? ""
+        let artistName = artistNameTextField.text ?? ""
+        
+        // The save button is enabled only when all text fields are not empty
+        saveBarButton.isEnabled = !songName.isEmpty && !artistName.isEmpty
+    }
+
+    // MARK: - Responding to changes
+    
     /// Called whenever user changed contents of a text field
     @IBAction func textEditingChanged() {
         // Every time user made a change to a text field, we update the state of 'Save' button
         updateSaveButtonState()
-    }
-    
-    func updateSaveButtonState() {
-        // Getting text from text fields
-        let countryName = countryNameTextField.text ?? ""
-        let songName = songNameTextField.text ?? ""
-        let artistName = artistNameTextField.text ?? ""
-        
-        // The save button is enabled only when all text fields are not empty, and the `countryFlagTextField` contains a single emoji
-        saveBarButton.isEnabled = containsSingleEmoji(countryFlagTextField) && !countryName.isEmpty && !songName.isEmpty && !artistName.isEmpty
-    }
-    
-    /// Checks if a text field contains a single emoji
-    /// - Parameter textField: text field to check
-    /// - Returns: `true` if text field contains a single emoji, `false` otherwise
-    func containsSingleEmoji(_ textField: UITextField) -> Bool {
-        // Making sure text field contains exactly one symbol
-        guard let text = textField.text,
-              text.count == 1 else { return false }
-        
-        // And checking whether this symbol is an emoji
-        return text.unicodeScalars.first?.properties.isEmojiPresentation ?? false
     }
     
     // MARK: - Configuring buttons
@@ -147,7 +182,7 @@ class AddEditActTableViewController: UITableViewController {
     /// - Parameter sender: bar button item that was tapped
     @IBAction func saveBarButtonTapped(_ sender: UIBarButtonItem) {
         // If user was able to press the 'Save' button, we already know input is valid, so we force unwrap
-        let country = Country(name: countryNameTextField.text!, flagEmoji: countryFlagTextField.text!)
+        let country = pickedCountry!
         let newAct = Act(artistName: artistNameTextField.text!, songName: songNameTextField.text!, country: country)
         
         if let actIndex = actIndex {
@@ -186,5 +221,30 @@ extension AddEditActTableViewController: UITextFieldDelegate {
         // Resigning first responder when user presses 'return'
         textField.resignFirstResponder()
         return false
+    }
+}
+
+extension AddEditActTableViewController: UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        // There's only one component since we are only choosing a country
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return countryList.count
+    }
+}
+
+extension AddEditActTableViewController: UIPickerViewDelegate {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        // Returning pretty string for country as the title for picker view row
+        return countryList[row].prettyNameString
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        // Setting the `pickedCountry` property for use later
+        pickedCountry = countryList[row]
+        // Updating the country label
+        countryLabel.text = pickedCountry.prettyNameString
     }
 }

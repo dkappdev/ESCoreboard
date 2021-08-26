@@ -13,6 +13,11 @@ struct Country {
     var name: String
     /// Country flag as an emoji
     var flagEmoji: String
+    
+    /// Pretty country name string, e.g. 'Italy 🇮🇹', 'Sweden 🇸🇪'
+    var prettyNameString: String {
+        return "\(name) \(flagEmoji)"
+    }
 }
 
 // Adopting Codable to be able to save data to disk

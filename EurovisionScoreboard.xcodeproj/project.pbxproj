@@ -115,7 +115,6 @@
 				E27C03CC26BC247300AFF748 /* Models */,
 				E27C03CB26BC246F00AFF748 /* View Controllers */,
 				E27C03CA26BC246A00AFF748 /* Model Controllers */,
-				E28D8EE626D6A0EC00D07D98 /* Other Controllers */,
 				E27C03C826BC246000AFF748 /* Protocols */,
 				E28D8EE726D6A0F400D07D98 /* Extensions */,
 				E27C03C626BC245400AFF748 /* Storyboards */,
@@ -170,13 +169,6 @@
 				E2A5217E26BC64AB00D4F73D /* Act.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		E28D8EE626D6A0EC00D07D98 /* Other Controllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Other Controllers";
 			sourceTree = "<group>";
 		};
 		E28D8EE726D6A0F400D07D98 /* Extensions */ = {

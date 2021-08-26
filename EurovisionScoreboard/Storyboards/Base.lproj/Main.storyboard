@@ -11,7 +11,7 @@
         <!--Contests-->
         <scene sceneID="FIT-zM-r8W">
             <objects>
-                <collectionViewController id="kda-ZT-RUb" customClass="ContestListCollectionViewController" customModule="Eurovision_Scoreboard" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="kda-ZT-RUb" customClass="ContestListCollectionViewController" customModule="EurovisionScoreboard" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="opf-wK-728">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -23,7 +23,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Contest" id="T2l-Jh-pOY" customClass="ContestCollectionViewCell" customModule="Eurovision_Scoreboard" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Contest" id="T2l-Jh-pOY" customClass="ContestCollectionViewCell" customModule="EurovisionScoreboard" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="186" height="165"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="vrp-Jf-Hw6">
@@ -95,7 +95,7 @@
         <!--Add Edit Contest Table View Controller-->
         <scene sceneID="D8h-Og-Tjv">
             <objects>
-                <tableViewController id="frT-gE-TnB" customClass="AddEditContestTableViewController" customModule="Eurovision_Scoreboard" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="frT-gE-TnB" customClass="AddEditContestTableViewController" customModule="EurovisionScoreboard" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="GwF-Uu-Neg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -137,48 +137,49 @@
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kRe-kV-CO7">
-                                                    <rect key="frame" x="20" y="0.0" width="334" height="43.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
-                                                    <connections>
-                                                        <action selector="textEditingChanged" destination="frT-gE-TnB" eventType="editingChanged" id="UXO-5S-xGQ"/>
-                                                    </connections>
-                                                </textField>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Europe 🇪🇺" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v11-I8-6RE">
+                                                    <rect key="frame" x="20" y="11" width="334" height="21.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="kRe-kV-CO7" firstAttribute="leading" secondItem="Fg3-CM-0QW" secondAttribute="leading" constant="20" id="2h1-BN-3kG"/>
-                                                <constraint firstItem="kRe-kV-CO7" firstAttribute="top" secondItem="Fg3-CM-0QW" secondAttribute="top" id="UST-9e-i2Z"/>
-                                                <constraint firstAttribute="bottom" secondItem="kRe-kV-CO7" secondAttribute="bottom" id="dHM-z4-6Vg"/>
-                                                <constraint firstAttribute="trailing" secondItem="kRe-kV-CO7" secondAttribute="trailing" constant="20" id="ns3-Si-CLl"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="v11-I8-6RE" secondAttribute="trailing" id="K8L-dv-KZf"/>
+                                                <constraint firstItem="v11-I8-6RE" firstAttribute="leading" secondItem="Fg3-CM-0QW" secondAttribute="leadingMargin" id="N72-Xa-BOX"/>
+                                                <constraint firstItem="v11-I8-6RE" firstAttribute="top" secondItem="Fg3-CM-0QW" secondAttribute="topMargin" id="NxH-Wo-Kv6"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="v11-I8-6RE" secondAttribute="bottom" id="deM-Aa-2jO"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection headerTitle="Country Flag" id="wU4-Wu-JEu">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="43.5" id="S4F-ar-s6G">
-                                        <rect key="frame" x="20" y="236.5" width="374" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="200" id="wxo-oO-K2V">
+                                        <rect key="frame" x="20" y="186.5" width="374" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="S4F-ar-s6G" id="dwr-KU-duI">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wxo-oO-K2V" id="bDT-HZ-zac">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qvX-9a-I9x">
-                                                    <rect key="frame" x="20" y="0.0" width="334" height="43.5"/>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vtw-SG-QAH">
+                                                    <rect key="frame" x="20" y="0.0" width="334" height="200"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                                     <connections>
-                                                        <action selector="textEditingChanged" destination="frT-gE-TnB" eventType="editingChanged" id="J5L-BG-9uf"/>
+                                                        <action selector="textEditingChanged" destination="frT-gE-TnB" eventType="editingChanged" id="fzR-hR-OP1"/>
                                                     </connections>
                                                 </textField>
+                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M7m-30-g6s">
+                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="200"/>
+                                                </pickerView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="qvX-9a-I9x" firstAttribute="top" secondItem="dwr-KU-duI" secondAttribute="top" id="KG0-47-pWO"/>
-                                                <constraint firstItem="qvX-9a-I9x" firstAttribute="leading" secondItem="dwr-KU-duI" secondAttribute="leading" constant="20" id="eA5-sJ-ZIz"/>
-                                                <constraint firstAttribute="bottom" secondItem="qvX-9a-I9x" secondAttribute="bottom" id="naL-hL-BJR"/>
-                                                <constraint firstAttribute="trailing" secondItem="qvX-9a-I9x" secondAttribute="trailing" constant="20" id="tes-zC-rxZ"/>
+                                                <constraint firstItem="M7m-30-g6s" firstAttribute="leading" secondItem="bDT-HZ-zac" secondAttribute="leading" id="41F-0e-ifs"/>
+                                                <constraint firstAttribute="bottom" secondItem="vtw-SG-QAH" secondAttribute="bottom" id="6WW-7A-wt0"/>
+                                                <constraint firstItem="vtw-SG-QAH" firstAttribute="leading" secondItem="bDT-HZ-zac" secondAttribute="leading" constant="20" id="IQ9-Hx-sjV"/>
+                                                <constraint firstAttribute="trailing" secondItem="vtw-SG-QAH" secondAttribute="trailing" constant="20" id="gzY-ON-QoG"/>
+                                                <constraint firstItem="vtw-SG-QAH" firstAttribute="top" secondItem="bDT-HZ-zac" secondAttribute="top" id="mQ1-e9-m50"/>
+                                                <constraint firstItem="M7m-30-g6s" firstAttribute="top" secondItem="bDT-HZ-zac" secondAttribute="top" id="vvQ-CA-J97"/>
+                                                <constraint firstAttribute="bottom" secondItem="M7m-30-g6s" secondAttribute="bottom" id="wOK-cZ-v3v"/>
+                                                <constraint firstAttribute="trailing" secondItem="M7m-30-g6s" secondAttribute="trailing" id="ytf-dh-1to"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -187,7 +188,7 @@
                             <tableViewSection headerTitle="Host City" id="LhP-Am-PsX">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="43.5" id="7SY-ri-Rph">
-                                        <rect key="frame" x="20" y="330" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="436.5" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7SY-ri-Rph" id="1la-yU-qAq">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
@@ -215,7 +216,7 @@
                             <tableViewSection id="YAQ-q8-KpA">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="43.5" id="urD-HA-8v4">
-                                        <rect key="frame" x="20" y="409.5" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="516" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="urD-HA-8v4" id="AhF-hd-0tO">
                                             <rect key="frame" x="0.0" y="0.0" width="344.5" height="43.5"/>
@@ -241,7 +242,7 @@
                             <tableViewSection id="oUM-M5-EPK">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="43.5" id="jcw-wI-GgI">
-                                        <rect key="frame" x="20" y="489" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="595.5" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jcw-wI-GgI" id="adP-gs-FDN">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
@@ -283,10 +284,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="countryFlagTextField" destination="qvX-9a-I9x" id="2AZ-Cq-Cbi"/>
                         <outlet property="deleteContestCell" destination="jcw-wI-GgI" id="dbG-6h-QXh"/>
                         <outlet property="hostCityTextField" destination="In8-GX-aU6" id="NoE-Tk-t4x"/>
-                        <outlet property="hostCountryNameTextField" destination="kRe-kV-CO7" id="cMq-p2-OVq"/>
+                        <outlet property="hostCountryLabel" destination="v11-I8-6RE" id="zNN-rk-3Nc"/>
+                        <outlet property="hostCountryPickerView" destination="M7m-30-g6s" id="Zfo-oq-UHL"/>
                         <outlet property="saveBarButton" destination="osB-vm-ce8" id="iAq-il-NcQ"/>
                         <outlet property="yearTextField" destination="OEv-O7-C1D" id="yZ6-4y-vi9"/>
                         <segue destination="zuq-E0-lae" kind="show" identifier="editActList" destinationCreationSelector="editActs:" id="mEp-hD-mHh"/>
@@ -300,13 +301,13 @@
         <!--Acts-->
         <scene sceneID="CAR-Rt-6By">
             <objects>
-                <tableViewController id="zuq-E0-lae" customClass="EditActsTableViewController" customModule="Eurovision_Scoreboard" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="zuq-E0-lae" customClass="EditActsTableViewController" customModule="EurovisionScoreboard" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ycY-bQ-DKR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="EditActCell" id="OtX-SN-aUk" customClass="EditActTableViewCell" customModule="Eurovision_Scoreboard" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="EditActCell" id="OtX-SN-aUk" customClass="EditActTableViewCell" customModule="EurovisionScoreboard" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="24.5" width="414" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OtX-SN-aUk" id="A3s-ky-gXg">
@@ -382,12 +383,12 @@
         <!--Add Edit Act Table View Controller-->
         <scene sceneID="sbN-hX-F1f">
             <objects>
-                <tableViewController id="oFW-Mn-48b" customClass="AddEditActTableViewController" customModule="Eurovision_Scoreboard" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="oFW-Mn-48b" customClass="AddEditActTableViewController" customModule="EurovisionScoreboard" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="NcA-sd-bg3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>
-                            <tableViewSection headerTitle="Country Name" id="RJl-VF-8l3">
+                            <tableViewSection headerTitle="Country" id="RJl-VF-8l3">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="43.5" id="dxE-5v-T8B">
                                         <rect key="frame" x="20" y="49.5" width="374" height="43.5"/>
@@ -396,48 +397,49 @@
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G9i-Bc-Ct5">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Europe 🇪🇺" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d7S-fN-PAG">
                                                     <rect key="frame" x="20" y="0.0" width="334" height="43.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
-                                                    <connections>
-                                                        <action selector="textEditingChanged" destination="oFW-Mn-48b" eventType="editingChanged" id="z8I-xZ-OeP"/>
-                                                    </connections>
-                                                </textField>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="G9i-Bc-Ct5" firstAttribute="leading" secondItem="TNU-Ye-P8D" secondAttribute="leading" constant="20" id="AWz-LB-uxk"/>
-                                                <constraint firstItem="G9i-Bc-Ct5" firstAttribute="top" secondItem="TNU-Ye-P8D" secondAttribute="top" id="Aab-9L-8Ow"/>
-                                                <constraint firstAttribute="bottom" secondItem="G9i-Bc-Ct5" secondAttribute="bottom" id="MkS-Xg-vfT"/>
-                                                <constraint firstAttribute="trailing" secondItem="G9i-Bc-Ct5" secondAttribute="trailing" constant="20" id="zZ4-Nf-uys"/>
+                                                <constraint firstItem="d7S-fN-PAG" firstAttribute="top" secondItem="TNU-Ye-P8D" secondAttribute="top" id="1dO-sk-X7A"/>
+                                                <constraint firstItem="d7S-fN-PAG" firstAttribute="leading" secondItem="TNU-Ye-P8D" secondAttribute="leading" constant="20" id="OsW-yY-3nr"/>
+                                                <constraint firstAttribute="trailing" secondItem="d7S-fN-PAG" secondAttribute="trailing" constant="20" id="uiT-03-g9A"/>
+                                                <constraint firstAttribute="bottom" secondItem="d7S-fN-PAG" secondAttribute="bottom" id="wnd-Ds-R9X"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection headerTitle="Country Flag" id="9wB-Rh-kve">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="43.5" id="hci-gx-kOK">
-                                        <rect key="frame" x="20" y="143" width="374" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="200" id="oGf-Bi-QFE">
+                                        <rect key="frame" x="20" y="93" width="374" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hci-gx-kOK" id="Ppt-Ya-Jx8">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oGf-Bi-QFE" id="TYN-An-PA1">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dQI-gw-ugw">
-                                                    <rect key="frame" x="20" y="0.0" width="334" height="43.5"/>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sgn-na-C68">
+                                                    <rect key="frame" x="20" y="0.0" width="334" height="200"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                                     <connections>
-                                                        <action selector="textEditingChanged" destination="oFW-Mn-48b" eventType="editingChanged" id="hbg-al-waH"/>
+                                                        <action selector="textEditingChanged" destination="oFW-Mn-48b" eventType="editingChanged" id="jGd-xK-Q9n"/>
                                                     </connections>
                                                 </textField>
+                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GgN-sV-HYg">
+                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="200"/>
+                                                </pickerView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="dQI-gw-ugw" firstAttribute="top" secondItem="Ppt-Ya-Jx8" secondAttribute="top" id="0vk-80-z44"/>
-                                                <constraint firstItem="dQI-gw-ugw" firstAttribute="leading" secondItem="Ppt-Ya-Jx8" secondAttribute="leading" constant="20" id="dvq-TN-VCC"/>
-                                                <constraint firstAttribute="bottom" secondItem="dQI-gw-ugw" secondAttribute="bottom" id="fwT-UN-2ZN"/>
-                                                <constraint firstAttribute="trailing" secondItem="dQI-gw-ugw" secondAttribute="trailing" constant="20" id="jao-KR-Fai"/>
+                                                <constraint firstAttribute="bottom" secondItem="GgN-sV-HYg" secondAttribute="bottom" id="7iO-1n-QY4"/>
+                                                <constraint firstAttribute="trailing" secondItem="Sgn-na-C68" secondAttribute="trailing" constant="20" id="8L5-wQ-oEe"/>
+                                                <constraint firstItem="Sgn-na-C68" firstAttribute="leading" secondItem="TYN-An-PA1" secondAttribute="leading" constant="20" id="FQJ-8r-h9D"/>
+                                                <constraint firstItem="GgN-sV-HYg" firstAttribute="top" secondItem="TYN-An-PA1" secondAttribute="top" id="LEJ-QM-jfa"/>
+                                                <constraint firstItem="GgN-sV-HYg" firstAttribute="leading" secondItem="TYN-An-PA1" secondAttribute="leading" id="MXo-pn-iOO"/>
+                                                <constraint firstAttribute="trailing" secondItem="GgN-sV-HYg" secondAttribute="trailing" id="UGF-9E-Rx9"/>
+                                                <constraint firstAttribute="bottom" secondItem="Sgn-na-C68" secondAttribute="bottom" id="ZKd-Bu-WZE"/>
+                                                <constraint firstItem="Sgn-na-C68" firstAttribute="top" secondItem="TYN-An-PA1" secondAttribute="top" id="hJw-0W-Dzv"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -446,7 +448,7 @@
                             <tableViewSection headerTitle="Song Name" id="ja7-4K-Rmj">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="43.5" id="41U-EF-g0i">
-                                        <rect key="frame" x="20" y="236.5" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="343" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="41U-EF-g0i" id="T3o-Wk-A3d">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
@@ -471,10 +473,10 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Artists Name" id="OhK-t7-y6G">
+                            <tableViewSection headerTitle="Artist" id="OhK-t7-y6G">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="43.5" id="mdn-QW-mGR">
-                                        <rect key="frame" x="20" y="330" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="436.5" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mdn-QW-mGR" id="93V-JB-IWl">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
@@ -502,7 +504,7 @@
                             <tableViewSection id="nTa-zM-eqk">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="43.5" id="ixn-1D-KbG">
-                                        <rect key="frame" x="20" y="409.5" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="516" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ixn-1D-KbG" id="BiQ-X1-7CW">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
@@ -545,8 +547,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="artistNameTextField" destination="GWg-LO-0Xy" id="HJv-Qs-6VE"/>
-                        <outlet property="countryFlagTextField" destination="dQI-gw-ugw" id="HN4-Zh-XDK"/>
-                        <outlet property="countryNameTextField" destination="G9i-Bc-Ct5" id="hs4-96-sOz"/>
+                        <outlet property="countryLabel" destination="d7S-fN-PAG" id="aH8-9a-o44"/>
+                        <outlet property="countryPickerView" destination="GgN-sV-HYg" id="evi-fj-TWy"/>
                         <outlet property="deleteActCell" destination="ixn-1D-KbG" id="ubl-If-Fyv"/>
                         <outlet property="saveBarButton" destination="Gea-Yz-WO0" id="MFV-nj-RHf"/>
                         <outlet property="songNameTextField" destination="dTI-ax-LSW" id="luS-r9-nXv"/>
@@ -560,13 +562,13 @@
         <!--View Contest Table View Controller-->
         <scene sceneID="I3W-TH-cJ0">
             <objects>
-                <tableViewController id="axn-vo-pP4" customClass="ViewContestTableViewController" customModule="Eurovision_Scoreboard" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="axn-vo-pP4" customClass="ViewContestTableViewController" customModule="EurovisionScoreboard" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="DWE-e8-5fE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ViewActCell" id="vnu-xO-gqk" customClass="ViewActTableViewCell" customModule="Eurovision_Scoreboard" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ViewActCell" id="vnu-xO-gqk" customClass="ViewActTableViewCell" customModule="EurovisionScoreboard" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="24.5" width="414" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vnu-xO-gqk" id="zLd-51-slF">

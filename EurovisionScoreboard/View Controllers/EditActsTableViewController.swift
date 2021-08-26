@@ -22,6 +22,8 @@ class EditActsTableViewController: UITableViewController {
     
     /// Act list that we are editing
     var acts: [Act]
+    /// Year when contest is taking place
+    let contestYear: Int?
     
     /// Delegate responsible for saving changes
     weak var delegate: EditActsTableViewControllerDelegate?
@@ -32,8 +34,10 @@ class EditActsTableViewController: UITableViewController {
     /// - Parameters:
     ///   - coder: coder provided by Storyboard
     ///   - acts: act list to edit
-    init?(coder: NSCoder, acts: [Act]) {
+    ///   - contestYear: year when contest is taking place
+    init?(coder: NSCoder, acts: [Act], contestYear: Int?) {
         self.acts = acts
+        self.contestYear = contestYear
         super.init(coder: coder)
     }
     
@@ -108,7 +112,7 @@ class EditActsTableViewController: UITableViewController {
             // and the cell has a valid index path.
             
             // Create the view controller
-            let controller = AddEditActTableViewController(coder: coder, acts: acts, actIndex: actIndex)
+            let controller = AddEditActTableViewController(coder: coder, acts: acts, actIndex: actIndex, contestYear: contestYear)
             // And set its delegate to `self`
             controller?.delegate = self
             return controller
@@ -116,7 +120,7 @@ class EditActsTableViewController: UITableViewController {
             // Otherwise, if segue identifier is `Self.addActSegueIdentifier`, we are creating a new act, and `actIndex` should be `nil`
             
             // Create the view controller
-            let controller = AddEditActTableViewController(coder: coder, acts: acts, actIndex: nil)
+            let controller = AddEditActTableViewController(coder: coder, acts: acts, actIndex: nil, contestYear: contestYear)
             // And set its delegate to `self`
             controller?.delegate = self
             return controller

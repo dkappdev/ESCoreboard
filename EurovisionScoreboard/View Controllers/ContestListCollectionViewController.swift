@@ -40,12 +40,15 @@ class ContestListCollectionViewController: UICollectionViewController {
         collectionView.collectionViewLayout = createLayout(isCompact: traitCollection.horizontalSizeClass == .compact)
         
         updateCollectionView()
+        
+        // Subscribing to notification about contest list updates
+        NotificationCenter.default.addObserver(self, selector: #selector(updateCollectionView), name: SettingsTableViewController.contestListUpdatedNotification, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        // Explicitly setting toolbar visibility in case we want to hide it later
-        navigationController?.setToolbarHidden(false, animated: true)
+        // Explicitly setting toolbar visibility in case we want to change it later
+        navigationController?.setToolbarHidden(true, animated: true)
     }
     
     // MARK: - Responding to trait changes
@@ -68,7 +71,7 @@ class ContestListCollectionViewController: UICollectionViewController {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         // Setting how many items there are in a horizontal group based on `isCompact` parameter
-        let elementsInGroup = isCompact ? 2 : 4
+        let elementsInGroup = isCompact ? 2 : 3
         
         // All of our cell are square, so we calculate the height to be a fraction of how many elements there are in a group
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(CGFloat(1.0 / Double(elementsInGroup))))
@@ -85,6 +88,9 @@ class ContestListCollectionViewController: UICollectionViewController {
         // Setting the section content insets and inter-group spacing
         section.contentInsets = NSDirectionalEdgeInsets(top: 12, leading: 12, bottom: 12, trailing: 12)
         section.interGroupSpacing = CGFloat(12)
+        
+        // Making sure sections doesn't take up the entire width of the screen
+        section.contentInsetsReference = .readableContent
         
         // Creating the final layout
         return UICollectionViewCompositionalLayout(section: section)
@@ -111,7 +117,7 @@ class ContestListCollectionViewController: UICollectionViewController {
     // MARK: - Updating collection view
     
     /// Pulls new data from `contestController` and updates collection view
-    func updateCollectionView() {
+    @objc func updateCollectionView() {
         // Creating a new snapshot
         var snapshot = DataSourceSnapshotType()
         
@@ -141,48 +147,6 @@ class ContestListCollectionViewController: UICollectionViewController {
             // Returning menu with the configured actions
             return UIMenu(title: "", image: nil, identifier: nil, options: [], children: [editAction])
         }
-    }
-    
-    // MARK: - Configuring buttons
-    
-    /// Called when user taps the 'Reset' bar button.
-    /// When user tries to reset the app state, we ask them twice if they are sure they want to reset.
-    /// - Parameter sender: the button that was tapped
-    @IBAction func resetBarButtonTapped(_ sender: UIBarButtonItem) {
-        // Presenting both warning as action sheets
-        let firstAlertController = UIAlertController(title: "Are you sure you want to reset your contest list? This cannot be undone!", message: nil, preferredStyle: .actionSheet)
-        
-        let firstCancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
-        // The first reset action causes another alert controller to pop up
-        let firstResetAction = UIAlertAction(title: "Reset", style: .destructive) { action in
-            let secondAlertController = UIAlertController(title: "All your data will be lost! Are you absolutely sure?", message: nil, preferredStyle: .actionSheet)
-            
-            let secondCancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            // The second reset action actually does the resetting
-            let secondResetAction = UIAlertAction(title: "Reset", style: .destructive) { action in
-                // Resetting the state
-                ContestController.shared.resetContests()
-                // Updating the collection view as the contest list was changed
-                self.updateCollectionView()
-            }
-            
-            secondAlertController.addAction(secondCancelAction)
-            secondAlertController.addAction(secondResetAction)
-            // Setting the source bar button item for iPadOS
-            secondAlertController.popoverPresentationController?.barButtonItem = sender
-            
-            // Presenting the second alert controller
-            self.present(secondAlertController, animated: true, completion: nil)
-        }
-        
-        firstAlertController.addAction(firstCancelAction)
-        firstAlertController.addAction(firstResetAction)
-        // Setting the source bar button item for iPadOS
-        firstAlertController.popoverPresentationController?.barButtonItem = sender
-        
-        // Presenting the first alert controller
-        present(firstAlertController, animated: true, completion: nil)
     }
     
     // MARK: - Segues

@@ -71,15 +71,7 @@
                             <outlet property="delegate" destination="kda-ZT-RUb" id="Uhb-6m-5lF"/>
                         </connections>
                     </collectionView>
-                    <toolbarItems>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="XbV-Fd-6ng"/>
-                        <barButtonItem title="Reset" id="Rlc-Yx-yIQ">
-                            <color key="tintColor" systemColor="systemRedColor"/>
-                            <connections>
-                                <action selector="resetBarButtonTapped:" destination="kda-ZT-RUb" id="Qgl-qF-9qQ"/>
-                            </connections>
-                        </barButtonItem>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Contests" id="qek-W9-5iv">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="SwI-eM-MPh">
                             <connections>
@@ -449,38 +441,10 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Song Name" id="ja7-4K-Rmj">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="41U-EF-g0i">
-                                        <rect key="frame" x="20" y="343" width="374" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="41U-EF-g0i" id="T3o-Wk-A3d">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dTI-ax-LSW">
-                                                    <rect key="frame" x="20" y="11" width="334" height="22"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
-                                                    <connections>
-                                                        <action selector="textEditingChanged" destination="oFW-Mn-48b" eventType="editingChanged" id="jqo-ke-yDg"/>
-                                                    </connections>
-                                                </textField>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="dTI-ax-LSW" firstAttribute="leading" secondItem="T3o-Wk-A3d" secondAttribute="leadingMargin" id="1Td-l2-8EB"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="dTI-ax-LSW" secondAttribute="trailing" id="L3a-nS-Jz7"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="dTI-ax-LSW" secondAttribute="bottom" id="kvM-0H-bjN"/>
-                                                <constraint firstItem="dTI-ax-LSW" firstAttribute="top" secondItem="T3o-Wk-A3d" secondAttribute="topMargin" id="xU7-W4-iJ6"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                             <tableViewSection headerTitle="Artist" id="OhK-t7-y6G">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="mdn-QW-mGR">
-                                        <rect key="frame" x="20" y="436.5" width="374" height="43.5"/>
+                                        <rect key="frame" x="20" y="343" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mdn-QW-mGR" id="93V-JB-IWl">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
@@ -500,6 +464,34 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="GWg-LO-0Xy" secondAttribute="bottom" id="JnE-l3-HiD"/>
                                                 <constraint firstItem="GWg-LO-0Xy" firstAttribute="leading" secondItem="93V-JB-IWl" secondAttribute="leadingMargin" id="Oe0-W1-g59"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="GWg-LO-0Xy" secondAttribute="trailing" id="dWQ-uQ-2f3"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Song Name" id="ja7-4K-Rmj">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="41U-EF-g0i">
+                                        <rect key="frame" x="20" y="436.5" width="374" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="41U-EF-g0i" id="T3o-Wk-A3d">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dTI-ax-LSW">
+                                                    <rect key="frame" x="20" y="11" width="334" height="22"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                    <connections>
+                                                        <action selector="textEditingChanged" destination="oFW-Mn-48b" eventType="editingChanged" id="jqo-ke-yDg"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="dTI-ax-LSW" firstAttribute="leading" secondItem="T3o-Wk-A3d" secondAttribute="leadingMargin" id="1Td-l2-8EB"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="dTI-ax-LSW" secondAttribute="trailing" id="L3a-nS-Jz7"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="dTI-ax-LSW" secondAttribute="bottom" id="kvM-0H-bjN"/>
+                                                <constraint firstItem="dTI-ax-LSW" firstAttribute="top" secondItem="T3o-Wk-A3d" secondAttribute="topMargin" id="xU7-W4-iJ6"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -755,8 +747,8 @@
         <!--Settings-->
         <scene sceneID="aAN-Vc-l85">
             <objects>
-                <tableViewController id="cbh-J6-k1r" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Qsl-TR-stL">
+                <tableViewController id="cbh-J6-k1r" customClass="SettingsTableViewController" customModule="EurovisionScoreboard" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Qsl-TR-stL" customClass="I">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>

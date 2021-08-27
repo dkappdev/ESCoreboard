@@ -41,7 +41,7 @@ class ContestController {
 
 extension ContestController {
     /// URL of the file where contests are stored
-    private static let archiveURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+    static let archiveURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         .first!
         .appendingPathComponent("contests")
         .appendingPathExtension("json")

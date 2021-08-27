@@ -48,7 +48,7 @@ class ViewContestTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // Explicitly setting toolbar visibility in case we want to hide it later
+        // Explicitly setting toolbar visibility in case we want to change it later
         navigationController?.setToolbarHidden(false, animated: true)
     }
     
@@ -114,7 +114,7 @@ class ViewContestTableViewController: UITableViewController {
             textToShare += "\(index + 1). \(contest.acts[index].country.name) \(contest.acts[index].country.flagEmoji)\n"
         }
         
-        // Creating activity view controlling
+        // Creating activity view controller
         let activityController = UIActivityViewController(activityItems: [textToShare], applicationActivities: nil)
         // Specifying source bar button item for iPadOS
         activityController.popoverPresentationController?.barButtonItem = sender

@@ -151,18 +151,6 @@ class ContestListCollectionViewController: UICollectionViewController {
     
     // MARK: - Segues
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // If we are editing a contest or adding a new one, set the destination VC as modal in presentation to prevent user from accidentally swiping down and dismissing all changes
-        if segue.identifier == Self.addContestSegueIdentifier || segue.identifier == Self.editContestSegueIdentifier {
-            segue.destination.isModalInPresentation = true
-        }
-    }
-    
-    /// Called when user taps  'Cancel' to dismiss changes. Nothing is done in this method as the contest list was not changed
-    /// - Parameter segue: unwind segue
-    @IBAction func unwindToContestList(segue: UIStoryboardSegue) {
-    }
-    
     /// Creates a `ViewContestTableViewController` and sets up its contest controller
     /// - Parameters:
     ///   - coder: coder passed from Storyboard

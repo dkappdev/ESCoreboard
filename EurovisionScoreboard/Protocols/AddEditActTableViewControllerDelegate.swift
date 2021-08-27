@@ -26,4 +26,7 @@ protocol AddEditActTableViewControllerDelegate: AnyObject {
     ///   - act: new act
     ///   - indexPath: position at which to change the act
     func dismissViewControllerAndChangeAct(_ act: Act, at indexPath: IndexPath)
+    
+    /// Ask delegate to dismiss the view controller without applying any changes
+    func dismissViewController()
 }

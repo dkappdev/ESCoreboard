@@ -262,6 +262,11 @@ class EditActsTableViewController: UITableViewController {
 // MARK: - AddEditAct VC Delegate
 
 extension EditActsTableViewController: AddEditActTableViewControllerDelegate {
+    /// Called when act list was not changed. Dismissed the view controller that called this method/
+    func dismissViewController() {
+        dismiss(animated: true, completion: nil)
+    }
+    
     /// Called when act list was changed. Saves the new act list that was list provided by `EditActsTableViewController`, tells its own delegate to update the act list, and dismisses the view controller that called this method on its delegate.
     /// - Parameter acts: new act list
     func dismissViewControllerAndSaveActs(_ acts: [Act]) {

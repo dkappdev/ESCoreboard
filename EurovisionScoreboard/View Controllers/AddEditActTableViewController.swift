@@ -27,6 +27,9 @@ class AddEditActTableViewController: UITableViewController {
     /// Button which user can click to save changes
     @IBOutlet var saveBarButton: UIBarButtonItem!
     
+    /// Button which user can click to discard changes
+    @IBOutlet var cancelBarButton: UIBarButtonItem!
+    
     // MARK: - Properties
     
     /// Index path of the 'Delete Act' cell which user can press to delete the current act
@@ -95,6 +98,12 @@ class AddEditActTableViewController: UITableViewController {
         super.viewDidLoad()
         
         setupCountryList()
+        
+        // Setting this VC as modal in presentation to prevent user from accidentally swiping down and dismissing all changes
+        isModalInPresentation = true
+        
+        // Setting `self` as the presentation controller delegate to respond to swipe down gesture
+        navigationController?.presentationController?.delegate = self
         
         // Setting `self` as the delegate and data source for picker view
         countryPickerView.dataSource = self
@@ -192,6 +201,30 @@ class AddEditActTableViewController: UITableViewController {
         }
     }
     
+    /// Called when user taps the  'Cancel' button. Ask the user for confirmation
+    /// - Parameter sender: bar button item that was tapped
+    @IBAction func cancelBarButtonTapped(_ sender: UIBarButtonItem) {
+        confirmCancel()
+    }
+    
+    // MARK: - Applying changes
+    
+    /// Ask the user whether or not they want to discard changes and potentially dismisses the view controller
+    func confirmCancel() {
+        // If user attempted to dismiss VC, ask them if they are sure they want to dismiss changes
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "Discard Changes", style: .destructive) { _ in
+            self.delegate?.dismissViewController()
+        })
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        alert.popoverPresentationController?.barButtonItem = cancelBarButton
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    
     // MARK: - Segues
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -240,5 +273,13 @@ extension AddEditActTableViewController: UIPickerViewDelegate {
         pickedCountry = countryList[row]
         // Updating the country label
         countryLabel.text = pickedCountry.prettyNameString
+    }
+}
+
+// MARK: - Modal delegate
+
+extension AddEditActTableViewController: UIAdaptivePresentationControllerDelegate {
+    func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
+        confirmCancel()
     }
 }

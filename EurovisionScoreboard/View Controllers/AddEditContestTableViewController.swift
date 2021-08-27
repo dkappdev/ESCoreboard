@@ -28,6 +28,10 @@ class AddEditContestTableViewController: UITableViewController {
     /// Button which user can click to save changes
     @IBOutlet var saveBarButton: UIBarButtonItem!
     
+    /// Button which user can click to discard changes
+    @IBOutlet var cancelBarButton: UIBarButtonItem!
+    
+    
     // MARK: - Properties
     
     /// Index path of the 'Acts' cell which user can press to edit act list
@@ -89,6 +93,12 @@ class AddEditContestTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Setting this VC as modal in presentation to prevent user from accidentally swiping down and dismissing all changes
+        isModalInPresentation = true
+        
+        // Setting `self` as the presentation controller delegate to respond to swipe down gesture
+        navigationController?.presentationController?.delegate = self
         
         // Setting `self` as the delegate and data source for picker view
         hostCountryPickerView.dataSource = self
@@ -214,6 +224,29 @@ class AddEditContestTableViewController: UITableViewController {
         delegate?.dismissViewController()
     }
     
+    /// Called when user taps the  'Cancel' button. Ask the user for confirmation
+    /// - Parameter sender: bar button item that was tapped
+    @IBAction func cancelBarButtonTapped(_ sender: UIBarButtonItem) {
+        confirmCancel()
+    }
+    
+    // MARK: - Applying changes
+    
+    /// Ask the user whether or not they want to discard changes and potentially dismisses the view controller
+    func confirmCancel() {
+        // If user attempted to dismiss VC, ask them if they are sure they want to dismiss changes
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "Discard Changes", style: .destructive) { _ in
+            self.delegate?.dismissViewController()
+        })
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        alert.popoverPresentationController?.barButtonItem = cancelBarButton
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
     // MARK: - Segues
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -297,6 +330,8 @@ extension AddEditContestTableViewController: UIPickerViewDataSource {
     }
 }
 
+// MARK: - AddEdit delegate
+
 extension AddEditContestTableViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         // Returning pretty string for country as the title for picker view row
@@ -309,5 +344,13 @@ extension AddEditContestTableViewController: UIPickerViewDelegate {
         // Updating the country label
         hostCountryLabel.text = pickedCountry.prettyNameString
         
+    }
+}
+
+// MARK: - Modal delegate
+
+extension AddEditContestTableViewController: UIAdaptivePresentationControllerDelegate {
+    func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
+        confirmCancel()
     }
 }

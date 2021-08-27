@@ -138,8 +138,6 @@ class AddEditActTableViewController: UITableViewController {
             navigationItem.title = "Add Act"
         }
         
-        
-        
         // Updating save button state
         // If we are adding a new act, this will disable the 'Save' button
         updateSaveButtonState()
@@ -186,15 +184,12 @@ class AddEditActTableViewController: UITableViewController {
         let newAct = Act(artistName: artistNameTextField.text!, songName: songNameTextField.text!, country: country)
         
         if let actIndex = actIndex {
-            // If we are editing an existing act, save changes made to it
-            acts[actIndex] = newAct
+            // If we are editing an existing act, tell the delegate to change the act and ask it to dismiss this view controller
+            delegate?.dismissViewControllerAndChangeAct(newAct, at: IndexPath(row: actIndex, section: 0))
         } else {
-            // Otherwise append the new act to the acts array
-            acts.append(newAct)
+            // Otherwise tell the delegate to add an act and ask it to dismiss this view controller
+            delegate?.dismissViewControllerAndAddAct(newAct)
         }
-        
-        // Asking delegate to save new act list and dismiss the view controller
-        delegate?.dismissViewControllerAndSaveActs(acts)
     }
     
     // MARK: - Segues
@@ -205,10 +200,9 @@ class AddEditActTableViewController: UITableViewController {
         
         // Making sure user tapped the 'Delete Act' button, since this is the only selection we want to respond to
         if indexPath == deleteActCellIndexPath {
-            // Removing the act
-            acts.remove(at: indexPath.row)
-            // And asking the delegate to save changes and dismiss the view controller
-            delegate?.dismissViewControllerAndSaveActs(acts)
+            // Telling the delegate that an act should be deleted and asking it dismiss the view controller
+            // 'Delete' button is only visible when there is a non-nil act index, so we can force-unwrap
+            delegate?.dismissViewControllerAndDeleteActAt(IndexPath(row: actIndex!, section: 0))
         }
     }
 }

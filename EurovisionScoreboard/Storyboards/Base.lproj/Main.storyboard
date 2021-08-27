@@ -752,7 +752,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>
-                            <tableViewSection headerTitle="App Data" id="hCG-u2-pwV">
+                            <tableViewSection headerTitle="Contest Data" id="hCG-u2-pwV">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Q3r-i6-Sw8">
                                         <rect key="frame" x="20" y="49.5" width="374" height="43.5"/>

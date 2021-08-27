@@ -68,10 +68,13 @@ class ContestListCollectionViewController: UICollectionViewController {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         // Setting how many items there are in a horizontal group based on `isCompact` parameter
-        let elementsInGroup = isCompact ? 2 : 4
+        let elementsInGroup = isCompact ? 2 : 3
+        
+        // Make cells higher for small dispays
+        let cellHeightFactor = UITraitCollection.current.verticalSizeClass != .compact ? 1.0 : 1.2
         
         // All of our cell are square, so we calculate the height to be a fraction of how many elements there are in a group
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(CGFloat(1.0 / Double(elementsInGroup))))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(CGFloat(cellHeightFactor / Double(elementsInGroup))))
         
         // Creating the horizontal group
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: elementsInGroup)
@@ -85,6 +88,9 @@ class ContestListCollectionViewController: UICollectionViewController {
         // Setting the section content insets and inter-group spacing
         section.contentInsets = NSDirectionalEdgeInsets(top: 12, leading: 12, bottom: 12, trailing: 12)
         section.interGroupSpacing = CGFloat(12)
+        
+        // Making sure sections doesn't take up the entire width of the screen
+        section.contentInsetsReference = .readableContent
         
         // Creating the final layout
         return UICollectionViewCompositionalLayout(section: section)

@@ -204,7 +204,9 @@ class EditActsTableViewController: UITableViewController {
     
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         // If we detect a shake motion, ask user if they want to undo or redo changes
-        guard motion == .motionShake else {
+        // If shake to undo is disabled in accessability, don't do anything
+        guard motion == .motionShake,
+              UIAccessibility.isShakeToUndoEnabled else {
             return
         }
         

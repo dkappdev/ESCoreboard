@@ -17,6 +17,8 @@
 		E27C03BF26BC13F200AFF748 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E27C03BD26BC13F200AFF748 /* LaunchScreen.storyboard */; };
 		E28D8EEF26D6A18C00D07D98 /* CountryListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28D8EEE26D6A18C00D07D98 /* CountryListTests.swift */; };
 		E28FE57226BFF72200380E14 /* AddEditContestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28FE57126BFF72200380E14 /* AddEditContestTableViewController.swift */; };
+		E292CE1D26D7CCEE009519B2 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E292CE1C26D7CCEE009519B2 /* SettingsTableViewController.swift */; };
+		E292CE1F26D7D45D009519B2 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E292CE1E26D7D45D009519B2 /* Settings.swift */; };
 		E2982CD926C29E6A00DB43EC /* EditActsTableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2982CD826C29E6A00DB43EC /* EditActsTableViewControllerDelegate.swift */; };
 		E2982CDB26C2B95E00DB43EC /* AddEditActTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2982CDA26C2B95E00DB43EC /* AddEditActTableViewController.swift */; };
 		E2982CDD26C2CBD800DB43EC /* AddEditActTableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2982CDC26C2CBD800DB43EC /* AddEditActTableViewControllerDelegate.swift */; };
@@ -55,6 +57,8 @@
 		E28D8EEE26D6A18C00D07D98 /* CountryListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListTests.swift; sourceTree = "<group>"; };
 		E28D8EF026D6A18C00D07D98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E28FE57126BFF72200380E14 /* AddEditContestTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditContestTableViewController.swift; sourceTree = "<group>"; };
+		E292CE1C26D7CCEE009519B2 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		E292CE1E26D7D45D009519B2 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		E2982CD826C29E6A00DB43EC /* EditActsTableViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditActsTableViewControllerDelegate.swift; sourceTree = "<group>"; };
 		E2982CDA26C2B95E00DB43EC /* AddEditActTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditActTableViewController.swift; sourceTree = "<group>"; };
 		E2982CDC26C2CBD800DB43EC /* AddEditActTableViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditActTableViewControllerDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +119,7 @@
 				E27C03CC26BC247300AFF748 /* Models */,
 				E27C03CB26BC246F00AFF748 /* View Controllers */,
 				E27C03CA26BC246A00AFF748 /* Model Controllers */,
+				E292CE2026D7D4FE009519B2 /* Other Controllers */,
 				E27C03C826BC246000AFF748 /* Protocols */,
 				E28D8EE726D6A0F400D07D98 /* Extensions */,
 				E27C03C626BC245400AFF748 /* Storyboards */,
@@ -157,6 +162,7 @@
 				E28FE57126BFF72200380E14 /* AddEditContestTableViewController.swift */,
 				E264660B26C28B5D008A914F /* EditActsTableViewController.swift */,
 				E2982CDA26C2B95E00DB43EC /* AddEditActTableViewController.swift */,
+				E292CE1C26D7CCEE009519B2 /* SettingsTableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -185,6 +191,14 @@
 				E28D8EF026D6A18C00D07D98 /* Info.plist */,
 			);
 			path = EurovisionScoreboardTests;
+			sourceTree = "<group>";
+		};
+		E292CE2026D7D4FE009519B2 /* Other Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E292CE1E26D7D45D009519B2 /* Settings.swift */,
+			);
+			path = "Other Controllers";
 			sourceTree = "<group>";
 		};
 		E2A5217226BC41F200D4F73D /* Views */ = {
@@ -306,6 +320,7 @@
 				E2A5217F26BC64AB00D4F73D /* Act.swift in Sources */,
 				E264660C26C28B5D008A914F /* EditActsTableViewController.swift in Sources */,
 				E2A5218726BD86FF00D4F73D /* ViewContestTableViewController.swift in Sources */,
+				E292CE1D26D7CCEE009519B2 /* SettingsTableViewController.swift in Sources */,
 				E27C03B526BC13F000AFF748 /* SceneDelegate.swift in Sources */,
 				E28FE57226BFF72200380E14 /* AddEditContestTableViewController.swift in Sources */,
 				E264660A26C28ACE008A914F /* EditActTableViewCell.swift in Sources */,
@@ -315,6 +330,7 @@
 				E2A5217426BC41FC00D4F73D /* ContestCollectionViewCell.swift in Sources */,
 				E2982CD926C29E6A00DB43EC /* EditActsTableViewControllerDelegate.swift in Sources */,
 				E26465E026C1529E008A914F /* AddEditContestTableViewControllerDelegate.swift in Sources */,
+				E292CE1F26D7D45D009519B2 /* Settings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

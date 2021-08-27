@@ -30,8 +30,10 @@ class AddEditContestTableViewController: UITableViewController {
     
     // MARK: - Properties
     
-    /// editActList segue identifier
-    private static let editActListSegueIdentifier = "editActList"
+    /// Index path of the 'Acts' cell which user can press to edit act list
+    let actsCellIndexPath = IndexPath(row: 0, section: 3)
+    /// Index path of the 'Delete Contest' cell which user can press to delete the current contest
+    let deleteContestCellIndexPath = IndexPath(row: 0, section: 4)
     
     /// Property representing the current year as an integer. It is calculated during initialization by executing the closure.
     let currentYearAsNumber: Int = {
@@ -46,10 +48,8 @@ class AddEditContestTableViewController: UITableViewController {
         return yearAsInt
     }()
     
-    /// Index path of the 'Acts' cell which user can press to edit act list
-    let actsCellIndexPath = IndexPath(row: 0, section: 3)
-    /// Index path of the 'Delete Contest' cell which user can press to delete the current contest
-    let deleteContestCellIndexPath = IndexPath(row: 0, section: 4)
+    /// editActList segue identifier
+    private static let editActListSegueIdentifier = "editActList"
     
     /// Country that user has picked using the picker view, by default it's set to `Country.fullCountryList.first!`
     var pickedCountry: Country!

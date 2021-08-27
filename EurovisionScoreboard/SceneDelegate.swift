@@ -14,6 +14,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let _ = (scene as? UIWindowScene) else { return }
+        
+        // Setting the app tint color
+        window?.tintColor = .systemOrange
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

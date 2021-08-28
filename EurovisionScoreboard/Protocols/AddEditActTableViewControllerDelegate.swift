@@ -13,15 +13,15 @@ protocol AddEditActTableViewControllerDelegate: AnyObject {
     /// - Parameter acts: new act list
     func dismissViewControllerAndSaveActs(_ acts: [Act])
     
-    /// Tells the delegate that an act should be removed from act list and ask it to dismiss the view controller
-    /// - Parameter act: act to remove
+    /// Tells the delegate that an act should be removed from act list and asks it to dismiss the view controller
+    /// - Parameter indexPath: index path of the act that should be removed
     func dismissViewControllerAndDeleteActAt(_ indexPath: IndexPath)
     
-    /// Tells the delegate that an act should be added at the end of act list and ask it to dismiss the view controller
+    /// Tells the delegate that an act should be added at the end of act list and asks it to dismiss the view controller
     /// - Parameter act: the act to add
     func dismissViewControllerAndAddAct(_ act: Act)
     
-    /// Tells the delegate to change an act in the act list and ask it to dismiss the view controller
+    /// Tells the delegate to change an act in the act list and asks it to dismiss the view controller
     /// - Parameters:
     ///   - act: new act
     ///   - indexPath: position at which to change the act

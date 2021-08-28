@@ -214,10 +214,10 @@ class AddEditContestTableViewController: UITableViewController {
         
         if let contestIndex = contestIndex {
             // If we are editing an existing contest, save changes made to it
-            ContestController.shared.contests[contestIndex] = newContest
+            delegate?.dismissViewControllerAndChangeContest(newContest, at: IndexPath(item: contestIndex, section: 0))
         } else {
             // Otherwise append the new contest to the contests array
-            ContestController.shared.contests.append(newContest)
+            delegate?.dismissViewControllerAndAddContest(newContest)
         }
         
         // Asking delegate to dismiss the view controller
@@ -261,14 +261,12 @@ class AddEditContestTableViewController: UITableViewController {
             guard let contestIndex = contestIndex else { return }
             
             // And ask user for confirmation with an action sheet
-            let alertController = UIAlertController(title: "Are you sure you want to delete this contest from your list? This cannot be undone!", message: nil, preferredStyle: .actionSheet)
+            let alertController = UIAlertController(title: "Are you sure you want to delete this contest from your list?", message: nil, preferredStyle: .actionSheet)
             
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { action in
-                // If user confirms their intention do delete contest, update the contests array in contest controller
-                ContestController.shared.contests.remove(at: contestIndex)
-                // And ask delegate to dismiss this view controller
-                self.delegate?.dismissViewController()
+                // If user confirms their intention do delete contest, ask delegate to update the contests array in contest controller
+                self.delegate?.dismissViewControllerAndDeleteContestAt(IndexPath(item: contestIndex, section: 0))
             }
             
             // Setting up actions

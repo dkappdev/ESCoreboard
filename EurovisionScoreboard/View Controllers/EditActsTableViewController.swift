@@ -143,6 +143,7 @@ class EditActsTableViewController: UITableViewController {
     
     /// Removes act from act list, updates table view and creates undo action
     /// - Parameter indexPath: index path for act to remove
+    /// - Parameter initiatedByUser: indicates whether this function was called after a user action or by an undo manager. This parameter is used to properly set the action name.
     func removeAct(for indexPath: IndexPath, initiatedByUser: Bool) {
         // If user deleted an act, remove it from the acts array and remember its value
         let removedAct = acts.remove(at: indexPath.row)
@@ -158,10 +159,11 @@ class EditActsTableViewController: UITableViewController {
         }
     }
     
-    /// Restores previously removed act, creates undo action, and updates table view
+    /// Adds act to the specified location, creates undo action, and updates table view
     /// - Parameters:
     ///   - act: act to add
     ///   - indexPath: index to put the act at
+    ///   - initiatedByUser: indicates whether this function was called after a user action or by an undo manager. This parameter is used to properly set the action name.
     func addAct(_ act: Act, at indexPath: IndexPath, initiatedByUser: Bool) {
         // Inserting the act to act list and updating table view
         acts.insert(act, at: indexPath.row)
@@ -177,6 +179,10 @@ class EditActsTableViewController: UITableViewController {
         }
     }
     
+    /// Changes act value at the specified location
+    /// - Parameters:
+    ///   - act: new act value
+    ///   - indexPath: act position
     func changeAct(_ act: Act, at indexPath: IndexPath) {
         // Making sure index path is valid
         guard indexPath.row < acts.count else {
@@ -210,52 +216,10 @@ class EditActsTableViewController: UITableViewController {
             return
         }
         
-        // Getting possible actions
-        let canUndo = undoManager?.canUndo ?? false
-        let canRedo = undoManager?.canRedo ?? false
-        let undoActionName = undoManager?.undoActionName ?? ""
-        let redoActionName = undoManager?.redoActionName ?? ""
-        
-        // Creating alert controllers based on possible actions
-        if canUndo && canRedo {
-            let alertController = UIAlertController(title: "Undo \(undoActionName)", message: nil, preferredStyle: .alert)
-            let undoAction = UIAlertAction(title: "Undo", style: .default) { _ in
-                self.undoManager?.undo()
-            }
-            let redoAction = UIAlertAction(title: "Redo \(redoActionName)", style: .default) { _IOFBF in
-                self.undoManager?.redo()
-            }
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            
-            alertController.addAction(undoAction)
-            alertController.addAction(redoAction)
-            alertController.addAction(cancelAction)
-            
-            present(alertController, animated: true, completion: nil)
-        } else if canUndo {
-            let alertController = UIAlertController(title: "Undo \(undoActionName)", message: nil, preferredStyle: .alert)
-            let undoAction = UIAlertAction(title: "Undo", style: .default) { _ in
-                self.undoManager?.undo()
-            }
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            
-            alertController.addAction(undoAction)
-            alertController.addAction(cancelAction)
-            
-            present(alertController, animated: true, completion: nil)
-        } else if canRedo {
-            let alertController = UIAlertController(title: "Redo \(redoActionName)", message: nil, preferredStyle: .alert)
-            let redoAction = UIAlertAction(title: "Redo", style: .default) { _ in
-                self.undoManager?.redo()
-            }
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            
-            alertController.addAction(redoAction)
-            alertController.addAction(cancelAction)
-            
-            present(alertController, animated: true, completion: nil)
+        // Getting the alert with possible undo / action actions from `UndoManager` instance and presenting it
+        if let alert = undoManager?.getAlertWithAvailableActions() {
+            present(alert, animated: true, completion: nil)
         }
-        
     }
 }
 

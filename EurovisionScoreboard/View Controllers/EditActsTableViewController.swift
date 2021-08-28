@@ -100,11 +100,6 @@ class EditActsTableViewController: UITableViewController {
     
     // MARK: - Segues
     
-    /// Called when user taps 'Cancel' to dismiss changes. Nothing is done in this method as the act list was not changed
-    /// - Parameter segue: unwind segue
-    @IBAction func unwindToActList(segue: UIStoryboardSegue) {
-    }
-    
     /// Creates an `AddEditActTableViewController` and sets up its delegate
     /// - Parameters:
     ///   - coder: coder provided by Storyboard

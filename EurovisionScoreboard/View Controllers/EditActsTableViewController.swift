@@ -228,9 +228,10 @@ class EditActsTableViewController: UITableViewController {
             return
         }
         
-        // Getting the alert with possible undo / action actions from `UndoManager` instance and presenting it
+        // Getting the alert with possible undo / action actions from `UndoManager` instance and presenting it with haptic feedback
         if let alert = undoManager?.getAlertWithAvailableActions() {
             present(alert, animated: true, completion: nil)
+            UINotificationFeedbackGenerator().notificationOccurred(.warning)
         }
     }
 }

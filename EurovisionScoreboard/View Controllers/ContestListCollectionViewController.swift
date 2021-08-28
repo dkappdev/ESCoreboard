@@ -120,9 +120,6 @@ class ContestListCollectionViewController: UICollectionViewController {
             // Updating it with contest information
             cell.update(with: contest)
             
-            // Setting the cornet radius
-            cell.layer.cornerRadius = 12
-            
             return cell
         }
     }

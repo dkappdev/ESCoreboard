@@ -224,6 +224,21 @@ class AddEditActTableViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    /// Asks the user whether or not they want to delete an item and potentially dismisses the view controller
+    func confirmDelete(forRowAt indexPath: IndexPath) {
+        // If user attempted to dismiss VC, ask them if they are sure they want to dismiss changes
+        let alert = UIAlertController(title: "Are you sure you want to delete this act from your list?", message: nil, preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "Delete Act", style: .destructive) { _ in
+            // Telling the delegate that an act should be deleted and asking it dismiss the view controller
+            self.delegate?.dismissViewControllerAndDeleteActAt(indexPath)
+        })
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        alert.popoverPresentationController?.sourceView = deleteActCell
+        
+        present(alert, animated: true, completion: nil)
+    }
     
     // MARK: - Segues
     
@@ -233,9 +248,8 @@ class AddEditActTableViewController: UITableViewController {
         
         // Making sure user tapped the 'Delete Act' button, since this is the only selection we want to respond to
         if indexPath == deleteActCellIndexPath {
-            // Telling the delegate that an act should be deleted and asking it dismiss the view controller
             // 'Delete' button is only visible when there is a non-nil act index, so we can force-unwrap
-            delegate?.dismissViewControllerAndDeleteActAt(IndexPath(row: actIndex!, section: 0))
+            confirmDelete(forRowAt: IndexPath(row: actIndex!, section: 0))
         }
     }
 }

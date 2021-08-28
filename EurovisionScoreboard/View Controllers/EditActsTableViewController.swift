@@ -94,16 +94,11 @@ class EditActsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            removeAct(for: indexPath, initiatedByUser: true)
+            confirmDelete(forRowAt: indexPath)
         }
     }
     
     // MARK: - Segues
-    
-    /// Called when user taps 'Cancel' to dismiss changes. Nothing is done in this method as the act list was not changed
-    /// - Parameter segue: unwind segue
-    @IBAction func unwindToActList(segue: UIStoryboardSegue) {
-    }
     
     /// Creates an `AddEditActTableViewController` and sets up its delegate
     /// - Parameters:
@@ -137,6 +132,23 @@ class EditActsTableViewController: UITableViewController {
             // If none of the above conditions were satisfied, do not return a view controller
             return nil
         }
+    }
+    
+    // MARK: - Applying changes
+    
+    /// Asks the user whether or not they want to delete
+    func confirmDelete(forRowAt indexPath: IndexPath) {
+        // If user attempted to dismiss VC, ask them if they are sure they want to dismiss changes
+        // We present an action sheet only for iPhone since there is no reasonable source view for popover presentation controller
+        let alert = UIAlertController(title: "Are you sure you want to delete this act from your list?", message: nil, preferredStyle: UIDevice.current.userInterfaceIdiom == .phone ? .actionSheet : .alert)
+        
+        alert.addAction(UIAlertAction(title: "Delete Act", style: .destructive) { _ in
+            // Telling the delegate that an act should be deleted and asking it dismiss the view controller
+            self.removeAct(for: indexPath, initiatedByUser: true)
+        })
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                
+        present(alert, animated: true, completion: nil)
     }
     
     // MARK: - Undo / Redo
@@ -216,9 +228,10 @@ class EditActsTableViewController: UITableViewController {
             return
         }
         
-        // Getting the alert with possible undo / action actions from `UndoManager` instance and presenting it
+        // Getting the alert with possible undo / action actions from `UndoManager` instance and presenting it with haptic feedback
         if let alert = undoManager?.getAlertWithAvailableActions() {
             present(alert, animated: true, completion: nil)
+            UINotificationFeedbackGenerator().notificationOccurred(.warning)
         }
     }
 }

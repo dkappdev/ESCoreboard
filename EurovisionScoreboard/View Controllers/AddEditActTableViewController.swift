@@ -35,9 +35,13 @@ class AddEditActTableViewController: UITableViewController {
     /// Index path of the 'Delete Act' cell which user can press to delete the current act
     let deleteActCellIndexPath = IndexPath(row: 0, section: 3)
     
+    /// Indicates whether or not user has made any changes
+    var hasChanges = false
+    
     /// Country that user has picked using the picker view, by default it's set to `Country.fullCountryList.first!` or `Country.moderCountryList.first!`, depending on contest year
     var pickedCountry: Country!
     
+    /// Country list for picker view
     var countryList: [Country]!
     
     /// Act list for the current contest
@@ -98,9 +102,6 @@ class AddEditActTableViewController: UITableViewController {
         super.viewDidLoad()
         
         setupCountryList()
-        
-        // Setting this VC as modal in presentation to prevent user from accidentally swiping down and dismissing all changes
-        isModalInPresentation = true
         
         // Setting `self` as the presentation controller delegate to respond to swipe down gesture
         navigationController?.presentationController?.delegate = self
@@ -181,6 +182,8 @@ class AddEditActTableViewController: UITableViewController {
     @IBAction func textEditingChanged() {
         // Every time user made a change to a text field, we update the state of 'Save' button
         updateSaveButtonState()
+        // Remember that user made changes to act
+        hasChanges = true
     }
     
     // MARK: - Configuring buttons
@@ -204,7 +207,13 @@ class AddEditActTableViewController: UITableViewController {
     /// Called when user taps the  'Cancel' button. Ask the user for confirmation
     /// - Parameter sender: bar button item that was tapped
     @IBAction func cancelBarButtonTapped(_ sender: UIBarButtonItem) {
-        confirmCancel()
+        if hasChanges {
+            // If user has made changes to current act, ask for confirmation before discarding those changes
+            confirmCancel()
+        } else {
+            // Otherwise just dismiss the view controller
+            delegate?.dismissViewController()
+        }
     }
     
     // MARK: - Applying changes
@@ -224,6 +233,21 @@ class AddEditActTableViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    /// Asks the user whether or not they want to delete an item and potentially dismisses the view controller
+    func confirmDelete(forRowAt indexPath: IndexPath) {
+        // If user attempted to dismiss VC, ask them if they are sure they want to dismiss changes
+        let alert = UIAlertController(title: "Are you sure you want to delete this act from your list?", message: nil, preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "Delete Act", style: .destructive) { _ in
+            // Telling the delegate that an act should be deleted and asking it dismiss the view controller
+            self.delegate?.dismissViewControllerAndDeleteActAt(indexPath)
+        })
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        alert.popoverPresentationController?.sourceView = deleteActCell
+        
+        present(alert, animated: true, completion: nil)
+    }
     
     // MARK: - Segues
     
@@ -233,9 +257,8 @@ class AddEditActTableViewController: UITableViewController {
         
         // Making sure user tapped the 'Delete Act' button, since this is the only selection we want to respond to
         if indexPath == deleteActCellIndexPath {
-            // Telling the delegate that an act should be deleted and asking it dismiss the view controller
             // 'Delete' button is only visible when there is a non-nil act index, so we can force-unwrap
-            delegate?.dismissViewControllerAndDeleteActAt(IndexPath(row: actIndex!, section: 0))
+            confirmDelete(forRowAt: IndexPath(row: actIndex!, section: 0))
         }
     }
 }
@@ -273,6 +296,8 @@ extension AddEditActTableViewController: UIPickerViewDelegate {
         pickedCountry = countryList[row]
         // Updating the country label
         countryLabel.text = pickedCountry.prettyNameString
+        // Remember that user made changes to act
+        hasChanges = true
     }
 }
 
@@ -280,6 +305,13 @@ extension AddEditActTableViewController: UIPickerViewDelegate {
 
 extension AddEditActTableViewController: UIAdaptivePresentationControllerDelegate {
     func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
+        // User will be able to swipe down only if no changes were made.
+        // If `hasChanges` is true, the user-initiated attempt to dismiss VC will be prevented and this delegate method will be called
         confirmCancel()
+    }
+    
+    func presentationControllerShouldDismiss(_ presentationController: UIPresentationController) -> Bool {
+        // Only allow user to dismiss if there aren't any unsaved changes
+        return !hasChanges
     }
 }

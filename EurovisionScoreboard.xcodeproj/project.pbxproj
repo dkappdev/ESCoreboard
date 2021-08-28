@@ -160,10 +160,10 @@
 			isa = PBXGroup;
 			children = (
 				E2A5217626BC4B5800D4F73D /* ContestListCollectionViewController.swift */,
-				E2A5218626BD86FF00D4F73D /* ViewContestTableViewController.swift */,
 				E28FE57126BFF72200380E14 /* AddEditContestTableViewController.swift */,
 				E264660B26C28B5D008A914F /* EditActsTableViewController.swift */,
 				E2982CDA26C2B95E00DB43EC /* AddEditActTableViewController.swift */,
+				E2A5218626BD86FF00D4F73D /* ViewContestTableViewController.swift */,
 				E292CE1C26D7CCEE009519B2 /* SettingsTableViewController.swift */,
 			);
 			path = "View Controllers";

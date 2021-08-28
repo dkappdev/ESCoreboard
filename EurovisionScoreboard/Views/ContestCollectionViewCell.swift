@@ -14,8 +14,14 @@ class ContestCollectionViewCell: UICollectionViewCell {
     /// Label displaying the year when a contest took place and the host city
     @IBOutlet var yearAndHostCityLabel: UILabel!
     
+    override func awakeFromNib() {
+        // Setting the cornet radius
+        layer.cornerRadius = 12
+    }
+    
     func update(with contest: Contest) {
         hostCountryFlagLabel.text = contest.hostCountry.flagEmoji
         yearAndHostCityLabel.text = "\(contest.year) - \(contest.hostCityName)"
     }
+    
 }

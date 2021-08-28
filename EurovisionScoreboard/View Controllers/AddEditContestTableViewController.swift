@@ -55,6 +55,9 @@ class AddEditContestTableViewController: UITableViewController {
     /// editActList segue identifier
     private static let editActListSegueIdentifier = "editActList"
     
+    /// Indicates whether or not user has made any changes to the contest
+    var hasChanges = false
+    
     /// Country that user has picked using the picker view, by default it's set to `Country.fullCountryList.first!`
     var pickedCountry: Country!
     /// Index of the contest this view controller is displaying. This property represents index of the contest in `contestController`'s `contests` array.
@@ -93,9 +96,6 @@ class AddEditContestTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Setting this VC as modal in presentation to prevent user from accidentally swiping down and dismissing all changes
-        isModalInPresentation = true
         
         // Setting `self` as the presentation controller delegate to respond to swipe down gesture
         navigationController?.presentationController?.delegate = self
@@ -201,6 +201,8 @@ class AddEditContestTableViewController: UITableViewController {
     @IBAction func textEditingChanged() {
         // Every time user made a change to a text field, we update the state of 'Save' button
         updateSaveButtonState()
+        // Remember that user made changes to contest
+        hasChanges = true
     }
     
     // MARK: - Configuring buttons
@@ -219,15 +221,18 @@ class AddEditContestTableViewController: UITableViewController {
             // Otherwise append the new contest to the contests array
             delegate?.dismissViewControllerAndAddContest(newContest)
         }
-        
-        // Asking delegate to dismiss the view controller
-        delegate?.dismissViewController()
     }
     
     /// Called when user taps the  'Cancel' button. Ask the user for confirmation
     /// - Parameter sender: bar button item that was tapped
     @IBAction func cancelBarButtonTapped(_ sender: UIBarButtonItem) {
-        confirmCancel()
+        if hasChanges {
+            // If user has made changes to current contest, ask for confirmation before discarding those changes
+            confirmCancel()
+        } else {
+            // Otherwise just dismiss the view controller
+            delegate?.dismissViewController()
+        }
     }
     
     // MARK: - Applying changes
@@ -312,6 +317,8 @@ extension AddEditContestTableViewController: EditActsTableViewControllerDelegate
     /// - Parameter acts: new act list
     func didChangeActs(_ acts: [Act]) {
         self.acts = acts
+        // Remember that user made changes to contest
+        hasChanges = true
     }
 }
 
@@ -341,6 +348,8 @@ extension AddEditContestTableViewController: UIPickerViewDelegate {
         pickedCountry = Country.fullCountryList[row]
         // Updating the country label
         hostCountryLabel.text = pickedCountry.prettyNameString
+        // Remember that user made changes to contest
+        hasChanges = true
         
     }
 }
@@ -349,6 +358,12 @@ extension AddEditContestTableViewController: UIPickerViewDelegate {
 
 extension AddEditContestTableViewController: UIAdaptivePresentationControllerDelegate {
     func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
+        // User will be able to swipe down only if no changes were made.
+        // If `hasChanges` is true, the user-initiated attempt to dismiss VC will be prevented and this delegate method will be called
         confirmCancel()
+    }
+    
+    func presentationControllerShouldDismiss(_ presentationController: UIPresentationController) -> Bool {
+        return !hasChanges
     }
 }

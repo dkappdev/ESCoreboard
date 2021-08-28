@@ -120,9 +120,6 @@ class ContestListCollectionViewController: UICollectionViewController {
             // Updating it with contest information
             cell.update(with: contest)
             
-            // Setting the cornet radius
-            cell.layer.cornerRadius = 12
-            
             return cell
         }
     }
@@ -280,9 +277,10 @@ class ContestListCollectionViewController: UICollectionViewController {
             return
         }
         
-        // Getting the alert with possible undo / action actions from `UndoManager` instance and presenting it
+        // Getting the alert with possible undo / action actions from `UndoManager` instance and presenting it with haptic feedback
         if let alert = undoManager?.getAlertWithAvailableActions() {
             present(alert, animated: true, completion: nil)
+            UINotificationFeedbackGenerator().notificationOccurred(.warning)
         }
     }
 }

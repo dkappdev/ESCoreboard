@@ -270,7 +270,7 @@
                     <navigationItem key="navigationItem" id="rnj-Cz-Rgl">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="aK5-Sm-aar">
                             <connections>
-                                <segue destination="PIa-PM-aOW" kind="unwind" unwindAction="unwindToContestListWithSegue:" id="XgB-Qs-uNy"/>
+                                <action selector="cancelBarButtonTapped:" destination="frT-gE-TnB" id="kdn-JO-PjS"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="osB-vm-ce8">
@@ -280,6 +280,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="cancelBarButton" destination="aK5-Sm-aar" id="aBP-DF-kc1"/>
                         <outlet property="deleteContestCell" destination="jcw-wI-GgI" id="dbG-6h-QXh"/>
                         <outlet property="hostCityTextField" destination="In8-GX-aU6" id="NoE-Tk-t4x"/>
                         <outlet property="hostCountryLabel" destination="v11-I8-6RE" id="zNN-rk-3Nc"/>
@@ -290,7 +291,6 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7YT-da-FJE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="PIa-PM-aOW" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4231.884057971015" y="-194.19642857142856"/>
         </scene>
@@ -532,7 +532,7 @@
                     <navigationItem key="navigationItem" id="Eif-85-k1i">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Xry-s7-GUl">
                             <connections>
-                                <segue destination="kZ3-8l-Amk" kind="unwind" unwindAction="unwindToActListWithSegue:" id="jL6-z5-t0d"/>
+                                <action selector="cancelBarButtonTapped:" destination="oFW-Mn-48b" id="WqI-1V-SKL"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="Gea-Yz-WO0">
@@ -543,6 +543,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="artistNameTextField" destination="GWg-LO-0Xy" id="HJv-Qs-6VE"/>
+                        <outlet property="cancelBarButton" destination="Xry-s7-GUl" id="mwq-HU-E7I"/>
                         <outlet property="countryLabel" destination="d7S-fN-PAG" id="aH8-9a-o44"/>
                         <outlet property="countryPickerView" destination="GgN-sV-HYg" id="evi-fj-TWy"/>
                         <outlet property="deleteActCell" destination="ixn-1D-KbG" id="ubl-If-Fyv"/>
@@ -551,7 +552,6 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UqC-PC-ccs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="kZ3-8l-Amk" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="6884.057971014493" y="-194.19642857142856"/>
         </scene>
@@ -752,7 +752,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>
-                            <tableViewSection headerTitle="App Data" id="hCG-u2-pwV">
+                            <tableViewSection headerTitle="Contest Data" id="hCG-u2-pwV">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Q3r-i6-Sw8">
                                         <rect key="frame" x="20" y="49.5" width="374" height="43.5"/>

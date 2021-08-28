@@ -27,6 +27,9 @@ class AddEditActTableViewController: UITableViewController {
     /// Button which user can click to save changes
     @IBOutlet var saveBarButton: UIBarButtonItem!
     
+    /// Button which user can click to discard changes
+    @IBOutlet var cancelBarButton: UIBarButtonItem!
+    
     // MARK: - Properties
     
     /// Index path of the 'Delete Act' cell which user can press to delete the current act
@@ -96,6 +99,12 @@ class AddEditActTableViewController: UITableViewController {
         
         setupCountryList()
         
+        // Setting this VC as modal in presentation to prevent user from accidentally swiping down and dismissing all changes
+        isModalInPresentation = true
+        
+        // Setting `self` as the presentation controller delegate to respond to swipe down gesture
+        navigationController?.presentationController?.delegate = self
+        
         // Setting `self` as the delegate and data source for picker view
         countryPickerView.dataSource = self
         countryPickerView.delegate = self
@@ -137,8 +146,6 @@ class AddEditActTableViewController: UITableViewController {
             // Setting up navigation item
             navigationItem.title = "Add Act"
         }
-        
-        
         
         // Updating save button state
         // If we are adding a new act, this will disable the 'Save' button
@@ -186,16 +193,37 @@ class AddEditActTableViewController: UITableViewController {
         let newAct = Act(artistName: artistNameTextField.text!, songName: songNameTextField.text!, country: country)
         
         if let actIndex = actIndex {
-            // If we are editing an existing act, save changes made to it
-            acts[actIndex] = newAct
+            // If we are editing an existing act, tell the delegate to change the act and ask it to dismiss this view controller
+            delegate?.dismissViewControllerAndChangeAct(newAct, at: IndexPath(row: actIndex, section: 0))
         } else {
-            // Otherwise append the new act to the acts array
-            acts.append(newAct)
+            // Otherwise tell the delegate to add an act and ask it to dismiss this view controller
+            delegate?.dismissViewControllerAndAddAct(newAct)
         }
-        
-        // Asking delegate to save new act list and dismiss the view controller
-        delegate?.dismissViewControllerAndSaveActs(acts)
     }
+    
+    /// Called when user taps the  'Cancel' button. Ask the user for confirmation
+    /// - Parameter sender: bar button item that was tapped
+    @IBAction func cancelBarButtonTapped(_ sender: UIBarButtonItem) {
+        confirmCancel()
+    }
+    
+    // MARK: - Applying changes
+    
+    /// Ask the user whether or not they want to discard changes and potentially dismisses the view controller
+    func confirmCancel() {
+        // If user attempted to dismiss VC, ask them if they are sure they want to dismiss changes
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "Discard Changes", style: .destructive) { _ in
+            self.delegate?.dismissViewController()
+        })
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        alert.popoverPresentationController?.barButtonItem = cancelBarButton
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
     
     // MARK: - Segues
     
@@ -205,10 +233,9 @@ class AddEditActTableViewController: UITableViewController {
         
         // Making sure user tapped the 'Delete Act' button, since this is the only selection we want to respond to
         if indexPath == deleteActCellIndexPath {
-            // Removing the act
-            acts.remove(at: indexPath.row)
-            // And asking the delegate to save changes and dismiss the view controller
-            delegate?.dismissViewControllerAndSaveActs(acts)
+            // Telling the delegate that an act should be deleted and asking it dismiss the view controller
+            // 'Delete' button is only visible when there is a non-nil act index, so we can force-unwrap
+            delegate?.dismissViewControllerAndDeleteActAt(IndexPath(row: actIndex!, section: 0))
         }
     }
 }
@@ -246,5 +273,13 @@ extension AddEditActTableViewController: UIPickerViewDelegate {
         pickedCountry = countryList[row]
         // Updating the country label
         countryLabel.text = pickedCountry.prettyNameString
+    }
+}
+
+// MARK: - Modal delegate
+
+extension AddEditActTableViewController: UIAdaptivePresentationControllerDelegate {
+    func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
+        confirmCancel()
     }
 }

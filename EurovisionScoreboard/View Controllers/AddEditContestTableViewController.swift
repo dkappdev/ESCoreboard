@@ -28,6 +28,10 @@ class AddEditContestTableViewController: UITableViewController {
     /// Button which user can click to save changes
     @IBOutlet var saveBarButton: UIBarButtonItem!
     
+    /// Button which user can click to discard changes
+    @IBOutlet var cancelBarButton: UIBarButtonItem!
+    
+    
     // MARK: - Properties
     
     /// Index path of the 'Acts' cell which user can press to edit act list
@@ -89,6 +93,12 @@ class AddEditContestTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Setting this VC as modal in presentation to prevent user from accidentally swiping down and dismissing all changes
+        isModalInPresentation = true
+        
+        // Setting `self` as the presentation controller delegate to respond to swipe down gesture
+        navigationController?.presentationController?.delegate = self
         
         // Setting `self` as the delegate and data source for picker view
         hostCountryPickerView.dataSource = self
@@ -204,14 +214,37 @@ class AddEditContestTableViewController: UITableViewController {
         
         if let contestIndex = contestIndex {
             // If we are editing an existing contest, save changes made to it
-            ContestController.shared.contests[contestIndex] = newContest
+            delegate?.dismissViewControllerAndChangeContest(newContest, at: IndexPath(item: contestIndex, section: 0))
         } else {
             // Otherwise append the new contest to the contests array
-            ContestController.shared.contests.append(newContest)
+            delegate?.dismissViewControllerAndAddContest(newContest)
         }
         
         // Asking delegate to dismiss the view controller
         delegate?.dismissViewController()
+    }
+    
+    /// Called when user taps the  'Cancel' button. Ask the user for confirmation
+    /// - Parameter sender: bar button item that was tapped
+    @IBAction func cancelBarButtonTapped(_ sender: UIBarButtonItem) {
+        confirmCancel()
+    }
+    
+    // MARK: - Applying changes
+    
+    /// Ask the user whether or not they want to discard changes and potentially dismisses the view controller
+    func confirmCancel() {
+        // If user attempted to dismiss VC, ask them if they are sure they want to dismiss changes
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "Discard Changes", style: .destructive) { _ in
+            self.delegate?.dismissViewController()
+        })
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        alert.popoverPresentationController?.barButtonItem = cancelBarButton
+        
+        present(alert, animated: true, completion: nil)
     }
     
     // MARK: - Segues
@@ -228,14 +261,12 @@ class AddEditContestTableViewController: UITableViewController {
             guard let contestIndex = contestIndex else { return }
             
             // And ask user for confirmation with an action sheet
-            let alertController = UIAlertController(title: "Are you sure you want to delete this contest from your list? This cannot be undone!", message: nil, preferredStyle: .actionSheet)
+            let alertController = UIAlertController(title: "Are you sure you want to delete this contest from your list?", message: nil, preferredStyle: .actionSheet)
             
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { action in
-                // If user confirms their intention do delete contest, update the contests array in contest controller
-                ContestController.shared.contests.remove(at: contestIndex)
-                // And ask delegate to dismiss this view controller
-                self.delegate?.dismissViewController()
+                // If user confirms their intention do delete contest, ask delegate to update the contests array in contest controller
+                self.delegate?.dismissViewControllerAndDeleteContestAt(IndexPath(item: contestIndex, section: 0))
             }
             
             // Setting up actions
@@ -297,6 +328,8 @@ extension AddEditContestTableViewController: UIPickerViewDataSource {
     }
 }
 
+// MARK: - AddEdit delegate
+
 extension AddEditContestTableViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         // Returning pretty string for country as the title for picker view row
@@ -309,5 +342,13 @@ extension AddEditContestTableViewController: UIPickerViewDelegate {
         // Updating the country label
         hostCountryLabel.text = pickedCountry.prettyNameString
         
+    }
+}
+
+// MARK: - Modal delegate
+
+extension AddEditContestTableViewController: UIAdaptivePresentationControllerDelegate {
+    func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
+        confirmCancel()
     }
 }

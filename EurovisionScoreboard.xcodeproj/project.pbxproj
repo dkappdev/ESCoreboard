@@ -15,6 +15,7 @@
 		E27C03BA26BC13F000AFF748 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E27C03B826BC13F000AFF748 /* Main.storyboard */; };
 		E27C03BC26BC13F200AFF748 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E27C03BB26BC13F200AFF748 /* Assets.xcassets */; };
 		E27C03BF26BC13F200AFF748 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E27C03BD26BC13F200AFF748 /* LaunchScreen.storyboard */; };
+		E28BD87026DA53290066CC0C /* UndoManager+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28BD86F26DA53290066CC0C /* UndoManager+Alert.swift */; };
 		E28D8EEF26D6A18C00D07D98 /* CountryListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28D8EEE26D6A18C00D07D98 /* CountryListTests.swift */; };
 		E28FE57226BFF72200380E14 /* AddEditContestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28FE57126BFF72200380E14 /* AddEditContestTableViewController.swift */; };
 		E292CE1D26D7CCEE009519B2 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E292CE1C26D7CCEE009519B2 /* SettingsTableViewController.swift */; };
@@ -53,6 +54,7 @@
 		E27C03BB26BC13F200AFF748 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E27C03BE26BC13F200AFF748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E27C03C026BC13F200AFF748 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E28BD86F26DA53290066CC0C /* UndoManager+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UndoManager+Alert.swift"; sourceTree = "<group>"; };
 		E28D8EEC26D6A18C00D07D98 /* EurovisionScoreboardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EurovisionScoreboardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E28D8EEE26D6A18C00D07D98 /* CountryListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListTests.swift; sourceTree = "<group>"; };
 		E28D8EF026D6A18C00D07D98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 		E28D8EE726D6A0F400D07D98 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				E28BD86F26DA53290066CC0C /* UndoManager+Alert.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 			files = (
 				E27C03B326BC13F000AFF748 /* AppDelegate.swift in Sources */,
 				E2A5218126BD11DF00D4F73D /* Country.swift in Sources */,
+				E28BD87026DA53290066CC0C /* UndoManager+Alert.swift in Sources */,
 				E2A5217726BC4B5800D4F73D /* ContestListCollectionViewController.swift in Sources */,
 				E2A5217B26BC645200D4F73D /* Contest.swift in Sources */,
 				E2A5218526BD7C6700D4F73D /* ViewActTableViewCell.swift in Sources */,

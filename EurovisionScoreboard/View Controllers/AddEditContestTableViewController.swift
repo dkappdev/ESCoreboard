@@ -22,6 +22,9 @@ class AddEditContestTableViewController: UITableViewController {
     /// Host country picker view
     @IBOutlet var hostCountryPickerView: UIPickerView!
     
+    /// Cell which user can click to restore default order of acts in the current contest. It should be hidden when user is adding a new contest. Because of this, we store the outlet to the cell in addition to its `IndexPath`
+    @IBOutlet var resetContestCell: UITableViewCell!
+    
     /// Cell which user can click to delete the current contest. It should be hidden when user is adding a new contest. Because of this, we store the outlet to the cell in addition to its `IndexPath`
     @IBOutlet var deleteContestCell: UITableViewCell!
     
@@ -36,8 +39,10 @@ class AddEditContestTableViewController: UITableViewController {
     
     /// Index path of the 'Acts' cell which user can press to edit act list
     let actsCellIndexPath = IndexPath(row: 0, section: 3)
-    /// Index path of the 'Delete Contest' cell which user can press to delete the current contest
-    let deleteContestCellIndexPath = IndexPath(row: 0, section: 4)
+    /// Index path of the 'Reser' cell which user can press to reset act order for the current contest
+    let resetCellIndexPath = IndexPath(row: 0, section: 4)
+    /// Index path of the 'Delete' cell which user can press to delete the current contest
+    let deleteContestCellIndexPath = IndexPath(row: 1, section: 4)
     
     /// Property representing the current year as an integer. It is calculated during initialization by executing the closure.
     let currentYearAsNumber: Int = {
@@ -140,6 +145,8 @@ class AddEditContestTableViewController: UITableViewController {
             
             // Hiding the 'Delete' cell
             deleteContestCell.isHidden = true
+            resetContestCell.isHidden = true
+            
             // Setting up navigation item
             navigationItem.title = "Add Contest"
         }
@@ -252,7 +259,7 @@ class AddEditContestTableViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    // MARK: - Segues
+    // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Deselect row on selection
@@ -281,8 +288,35 @@ class AddEditContestTableViewController: UITableViewController {
             
             // And presenting the alert controller
             present(alertController, animated: true, completion: nil)
+        } else {
+            // If user tapped the 'Reset' cell, make sure there is a valid contest index
+            guard let contestIndex = contestIndex else { return }
+            
+            // And ask user for confirmation with an action sheet
+            let alertController = UIAlertController(title: "This will restore the original order of acts. Are you sure you want to continue?", message: nil, preferredStyle: .actionSheet)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            let resetAction = UIAlertAction(title: "Reset", style: .destructive) { action in
+                // Getting the contest instance from contest controller. We can safely manipulate it since `Contest` is a value type
+                var contest = ContestController.shared.contests[contestIndex]
+                // Sorting the act list
+                contest.acts.sort { $0.country.name < $1.country.name }
+                
+                // If user confirms their intention do reset act list, ask delegate to update the contests array in contest controller
+                self.delegate?.dismissViewControllerAndChangeContest(contest, at: IndexPath(item: contestIndex, section: 0))
+            }
+            
+            // Setting up actions
+            alertController.addAction(cancelAction)
+            alertController.addAction(resetAction)
+            alertController.popoverPresentationController?.sourceView = tableView.cellForRow(at: indexPath)
+            
+            // And presenting the alert controller
+            present(alertController, animated: true, completion: nil)
         }
     }
+    
+    // MARK: - Segues
     
     /// Creates an `EditActsTableViewController` and sets up its delegate
     /// - Parameter coder: coder provided by storyboard

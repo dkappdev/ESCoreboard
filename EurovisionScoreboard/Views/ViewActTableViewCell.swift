@@ -23,6 +23,13 @@ class ViewActTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        // Manually setting font for `currentPlaceLabel` to adopt dynamic type
+        let currentPlaceStaticFont = UIFont.systemFont(ofSize: 34, weight: .bold)
+        let currentPlaceDynamicFont = UIFontMetrics(forTextStyle: .largeTitle).scaledFont(for: currentPlaceStaticFont)
+        currentPlaceLabel.font = currentPlaceDynamicFont
+        currentPlaceLabel.adjustsFontForContentSizeCategory = true
+        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

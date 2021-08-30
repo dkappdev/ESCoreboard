@@ -57,7 +57,7 @@ extension Country {
     static let italy = Country(name: "Italy", flagEmoji: "🇮🇹")
     static let latvia = Country(name: "Latvia", flagEmoji: "🇱🇻")
     static let lithuania = Country(name: "Lithuania", flagEmoji: "🇱🇹")
-    static let luxemburg = Country(name: "Luxemburg", flagEmoji: "🇱🇺")
+    static let luxembourg = Country(name: "Luxembourg", flagEmoji: "🇱🇺")
     static let malta = Country(name: "Malta", flagEmoji: "🇲🇹")
     static let moldova = Country(name: "Moldova", flagEmoji: "🇲🇩")
     static let monaco = Country(name: "Monaco", flagEmoji: "🇲🇨")
@@ -115,7 +115,7 @@ extension Country {
         .italy,
         .latvia,
         .lithuania,
-        .luxemburg,
+        .luxembourg,
         .malta,
         .moldova,
         .monaco,

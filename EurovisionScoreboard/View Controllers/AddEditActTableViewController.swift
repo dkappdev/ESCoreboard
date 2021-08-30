@@ -129,8 +129,10 @@ class AddEditActTableViewController: UITableViewController {
             artistNameTextField.text = act.artistName
             countryLabel.text = act.country.prettyNameString
              
-            countryPickerView.selectRow(countryList.firstIndex(of: act.country)!, inComponent: 0, animated: false)
-            
+            if let countryIndex = countryList.firstIndex(of: act.country) {
+                countryPickerView.selectRow(countryIndex, inComponent: 0, animated: false)
+            }
+                        
             // Setting up navigation item
             navigationItem.title = "Edit Act"
         } else {

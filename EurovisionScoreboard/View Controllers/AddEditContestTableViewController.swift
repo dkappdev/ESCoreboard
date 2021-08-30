@@ -128,8 +128,11 @@ class AddEditContestTableViewController: UITableViewController {
             // Populating text fields, labels, and country picker with contest information
             yearTextField.text = "\(contest.year)"
             hostCountryLabel.text = pickedCountry.prettyNameString
-            hostCountryPickerView.selectRow(Country.fullCountryList.firstIndex(of: contest.hostCountry)!, inComponent: 0, animated: false)
             hostCityTextField.text = contest.hostCityName
+            
+            if let countryIndex = Country.fullCountryList.firstIndex(of: contest.hostCountry) {
+                hostCountryPickerView.selectRow(countryIndex, inComponent: 0, animated: false)
+            }
             
             // Setting up navigation item
             navigationItem.title = "Edit Contest"

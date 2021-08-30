@@ -21,7 +21,7 @@ class ContestCollectionViewCell: UICollectionViewCell {
     
     func update(with contest: Contest) {
         hostCountryFlagLabel.text = contest.hostCountry.flagEmoji
-        yearAndHostCityLabel.text = "\(contest.year) - \(contest.hostCityName)"
+        yearAndHostCityLabel.text = "\(contest.year)\n\(contest.hostCityName)"
     }
     
 }

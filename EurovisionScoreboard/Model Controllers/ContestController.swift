@@ -26,7 +26,11 @@ class ContestController {
     
     /// Default initializer that attempts to load contests from file. If unable to do so, it load the default contest list.
     private init() {
-        contests = Self.loadFromFile() ?? Self.defaultContests()
+        contests = Self.loadFromFile() ?? []
+        
+        if contests.isEmpty {
+            resetContests()
+        }
     }
     
     // MARK: - Resetting the state

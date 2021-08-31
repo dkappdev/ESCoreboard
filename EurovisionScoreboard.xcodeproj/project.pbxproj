@@ -10,6 +10,7 @@
 		E26465E026C1529E008A914F /* AddEditContestTableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26465DF26C1529E008A914F /* AddEditContestTableViewControllerDelegate.swift */; };
 		E264660A26C28ACE008A914F /* EditActTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E264660926C28ACE008A914F /* EditActTableViewCell.swift */; };
 		E264660C26C28B5D008A914F /* EditActsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E264660B26C28B5D008A914F /* EditActsTableViewController.swift */; };
+		E273256826DE9EA100171DB1 /* default_contest_data.json in Resources */ = {isa = PBXBuildFile; fileRef = E273256726DE9EA100171DB1 /* default_contest_data.json */; };
 		E27C03B326BC13F000AFF748 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C03B226BC13F000AFF748 /* AppDelegate.swift */; };
 		E27C03B526BC13F000AFF748 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C03B426BC13F000AFF748 /* SceneDelegate.swift */; };
 		E27C03BA26BC13F000AFF748 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E27C03B826BC13F000AFF748 /* Main.storyboard */; };
@@ -47,6 +48,7 @@
 		E26465DF26C1529E008A914F /* AddEditContestTableViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditContestTableViewControllerDelegate.swift; sourceTree = "<group>"; };
 		E264660926C28ACE008A914F /* EditActTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditActTableViewCell.swift; sourceTree = "<group>"; };
 		E264660B26C28B5D008A914F /* EditActsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditActsTableViewController.swift; sourceTree = "<group>"; };
+		E273256726DE9EA100171DB1 /* default_contest_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = default_contest_data.json; sourceTree = "<group>"; };
 		E27C03AF26BC13F000AFF748 /* EurovisionScoreboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EurovisionScoreboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E27C03B226BC13F000AFF748 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E27C03B426BC13F000AFF748 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -92,6 +94,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E273256626DE9E7600171DB1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E273256726DE9EA100171DB1 /* default_contest_data.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		E27C03A626BC13F000AFF748 = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +135,7 @@
 				E27C03C826BC246000AFF748 /* Protocols */,
 				E28D8EE726D6A0F400D07D98 /* Extensions */,
 				E27C03C626BC245400AFF748 /* Storyboards */,
+				E273256626DE9E7600171DB1 /* Resources */,
 			);
 			path = EurovisionScoreboard;
 			sourceTree = "<group>";
@@ -297,6 +308,7 @@
 			files = (
 				E27C03BF26BC13F200AFF748 /* LaunchScreen.storyboard in Resources */,
 				E27C03BC26BC13F200AFF748 /* Assets.xcassets in Resources */,
+				E273256826DE9EA100171DB1 /* default_contest_data.json in Resources */,
 				E27C03BA26BC13F000AFF748 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

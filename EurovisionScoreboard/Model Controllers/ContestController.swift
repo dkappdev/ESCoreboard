@@ -33,7 +33,14 @@ class ContestController {
     
     /// Replaces the contest list with default contests
     func resetContests() {
-        contests = Self.defaultContests()
+        // Getting the JSON file containing default contest list from main bundle
+        let defaultContestDataURL = Bundle.main.url(forResource: "default_contest_data", withExtension: "json")
+        
+        // If URL exists and we have successfuly loaded contest list from file, update the `contests` array
+        if let defaultContestDataURL = defaultContestDataURL,
+           let defaultContests = Self.loadFromFile(url: defaultContestDataURL) {
+            contests = defaultContests
+        }
     }
 }
 
@@ -61,11 +68,11 @@ extension ContestController {
     
     /// Attempts to read contest list from `archiveURL`
     /// - Returns: `nil` if unable to read contest list, otherwise contest saved at `archiveURL`
-    private static func loadFromFile() -> [Contest]? {
+    private static func loadFromFile(url: URL = archiveURL) -> [Contest]? {
         // Getting a JSON decoder
         let jsonDecoder = JSONDecoder()
         
-        if let retrievedContestsData = try? Data(contentsOf: archiveURL),
+        if let retrievedContestsData = try? Data(contentsOf: url),
            let decodedContests = try? jsonDecoder.decode([Contest].self, from: retrievedContestsData) {
             // If we successfuly read data from file,
             // and were able to decode the JSON data,
@@ -79,7 +86,9 @@ extension ContestController {
     }
     
     /// List of default contests
+    /// Deprecated: Use JSON file from main app bundle to get default contest list
     /// - Returns: default contest list
+    @available(*, deprecated)
     private static func defaultContests() -> [Contest] {
         return [
             Contest(hostCountry: .theNetherlands, hostCityName: "Rotterdam", year: 2021, acts: [

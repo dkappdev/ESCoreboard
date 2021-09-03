@@ -40,7 +40,7 @@ class ContestController {
         // Getting the JSON file containing default contest list from main bundle
         let defaultContestDataURL = Bundle.main.url(forResource: "default_contest_data", withExtension: "json")
         
-        // If URL exists and we have successfuly loaded contest list from file, update the `contests` array
+        // If URL exists and we have successfully loaded contest list from file, update the `contests` array
         if let defaultContestDataURL = defaultContestDataURL,
            let defaultContests = Self.loadFromFile(url: defaultContestDataURL) {
             contests = defaultContests
@@ -78,7 +78,7 @@ extension ContestController {
         
         if let retrievedContestsData = try? Data(contentsOf: url),
            let decodedContests = try? jsonDecoder.decode([Contest].self, from: retrievedContestsData) {
-            // If we successfuly read data from file,
+            // If we successfully read data from file,
             // and were able to decode the JSON data,
             
             // return the decoded contest list

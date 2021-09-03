@@ -11,7 +11,7 @@ import UIKit
 class ContestListCollectionViewController: UICollectionViewController {
     
     // We use Int for section identifier and Contest for item identifier.
-    // Here we create a typealias for data source and data source snapshot with <Int, Contest> type parameters
+    // Here we create a type alias for data source and data source snapshot with <Int, Contest> type parameters
     typealias DataSourceType = UICollectionViewDiffableDataSource<Int, Contest>
     typealias DataSourceSnapshotType = NSDiffableDataSourceSnapshot<Int, Contest>
     
@@ -271,7 +271,7 @@ class ContestListCollectionViewController: UICollectionViewController {
     
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         // If we detect a shake motion, ask user if they want to undo or redo changes
-        // If shake to undo is disabled in accessability, don't do anything
+        // If shake to undo is disabled in accessibility, don't do anything
         guard motion == .motionShake,
               UIAccessibility.isShakeToUndoEnabled else {
             return

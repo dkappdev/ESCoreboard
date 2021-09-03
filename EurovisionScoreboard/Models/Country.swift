@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// Model structure representing a compenting country
+/// Model structure representing a competing country
 struct Country {
     /// Country name
     var name: String
@@ -27,7 +27,7 @@ extension Country: Codable { }
 extension Country: Hashable { }
 
 // List of constants for countries that have ever participated in the contest
-// Yugoslavia and 'Serbia and Monetengro' are represented by the EU flag since there are no emojis for these countries
+// Yugoslavia and 'Serbia and Montenegro' are represented by the EU flag since there are no emojis for these countries
 // These should be excluded from the country list for contests that took place in 2006 and later
 extension Country {
     static let albania = Country(name: "Albania", flagEmoji: "🇦🇱")

@@ -24,7 +24,7 @@ class ContestListCollectionViewController: UICollectionViewController {
     
     /// Reuse identifier for contest cell
     private static let contestCellReuseIdentifier = "Contest"
-    /// Idenetifier for collection view's only section
+    /// Identifier for collection view's only section
     static let defaultSectionIdentifier = 0
     
     /// The collection view diffable data source

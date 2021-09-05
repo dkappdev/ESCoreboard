@@ -1,8 +1,12 @@
+
 <div align="center">
+ 
+  ![build workflow](https://github.com/dkappdev/ESCoreboard/actions/workflows/main.yml/badge.svg)
+  
   <a href="https://github.com/dkappdev/ESCoreboard">
     <img src="Images/AppIcon.png" alt="Logo" height="80" />
   </a>
-  <h1 align="center">ESCoreboard</h1>
+  <h1 align="center">ESCoreboard</h1>  
   <p align="center">
     ESCoreboard is an app that allows you to create scoreboards for Eurovision Song Contest and share them with your friends.
   </p>

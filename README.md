@@ -1,7 +1,7 @@
 
 <div align="center">
  
-  ![build workflow](https://github.com/dkappdev/ESCoreboard/actions/workflows/main.yml/badge.svg)
+  ![build workflow](https://github.com/dkappdev/ESCoreboard/actions/workflows/build.yml/badge.svg)
   
   <a href="https://github.com/dkappdev/ESCoreboard">
     <img src="Images/AppIcon.png" alt="Logo" height="80" />

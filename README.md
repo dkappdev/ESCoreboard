@@ -27,7 +27,7 @@
 
 - Create scoreboards on iPadOS or Macs with Apple Silicon
 
-<img src="Images/iPad.png" alt="iPad app screenshot" height="600" />
+<img src="Images/iPad.png" alt="iPad app screenshot" height="350" />
 
 
 

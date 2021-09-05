@@ -32,4 +32,5 @@ jobs:
       # Builds project
       - name: Build
         run: |
-          xcodebuild clean build -project EurovisionScoreboard.xcodeproj -scheme EurovisionScoreboard -destination="${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
+          xcodebuild clean build -project EurovisionScoreboard.xcodeproj -scheme EurovisionScoreboard -destination="${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO ONLY_ACTIVE_ARCH=NO
+

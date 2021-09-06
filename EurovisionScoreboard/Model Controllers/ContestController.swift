@@ -8,14 +8,14 @@
 import Foundation
 
 /// Model controller that handles the app's contest list
-class ContestController {
+public class ContestController {
     // MARK: - Properties
     
     /// Shared instance of contest controller
-    static let shared = ContestController()
+    public static let shared = ContestController()
     
     /// Array of contests the user has saved. Any changes are automatically written to disk
-    var contests: [Contest] {
+    public var contests: [Contest] {
         didSet {
             // Saving the new contest list to file
             Self.saveToFile(contests: contests)
@@ -36,7 +36,7 @@ class ContestController {
     // MARK: - Resetting the state
     
     /// Replaces the contest list with default contests
-    func resetContests() {
+    public func resetContests() {
         // Getting the JSON file containing default contest list from main bundle
         let defaultContestDataURL = Bundle.main.url(forResource: "default_contest_data", withExtension: "json")
         
@@ -52,7 +52,7 @@ class ContestController {
 
 extension ContestController {
     /// URL of the file where contests are stored
-    static let archiveURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+    internal static let archiveURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         .first!
         .appendingPathComponent("contests")
         .appendingPathExtension("json")

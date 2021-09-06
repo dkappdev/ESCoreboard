@@ -8,13 +8,13 @@
 import Foundation
 
 /// Model structure representing act information – artist name, song name, and competing country
-struct Act {
+public struct Act {
     /// Artist name
-    var artistName: String
+    public var artistName: String
     /// Song name
-    var songName: String
+    public var songName: String
     /// Country which sent the act
-    var country: Country
+    public var country: Country
 }
 
 // Adopting Codable to be able to save data to disk

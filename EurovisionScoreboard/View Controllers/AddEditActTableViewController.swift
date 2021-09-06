@@ -8,51 +8,51 @@
 import UIKit
 
 /// Static table view controller responsible for editing individual acts
-class AddEditActTableViewController: UITableViewController {
+public class AddEditActTableViewController: UITableViewController {
     
     // MARK: - IB Outlets
     
-    @IBOutlet var songNameTextField: UITextField!
+    @IBOutlet public var songNameTextField: UITextField!
     /// Artist name text field
-    @IBOutlet var artistNameTextField: UITextField!
+    @IBOutlet public var artistNameTextField: UITextField!
     
     /// Label that displays currently picked country
-    @IBOutlet var countryLabel: UILabel!
+    @IBOutlet public var countryLabel: UILabel!
     /// Country picked view
-    @IBOutlet var countryPickerView: UIPickerView!
+    @IBOutlet public var countryPickerView: UIPickerView!
     
     /// Cell which user can click to delete the current act. It should be hidden when user is adding a new act. Because of this, we store the outlet the the cell in addition to its `IndexPath`
-    @IBOutlet var deleteActCell: UITableViewCell!
+    @IBOutlet public var deleteActCell: UITableViewCell!
     
     /// Button which user can click to save changes
-    @IBOutlet var saveBarButton: UIBarButtonItem!
+    @IBOutlet public var saveBarButton: UIBarButtonItem!
     
     /// Button which user can click to discard changes
-    @IBOutlet var cancelBarButton: UIBarButtonItem!
+    @IBOutlet public var cancelBarButton: UIBarButtonItem!
     
     // MARK: - Properties
     
     /// Index path of the 'Delete Act' cell which user can press to delete the current act
-    let deleteActCellIndexPath = IndexPath(row: 0, section: 3)
+    public let deleteActCellIndexPath = IndexPath(row: 0, section: 3)
     
     /// Indicates whether or not user has made any changes
-    var hasChanges = false
+    private var hasChanges = false
     
     /// Country that user has picked using the picker view, by default it's set to `Country.fullCountryList.first!` or `Country.moderCountryList.first!`, depending on contest year
-    var pickedCountry: Country!
+    private var pickedCountry: Country!
     
     /// Country list for picker view
-    var countryList: [Country]!
+    private var countryList: [Country]!
     
     /// Act list for the current contest
-    var acts: [Act]
+    private var acts: [Act]
     /// Index of the act this view controller is editing. It is used to modify the acts array.
-    var actIndex: Int?
+    private var actIndex: Int?
     /// Year when contest is taking place
-    let contestYear: Int?
+    private let contestYear: Int?
     
     /// Delegate responsible for saving changes and dismissing the view controller
-    weak var delegate: AddEditActTableViewControllerDelegate?
+    public weak var delegate: AddEditActTableViewControllerDelegate?
     
     // MARK: - Initializers
     
@@ -62,7 +62,7 @@ class AddEditActTableViewController: UITableViewController {
     ///   - acts: act list for the current contest
     ///   - actIndex: act to edit (`nil` if we are adding a new one)
     ///   - contestYear: year when contest is taking place
-    init?(coder: NSCoder, acts: [Act], actIndex: Int?, contestYear: Int?) {
+    public init?(coder: NSCoder, acts: [Act], actIndex: Int?, contestYear: Int?) {
         self.acts = acts
         self.actIndex = actIndex
         self.contestYear = contestYear
@@ -71,13 +71,13 @@ class AddEditActTableViewController: UITableViewController {
     
     /// Required initializer that should not be used. It is not implemented
     /// - Parameter coder: coder provided by Storyboard
-    required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Configuration
     /// Choose between modern and full country list
-    func setupCountryList() {
+    private func setupCountryList() {
         // If contest year exists and is >= 2006, use the modern country list without Yugoslavia and 'Serbia and Montenegro', otherwise use the full country list
         if let contestYear = contestYear {
             countryList = contestYear >= 2006 ? Country.modernCountryList : Country.fullCountryList
@@ -98,7 +98,7 @@ class AddEditActTableViewController: UITableViewController {
     
     // MARK: - View Life Cycle
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         
         setupCountryList()
@@ -151,7 +151,7 @@ class AddEditActTableViewController: UITableViewController {
         }
         
         // Updating save button state
-        // If we are adding a new act, this will disable the 'Save' button
+        // If we are adding a new act, this will disabl e the 'Save' button
         updateSaveButtonState()
         
         // Adding a tap gesture recognizer to hide keyboard whenever user taps outside text fields
@@ -163,13 +163,13 @@ class AddEditActTableViewController: UITableViewController {
     // MARK: - Dismissing keyboard
     
     /// Dismisses keyboard
-    @objc func dismissKeyboard() {
+    @objc private func dismissKeyboard() {
         view.endEditing(true)
     }
     
     // MARK: - Input validation
     
-    func updateSaveButtonState() {
+    private func updateSaveButtonState() {
         // Getting text from text fields
         let songName = songNameTextField.text ?? ""
         let artistName = artistNameTextField.text ?? ""
@@ -221,7 +221,7 @@ class AddEditActTableViewController: UITableViewController {
     // MARK: - Applying changes
     
     /// Ask the user whether or not they want to discard changes and potentially dismisses the view controller
-    func confirmCancel() {
+    private func confirmCancel() {
         // If user attempted to dismiss VC, ask them if they are sure they want to dismiss changes
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
@@ -236,7 +236,7 @@ class AddEditActTableViewController: UITableViewController {
     }
     
     /// Asks the user whether or not they want to delete an item and potentially dismisses the view controller
-    func confirmDelete(forRowAt indexPath: IndexPath) {
+    private func confirmDelete(forRowAt indexPath: IndexPath) {
         // If user attempted to dismiss VC, ask them if they are sure they want to dismiss changes
         let alert = UIAlertController(title: "Are you sure you want to delete this act from your list?", message: nil, preferredStyle: .actionSheet)
         
@@ -253,7 +253,7 @@ class AddEditActTableViewController: UITableViewController {
     
     // MARK: - Segues
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Deselect row on selection
         tableView.deselectRow(at: indexPath, animated: true)
         
@@ -269,7 +269,7 @@ class AddEditActTableViewController: UITableViewController {
 
 // Adopting `UITextFieldDelegate` to respond to 'return' key press
 extension AddEditActTableViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // Resigning first responder when user presses 'return'
         textField.resignFirstResponder()
         return false
@@ -277,23 +277,23 @@ extension AddEditActTableViewController: UITextFieldDelegate {
 }
 
 extension AddEditActTableViewController: UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         // There's only one component since we are only choosing a country
         return 1
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return countryList.count
     }
 }
 
 extension AddEditActTableViewController: UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         // Returning pretty string for country as the title for picker view row
         return countryList[row].prettyNameString
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         // Setting the `pickedCountry` property for use later
         pickedCountry = countryList[row]
         // Updating the country label
@@ -306,13 +306,13 @@ extension AddEditActTableViewController: UIPickerViewDelegate {
 // MARK: - Modal delegate
 
 extension AddEditActTableViewController: UIAdaptivePresentationControllerDelegate {
-    func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
+    public func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
         // User will be able to swipe down only if no changes were made.
         // If `hasChanges` is true, the user-initiated attempt to dismiss VC will be prevented and this delegate method will be called
         confirmCancel()
     }
     
-    func presentationControllerShouldDismiss(_ presentationController: UIPresentationController) -> Bool {
+    public func presentationControllerShouldDismiss(_ presentationController: UIPresentationController) -> Bool {
         // Only allow user to dismiss if there aren't any unsaved changes
         return !hasChanges
     }

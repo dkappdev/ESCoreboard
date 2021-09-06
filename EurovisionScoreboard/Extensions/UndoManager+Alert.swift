@@ -10,7 +10,7 @@ import UIKit
 extension UndoManager {
     /// Creates a `UIAlertController` with action to undo or redo changes
     /// - Returns: `UIAlertController` with available undo / redo actions
-    func getAlertWithAvailableActions() -> UIAlertController? {
+    public func getAlertWithAvailableActions() -> UIAlertController? {
         var alert: UIAlertController? = nil
         
         // Creating alert controllers based on possible actions

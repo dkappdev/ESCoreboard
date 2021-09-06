@@ -8,18 +8,18 @@
 import Foundation
 
 /// Model structure responsible for storing user settings
-struct Settings {
+public struct Settings {
     // MARK: - Nested types
     
     /// Keys for `UserDefaults`
-    enum Setting: String {
+    public enum Setting: String {
         case gridWidth = "gridWidth"
     }
     
     // MARK: - Properties
     
     /// Shared instance of settings
-    static var shared = Settings()
+    public static var shared = Settings()
     
     private let defaults = UserDefaults.standard
     

@@ -8,15 +8,15 @@
 import UIKit
 
 /// Table view responsible for displaying acts in 'view' mode, where user can rearrange acts to create their storyboard and share it.
-class ViewContestTableViewController: UITableViewController {
+public class ViewContestTableViewController: UITableViewController {
     
     /// Reuse identifier for act cell
-    private static let viewActCellReuseIdentifier = "ViewActCell"
+    public static let viewActCellReuseIdentifier = "ViewActCell"
     
     // MARK: - Properties
     
     /// Index of the contest this view controller is displaying. This property represents index of the contest in `contestController`'s `contests` array.
-    let contestIndex: Int
+    private let contestIndex: Int
     
     // MARK: - Initializers
     
@@ -24,20 +24,20 @@ class ViewContestTableViewController: UITableViewController {
     /// - Parameters:
     ///   - contestIndex: index of the contest this view controller is displaying.
     ///   - coder: coder provided by Storyboard
-    init?(contestIndex: Int, coder: NSCoder) {
+    public init?(contestIndex: Int, coder: NSCoder) {
         self.contestIndex = contestIndex
         super.init(coder: coder)
     }
     
     /// Required initializer that should never be used. It is not implemented.
     /// - Parameter coder: coder provided by Storyboard
-    required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - VC Life Cycle
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         
         // Setting up navigation item
@@ -46,7 +46,7 @@ class ViewContestTableViewController: UITableViewController {
         navigationItem.rightBarButtonItem = editButtonItem
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Explicitly setting toolbar visibility in case we want to change it later
         navigationController?.setToolbarHidden(false, animated: true)
@@ -54,16 +54,16 @@ class ViewContestTableViewController: UITableViewController {
     
     // MARK: - Table View Data Source
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    public override func numberOfSections(in tableView: UITableView) -> Int {
         // There's only one section since we're only displaying an array of acts
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ContestController.shared.contests[contestIndex].acts.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Self.viewActCellReuseIdentifier, for: indexPath) as! ViewActTableViewCell
         
         cell.update(with: ContestController.shared.contests[contestIndex].acts[indexPath.row], position: indexPath.row + 1)
@@ -75,12 +75,12 @@ class ViewContestTableViewController: UITableViewController {
     
     // MARK: - Table View Delegate
     
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+    public override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         // Making row moveable
         return true
     }
     
-    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+    public override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         // Changing act positions
         let movedAct = ContestController.shared.contests[contestIndex].acts.remove(at: sourceIndexPath.row)
         ContestController.shared.contests[contestIndex].acts.insert(movedAct, at: destinationIndexPath.row)
@@ -92,7 +92,7 @@ class ViewContestTableViewController: UITableViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+    public override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         // User should not be able to remove acts in 'view' mode
         // Overriding editing style since default is `.delete`
         return .none

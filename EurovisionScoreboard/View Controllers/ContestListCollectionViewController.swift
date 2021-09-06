@@ -8,44 +8,43 @@
 import UIKit
 
 /// Collection view controller responsible for displaying list of contests, adding new contests and resetting the app.
-class ContestListCollectionViewController: UICollectionViewController {
+public class ContestListCollectionViewController: UICollectionViewController {
     
     // We use Int for section identifier and Contest for item identifier.
     // Here we create a type alias for data source and data source snapshot with <Int, Contest> type parameters
-    typealias DataSourceType = UICollectionViewDiffableDataSource<Int, Contest>
-    typealias DataSourceSnapshotType = NSDiffableDataSourceSnapshot<Int, Contest>
+    public typealias DataSourceType = UICollectionViewDiffableDataSource<Int, Contest>
+    public typealias DataSourceSnapshotType = NSDiffableDataSourceSnapshot<Int, Contest>
     
     // MARK: - Properties
     
     /// addContest segue identifier
-    private static let addContestSegueIdentifier = "addContest"
+    public static let addContestSegueIdentifier = "addContest"
     /// editContest segue identifier
-    private static let editContestSegueIdentifier = "editContest"
+    public static let editContestSegueIdentifier = "editContest"
     
     /// Reuse identifier for contest cell
-    private static let contestCellReuseIdentifier = "Contest"
+    public static let contestCellReuseIdentifier = "Contest"
     /// Identifier for collection view's only section
-    static let defaultSectionIdentifier = 0
+    private static let defaultSectionIdentifier = 0
     
     /// The collection view diffable data source
-    var dataSource: DataSourceType!
+    private var dataSource: DataSourceType!
     
     // Allowing current VC to become first responder in order to detect shake motion
-    override var canBecomeFirstResponder: Bool {
+    public override var canBecomeFirstResponder: Bool {
         return true
     }
     
     /// Private instance of undo manager specific to this view controller
     private let myUndoManager = UndoManager()
     
-    override var undoManager: UndoManager? {
+    public override var undoManager: UndoManager? {
         return myUndoManager
     }
     
-    
     // MARK: - VC Life Cycle
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         
         // Setting up data source and layout
@@ -58,7 +57,7 @@ class ContestListCollectionViewController: UICollectionViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(updateCollectionView), name: SettingsTableViewController.contestListUpdatedNotification, object: nil)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         // Explicitly setting toolbar visibility in case we want to change it later
         navigationController?.setToolbarHidden(true, animated: true)
@@ -66,7 +65,7 @@ class ContestListCollectionViewController: UICollectionViewController {
     
     // MARK: - Responding to trait changes
     
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         // Updating layout if horizontal size class has changed
         if previousTraitCollection?.horizontalSizeClass != traitCollection.horizontalSizeClass {
             collectionView.collectionViewLayout = createLayout(isCompact: traitCollection.horizontalSizeClass == .compact)
@@ -78,7 +77,7 @@ class ContestListCollectionViewController: UICollectionViewController {
     /// Creates collection view layout with variable width based on `isCompact` parameter
     /// - Parameter isCompact: If `true`, the layout will adapt for compact horizontal size class
     /// - Returns: New collection view layout
-    func createLayout(isCompact: Bool) -> UICollectionViewCompositionalLayout {
+    private func createLayout(isCompact: Bool) -> UICollectionViewCompositionalLayout {
         // Creating an item that fills all of the available width and height
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -111,7 +110,7 @@ class ContestListCollectionViewController: UICollectionViewController {
     
     /// Creates a collection view diffable data source
     /// - Returns: New diffable data source
-    func createDataSource() -> DataSourceType {
+    private func createDataSource() -> DataSourceType {
         // Creating data source with cell provider closure
         return DataSourceType(collectionView: collectionView) { collectionView, indexPath, contest in
             // Dequeueing the cell
@@ -127,7 +126,7 @@ class ContestListCollectionViewController: UICollectionViewController {
     // MARK: - Updating collection view
     
     /// Pulls new data from `contestController` and updates collection view
-    @objc func updateCollectionView() {
+    @objc private func updateCollectionView() {
         // Creating a new snapshot
         var snapshot = DataSourceSnapshotType()
         
@@ -142,7 +141,7 @@ class ContestListCollectionViewController: UICollectionViewController {
     // MARK: - Configuring context menus
     
     // On long press (or right click for iPad) the cell should reveal the edit action
-    override func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+    public override func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
             // Creating the edit action
             let editAction = UIAction(title: "Edit Contest", image: UIImage(systemName: "pencil"), identifier: nil, discoverabilityTitle: nil, attributes: [], state: .off) { action in
@@ -205,7 +204,7 @@ class ContestListCollectionViewController: UICollectionViewController {
     /// Removes contest from contest list, updates collection view and creates undo action
     /// - Parameter indexPath: index path for contest to remove
     /// - Parameter initiatedByUser: indicates whether this function was called after a user action or by an undo manager. This parameter is used to properly set the action name.
-    func removeContest(for indexPath: IndexPath, initiatedByUser: Bool) {
+    public func removeContest(for indexPath: IndexPath, initiatedByUser: Bool) {
         // Removing contest from the contest array and remembering its value
         let removedContest = ContestController.shared.contests.remove(at: indexPath.item)
         // Updating collection view
@@ -223,7 +222,7 @@ class ContestListCollectionViewController: UICollectionViewController {
     ///   - contest: contest to add
     ///   - indexPath: index to put the contest at at
     ///   - initiatedByUser: indicates whether this function was called after a user action or by an undo manager. This parameter is used to properly set the action name.
-    func addContest(_ contest: Contest, at indexPath: IndexPath, initiatedByUser: Bool) {
+    public func addContest(_ contest: Contest, at indexPath: IndexPath, initiatedByUser: Bool) {
         // Inserting the contest into contest list and updating collection view
         ContestController.shared.contests.insert(contest, at: indexPath.item)
         
@@ -246,7 +245,7 @@ class ContestListCollectionViewController: UICollectionViewController {
     /// - Parameters:
     ///   - contest: new contest value
     ///   - indexPath: contest position
-    func changeContest(_ contest: Contest, at indexPath: IndexPath) {
+    public func changeContest(_ contest: Contest, at indexPath: IndexPath) {
         // Making sure index path is valid
         guard indexPath.item < ContestController.shared.contests.count else {
             print("Error: Attempting to change contest that does not exist")
@@ -269,7 +268,7 @@ class ContestListCollectionViewController: UICollectionViewController {
     
     // MARK: - Working with motion
     
-    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+    public override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         // If we detect a shake motion, ask user if they want to undo or redo changes
         // If shake to undo is disabled in accessibility, don't do anything
         guard motion == .motionShake,
@@ -290,20 +289,20 @@ class ContestListCollectionViewController: UICollectionViewController {
 extension ContestListCollectionViewController: AddEditContestTableViewControllerDelegate {
 
     /// Called when act list was not changed. Dismisses the view controller that called this method and updates the collection view
-    func dismissViewController() {
+    public func dismissViewController() {
         dismiss(animated: true, completion: nil)
     }
     
     /// Called when a contest should be removed from contest list. Dismisses the view controller that called this method and removes the contest at specified index path
     /// - Parameter indexPath: index path of the act that should be deleted
-    func dismissViewControllerAndDeleteContestAt(_ indexPath: IndexPath) {
+    public func dismissViewControllerAndDeleteContestAt(_ indexPath: IndexPath) {
         removeContest(for: indexPath, initiatedByUser: true)
         dismiss(animated: true, completion: nil)
     }
     
     /// Called when a contest should be added to the end of contest list. Dismisses the view controller that called this method and adds the act to the act list
     /// - Parameter act: the act to add to the act list
-    func dismissViewControllerAndAddContest(_ contest: Contest) {
+    public func dismissViewControllerAndAddContest(_ contest: Contest) {
         addContest(contest, at: IndexPath(item: ContestController.shared.contests.count, section: 0), initiatedByUser: true)
         dismiss(animated: true, completion: nil)
     }
@@ -312,7 +311,7 @@ extension ContestListCollectionViewController: AddEditContestTableViewController
     /// - Parameters:
     ///   - contest: new contest value
     ///   - indexPath: contest location
-    func dismissViewControllerAndChangeContest(_ contest: Contest, at indexPath: IndexPath) {
+    public func dismissViewControllerAndChangeContest(_ contest: Contest, at indexPath: IndexPath) {
         changeContest(contest, at: indexPath)
         dismiss(animated: true, completion: nil)
     }

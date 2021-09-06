@@ -9,29 +9,29 @@ import UIKit
 import UniformTypeIdentifiers
 
 /// Static view controller responsible for changing app settings
-class SettingsTableViewController: UITableViewController {
+public class SettingsTableViewController: UITableViewController {
     
     // MARK: - Properties
     
     /// Index path for 'Export' cell. By clicking the cell user can export contest data as JSON
-    let exportCellIndexPath = IndexPath(row: 0, section: 0)
+    public let exportCellIndexPath = IndexPath(row: 0, section: 0)
     /// Index path for 'Import' cell. By clicking the cell user can import contest data from JSON file
-    let importCellIndexPath = IndexPath(row: 1, section: 0)
+    public let importCellIndexPath = IndexPath(row: 1, section: 0)
     /// Index path for 'Reset' cell. By clicking the cell user can completely reset contest data
-    let resetCellIndexPath = IndexPath(row: 2, section: 0)
+    public let resetCellIndexPath = IndexPath(row: 2, section: 0)
     
     /// Notification informing that the contest list was changed in the shared instance of `ContestController`
-    static let contestListUpdatedNotification = Notification.Name("SettingsTableViewController.contestListUpdated")
+    public static let contestListUpdatedNotification = Notification.Name("SettingsTableViewController.contestListUpdated")
     
     // MARK: - VC Life cycle
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     // MARK: - Table view delegate
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
         // Calling appropriate methods based on which cell user has clicked
@@ -51,7 +51,7 @@ class SettingsTableViewController: UITableViewController {
     
     /// Exports contests as JSON and presents an action sheet
     /// - Parameter sender: table view cell that was tapped
-    func exportContests(sender: UITableViewCell) {
+    private func exportContests(sender: UITableViewCell) {
         // Getting the contest
         let contests = ContestController.shared.contests
         
@@ -103,7 +103,7 @@ class SettingsTableViewController: UITableViewController {
     
     /// Presents an alert informing user that export was unsuccessful
     /// - Parameter error: error to present to user
-    func presentAlertWithExportError(_ error: Error?) {
+    private func presentAlertWithExportError(_ error: Error?) {
         let title = error != nil ? "Unable to export contest data. Reason: \(error!.localizedDescription)" : "Unable to export contest data."
         
         let alertController = UIAlertController(title: title, message: nil, preferredStyle: .alert)
@@ -117,7 +117,7 @@ class SettingsTableViewController: UITableViewController {
     
     /// Imports contest list from JSON file
     /// - Parameter sender: table view cell that was tapped
-    func importContests(sender: UITableViewCell) {
+    private func importContests(sender: UITableViewCell) {
         // Filtering files by .json extension
         let types = UTType.types(tag: "json", tagClass: .filenameExtension, conformingTo: nil)
         
@@ -138,7 +138,7 @@ class SettingsTableViewController: UITableViewController {
     
     /// Presents an alert informing user that import was unsuccessful
     /// - Parameter error: error to present to user
-    func presentAlertWithImportError(_ error: Error?) {
+    private func presentAlertWithImportError(_ error: Error?) {
         let title = error != nil ? "Unable to import contest data. Reason: \(error!.localizedDescription)" : "Unable to import contest data."
         
         let alertController = UIAlertController(title: title, message: nil, preferredStyle: .alert)
@@ -153,7 +153,7 @@ class SettingsTableViewController: UITableViewController {
     /// Replaces current contest list with the default one
     /// When user tries to reset, we ask them twice if they are sure they want to reset.
     /// - Parameter sender: the cell that was tapped
-    func resetContests(sender: UITableViewCell) {
+    private func resetContests(sender: UITableViewCell) {
         // Presenting both warning as action sheets
         let firstAlertController = UIAlertController(title: "Are you sure you want to reset your contest list? This cannot be undone!", message: nil, preferredStyle: .actionSheet)
         
@@ -195,7 +195,7 @@ class SettingsTableViewController: UITableViewController {
 // MARK: - Document picker delegate
 
 extension SettingsTableViewController: UIDocumentPickerDelegate {
-    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+    public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         // Getting the first url
         guard let jsonURL = urls.first else {
             presentAlertWithImportError(nil)

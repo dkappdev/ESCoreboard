@@ -8,18 +8,18 @@
 import UIKit
 
 /// Collection view cell that displays contest information (host country, host city, year) in the contest list collection view
-class ContestCollectionViewCell: UICollectionViewCell {
+public class ContestCollectionViewCell: UICollectionViewCell {
     /// Label displaying country flag emoji
-    @IBOutlet var hostCountryFlagLabel: UILabel!
+    @IBOutlet public var hostCountryFlagLabel: UILabel!
     /// Label displaying the year when a contest took place and the host city
-    @IBOutlet var yearAndHostCityLabel: UILabel!
+    @IBOutlet public var yearAndHostCityLabel: UILabel!
     
-    override func awakeFromNib() {
+    public override func awakeFromNib() {
         // Setting the cornet radius
         layer.cornerRadius = 12
     }
     
-    func update(with contest: Contest) {
+    public func update(with contest: Contest) {
         hostCountryFlagLabel.text = contest.hostCountry.flagEmoji
         yearAndHostCityLabel.text = "\(contest.year)\n\(contest.hostCityName)"
     }

@@ -66,7 +66,7 @@ extension ContestController {
             // If we successfully encoded the contest list
             
             // Attempt to write data to file
-            try? encodedContests.write(to: Self.archiveURL, options: .noFileProtection)
+            try? encodedContests.write(to: Self.archiveURL, options: .atomic)
         }
     }
     

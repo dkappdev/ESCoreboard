@@ -12,7 +12,7 @@ public struct Settings {
     // MARK: - Nested types
     
     /// Keys for `UserDefaults`
-    public enum Setting: String {
+    private enum Setting: String {
         case gridWidth = "gridWidth"
     }
     

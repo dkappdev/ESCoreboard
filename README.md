@@ -21,7 +21,7 @@
 
 <img src="Images/Share.png" alt="iOS Action Sheet screenshot" height="600" /> <img src="Images/ShareResult.png" alt="Shared scoreboard screenshot" height="600" />
 
-- Add news contests or edit existing ones
+- Add new contests or edit existing ones
 
 <img src="Images/EditContest.png" alt="Screenshot of contest information" height="600" />
 
